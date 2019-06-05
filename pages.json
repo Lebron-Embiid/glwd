@@ -1,0 +1,142 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom",
+                "navigationBarTitleText": "",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
+			"path": "pages/reserve/reserve",
+			"style": {
+				"navigationBarTitleText": "预约",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
+			"path": "pages/lesson/lesson",
+			"style": {
+				"navigationBarTitleText": "课程",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
+			"path": "pages/school/school",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
+			"path": "pages/person/person",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
+			"path": "pages/video_detail/video_detail",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
+			"path": "pages/series/series",
+			"style": {
+				"navigationBarTitleText": "舞蹈系列",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
+			"path": "pages/list/list",
+			"style": {
+				"navigationStyle": "custom",
+                "navigationBarTitleText": ""				
+			}
+		},
+		{
+			"path": "pages/detail/detail",
+			"style": {
+				"navigationStyle": "custom",
+                "navigationBarTitleText": ""				
+			}
+		},
+		{
+			"path": "pages/ucenter/ucenter",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		}
+	],
+	"tabBar": {
+		"color": "#333333",
+		"selectedColor": "#fbc800",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "black",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/footer1.png",
+			"selectedIconPath": "static/footer1_on.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/reserve/reserve",
+			"iconPath": "static/footer2.png",
+			"selectedIconPath": "static/footer2_on.png",
+			"text": "预约"
+		}, {
+			"pagePath": "pages/lesson/lesson",
+			"iconPath": "static/footer3.png",
+			"selectedIconPath": "static/footer3_on.png",
+			"text": "课程"
+		}, {
+			"pagePath": "pages/school/school",
+			"iconPath": "static/footer4.png",
+			"selectedIconPath": "static/footer4_on.png",
+			"text": "校区"
+		}, {
+			"pagePath": "pages/person/person",
+			"iconPath": "static/footer5.png",
+			"selectedIconPath": "static/footer5_on.png",
+			"text": "我的"
+		}]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "港龙舞蹈",
+		"navigationBarBackgroundColor": "#fff",
+		"backgroundColor": "#FFFFFF"
+	}
+}
