@@ -24,13 +24,13 @@
 						price: "256.00",
 						hot: 1
 					},{
-						id: 1,
+						id: 2,
 						src: "../../static/lesson_img2.jpg",
 						lesson: "爵士舞课程",
 						price: "256.00",
 						hot: 0
 					},{
-						id: 1,
+						id: 3,
 						src: "../../static/lesson_img3.jpg",
 						lesson: "爵士舞课程",
 						price: "256.00",

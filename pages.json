@@ -81,6 +81,17 @@
 			}
 		},
 		{
+			"path": "pages/school_detail/school_detail",
+			"style": {
+				"navigationBarTitleText": "校区详情",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
 			"path": "pages/list/list",
 			"style": {
 				"navigationStyle": "custom",

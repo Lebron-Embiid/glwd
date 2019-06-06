@@ -15,7 +15,7 @@
 <style lang="scss">
 	/*每个页面公共css */
 	.page_bg{background: #f5f5f7 !important;min-height: 100%;position: fixed;width: 100%;z-index: -1;left: 0;top: 0;}
-
+	.mt500{margin-top: 540upx;}
 	.status_bar {  
 		height: var(--status-bar-height);  
 		width: 100%;  

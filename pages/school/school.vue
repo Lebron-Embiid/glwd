@@ -5,13 +5,43 @@
 			<view class="top_view"></view>  
 		</view>  
 		<!-- #endif -->
-		<view class="page_bg"></view>
-		<view class="address_txt" @tap="chooseLocation">{{address}}<image src="../../static/down.png" mode="widthFix"></image></view>
-		<map id="map" :latitude="latitude" :longitude="longitude" :markers="covers" @regionchange="regionchange"></map>
+		<view class="fixed_top">
+			<view class="address_txt" @tap="chooseLocation">{{address}}<image src="../../static/down.png" mode="widthFix"></image></view>
+			<view class="search_school">
+				<view class="form_box">
+					<image src="../../static/search1.png" mode="widthFix"></image>
+					<input type="text" placeholder="搜校区" v-model="keywords" :value="keywords" placeholder-style="color:#fdcb05;" />
+				</view>
+			</view>
+			<map id="map" :latitude="latitude" :longitude="longitude" show-location="true" :markers="covers"></map>
+		</view>
+		<view class="mt500"></view>
+		<view class="nearby_school">
+			<view class="near_title">附近校区</view>
+			<view class="near_item" @tap="toSchoolDetail(item.id)" v-for="(item,index) in near_list" :key="item.id">
+				<view>
+					<view class="ni_title">{{item.title}}</view>
+					<view class="ni_info">{{item.info}}</view>
+				</view>
+				<view class="ni_dist">{{item.dist}}</view>
+			</view>
+		</view>
+		<view class="nearby_school noborder">
+			<view class="near_title">校区列表</view>
+			<view class="near_item" @tap="toSchoolDetail(item.id)" v-for="(item,index) in school_list" :key="item.id">
+				<view>
+					<view class="ni_title">{{item.title}}</view>
+					<view class="ni_info">{{item.info}}</view>
+				</view>
+				<view class="ni_dist">{{item.dist}}</view>
+			</view>
+		</view>
+		<view class="invite_box" @tap="toSchoolDetail"><image src="../../static/reserve.png" mode="widthFix"></image>预约</view>
 	</view>
 </template>
 
 <script>
+	const mapContext = uni.createMapContext("map",this);
 	export default{
 		data(){
 			return{
@@ -21,6 +51,7 @@
 				covers: [{
 					latitude: 39.909,
 					longitude: 116.39742,
+					iconPath: "/static/icon.png",
 					callout: {
 						content: "离我最近",
 						color: "#fff",
@@ -29,7 +60,52 @@
 						borderRadius: 5,
 						display: 'ALWAYS'
 					}
-				}]
+				}],
+				keywords: "",
+				near_list: [
+					{
+						id: 1,
+						latitude: 39.909,
+						longitude: 116.39742,
+						title: "莲花山校区",
+						info: "深圳市罗湖区建设路火车站大厦5楼",
+						dist: "169m"
+					}
+				],
+				school_list: [
+					{
+						id: 1,
+						latitude: 39.909,
+						longitude: 116.39742,
+						title: "莲花山校区",
+						info: "深圳市罗湖区建设路火车站大厦5楼",
+						dist: "169m"
+					},
+					{
+						id: 2,
+						latitude: 39.909,
+						longitude: 116.39742,
+						title: "莲花山校区",
+						info: "深圳市罗湖区建设路火车站大厦5楼",
+						dist: "169m"
+					},
+					{
+						id: 3,
+						latitude: 39.909,
+						longitude: 116.39742,
+						title: "莲花山校区",
+						info: "深圳市罗湖区建设路火车站大厦5楼",
+						dist: "169m"
+					},
+					{
+						id: 4,
+						latitude: 39.909,
+						longitude: 116.39742,
+						title: "莲花山校区",
+						info: "深圳市罗湖区建设路火车站大厦5楼",
+						dist: "169m"
+					}
+				]
 			}
 		},
 		methods:{
@@ -45,23 +121,44 @@
 					}
 				});
 			},
-			regionchange(){
-				
+			toSchoolDetail(e){
+				uni.navigateTo({
+					url: "/pages/school_detail/school_detail?id="+e
+				})
+			},
+			callouttap(e){
+				console.log(e)
 			}
 		},
 		onLoad() {
 			
+		},
+		onReady() {
+			var that = this;
+			mapContext.moveToLocation(that.latitude,that.longitude);
 		}
 	}
 </script>
 
 <style scoped lang="scss">
 	.school_view{
-		padding: 0 40upx;
+		.fixed_top{
+			padding-bottom: 30upx;
+			overflow: hidden;
+			width: 100%;
+			height: 490upx;
+			position: fixed;
+			left: 0;
+			top: var(--status-bar-height);
+			background: #fff;
+			box-shadow: 0 1upx 10upx #E9E9E9;
+		}
 		.address_txt{
 			color: #333;
 			font-size: 50upx;
 			margin: 30upx 0;
+			padding: 0 40upx;
+			box-sizing: border-box;
 			display: flex;
 			align-items: center;
 			image{
@@ -71,10 +168,91 @@
 				margin-left: 10upx;
 			}
 		}
+		.search_school{
+			padding: 0 40upx;
+			box-sizing: border-box;
+			.form_box{
+				height: 90upx;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: #fff9df;
+				border-radius: 10upx;
+				margin-bottom: 40upx;
+				image{
+					display: inline-block;
+					width: 34upx;
+					height: 34upx;
+					margin-right: 10upx;
+				}
+				input{
+					display: block;
+					width: 100upx;
+					color: #fdcb05;
+					font-size: 32upx;
+				}
+			}
+		}
+		.nearby_school{
+			padding: 0 40upx;
+			box-sizing: border-box;
+			border-bottom: 8upx solid #f6f6f6;
+			&.noborder{
+				border-bottom: 0;
+				margin-top: 30upx;
+			}
+			.near_title{
+				color: #999;
+				font-size: 26upx;
+				margin: 0 0 20upx;
+			}
+			.near_item{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 15upx;
+				padding-bottom: 15upx;
+				border-bottom: 1px solid #F8F8F8;
+				&:last-of-type{
+					border-bottom: 0;
+				}
+				.ni_title{
+					color: #444;
+					font-size: 34upx;
+					margin-bottom: 10upx;
+				}
+				.ni_info,.ni_dist{
+					color: #999;
+					font-size: 24upx;
+				}
+			}
+		}
+		.invite_box{
+			position: fixed;
+			right: 55upx;
+			bottom: 130upx;
+			width: 155upx;
+			height: 75upx;
+			color: #fff;
+			font-size: 28upx;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: linear-gradient(#fed027,#fdc618,#fbb801);
+			border-radius: 50upx;
+			image{
+				display: inline-block;
+				width: 44upx;
+				height: 44upx;
+				margin-right: 10upx;
+			}
+		}
 	}
 	#map{
 		display: block;
-		width: 100%;
+		width: 750upx;
 		height: 240upx;
+		padding: 0 40upx;
+		box-sizing: border-box;
 	}
 </style>
