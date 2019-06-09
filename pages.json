@@ -4,12 +4,7 @@
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom",
-                "navigationBarTitleText": "",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+                "navigationBarTitleText": ""
 			}
 		},
 		{
@@ -38,12 +33,7 @@
 			"path": "pages/school/school",
 			"style": {
 				"navigationStyle": "custom",
-				"navigationBarTitleText": "",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationBarTitleText": ""
 			}
 		},
 		{
