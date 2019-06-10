@@ -29,7 +29,28 @@
 		top: 0;  
 		z-index: 999;  
 	}  
-	
+	// 预约按钮
+	.invite_box{
+		position: fixed;
+		right: 55upx;
+		bottom: 130upx;
+		width: 155upx;
+		height: 75upx;
+		color: #fff;
+		font-size: 28upx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: linear-gradient(#fed027,#fdc618,#fbb801);
+		border-radius: 50upx;
+		z-index: 5;
+		image{
+			display: inline-block;
+			width: 44upx;
+			height: 44upx;
+			margin-right: 10upx;
+		}
+	}
 	// 分享按钮
 	.vi_share,.vd_share{
 		margin-top: 15upx;
@@ -72,26 +93,64 @@
 		background: #f5f5f5;
 		border-radius: 50upx;
 		margin: 20upx 0;
-		span{
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
-			height: 60upx;
-			padding: 0 30upx;
-			box-sizing: border-box;
-		}
+		position: relative;
 		image{
-			display: block;
-			margin: 0 10upx 0 0;
+			position: absolute;
+			left: 20upx;
+			top: 50%;
+			transform: translateY(-50%);
 			width: 34upx;
 			height: 34upx;
 		}
 		.input_box{
-			display: inline-block;
 			width: 80%;
+			padding-left: 70upx;
+			display: flex;
+			align-items: center;
 			input{
 				color: #b0b0b0;
 				font-size: 24upx;
+			}
+		}
+	}
+	// 课程
+	.lesson_box{
+		overflow: hidden;
+		.lesson_item{
+			margin-bottom: 30upx;
+			.li_img{
+				border-radius: 5upx;
+				margin-bottom: 15upx;
+				position: relative;
+				image{
+					display: block;
+					width: 100%;
+					max-height: 400upx;
+				}
+				text{
+					display: inline-block;
+					color: #fff;
+					font-size: 20upx;
+					background: #fbc800;
+					border-radius: 5upx;
+					padding: 4upx 10upx 7upx;
+					position: absolute;
+					right: 20upx;
+					top: 20upx;
+				}
+			}
+			.li_info{
+				color: #333;
+				font-size: 26upx;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0 25upx 0 10upx;
+				box-sizing: border-box;
+				.li_price{
+					color: #d3a800;
+					font-size: 22upx;
+				}
 			}
 		}
 	}

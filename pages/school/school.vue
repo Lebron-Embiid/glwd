@@ -227,26 +227,6 @@
 				}
 			}
 		}
-		.invite_box{
-			position: fixed;
-			right: 55upx;
-			bottom: 130upx;
-			width: 155upx;
-			height: 75upx;
-			color: #fff;
-			font-size: 28upx;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			background: linear-gradient(#fed027,#fdc618,#fbb801);
-			border-radius: 50upx;
-			image{
-				display: inline-block;
-				width: 44upx;
-				height: 44upx;
-				margin-right: 10upx;
-			}
-		}
 	}
 	#map{
 		display: block;

@@ -53,11 +53,27 @@
 			</view>
 			<!-- 课程 -->
 			<view class="lesson_box" v-show="currentTab == 2">
-				
+				<commonLesson :list="lesson_list"></commonLesson>
 			</view>
 			<!-- 资讯 -->
 			<view class="news_box" v-show="currentTab == 3">
-				
+				<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" indicator-color="rgba(102,102,102,.5)" indicator-active-color="#666" circular="true">
+					<swiper-item v-for="(item,index) in swiper_list" :key="index">
+						<view class="swiper-item"><image :src="item" mode="widthFix"></image></view>
+					</swiper-item>
+				</swiper>
+				<view class="news_list_box">
+					<view class="news_item" v-for="(item,index) in news_list" :key="item.id" @tap="toNewsDetail(item.id)">
+						<view class="ni_left">
+							<view class="nl_title">{{item.title}}</view>
+							<view class="nl_time">{{item.time}}</view>
+							<view class="nl_num"><image src="../../static/eye.jpg" mode="widthFix"></image>{{item.num}}</view>
+						</view>
+						<view class="ni_right">
+							<image :src="item.src" mode="widthFix"></image>
+						</view>
+					</view>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -65,6 +81,7 @@
 
 <script>
 	import commonSearch from "../../components/search.vue"
+	import commonLesson from "../../components/lesson.vue"
 	export default{
 		data(){
 			return{
@@ -94,11 +111,53 @@
 						top: 0,
 						collect: 1
 					}
+				],
+				indicatorDots: true,
+				autoplay: true,
+				interval: 3000,
+				duration: 800,
+				swiper_list: ["../../static/news_banner.jpg","../../static/news_banner.jpg","../../static/news_banner.jpg"],
+				news_list: [
+					{
+						id: 1,
+						title: "跳舞让一个女孩光芒万丈的出现在舞台",
+						time: "2019.05.10 16:00",
+						num: "2598",
+						src: "../../static/news_img1.jpg"
+					},{
+						id: 2,
+						title: "翩翩舞不停,2019国际舞蹈日“共享舞蹈多元之美”",
+						time: "2019.05.10 16:00",
+						num: "2598",
+						src: "../../static/news_img2.jpg"
+					}
+				],
+				lesson_list: [
+					{
+						id: 1,
+						src: "../../static/lesson_img1.jpg",
+						lesson: "初级拉丁舞课程",
+						price: "256.00",
+						hot: 1
+					},{
+						id: 2,
+						src: "../../static/lesson_img2.jpg",
+						lesson: "爵士舞课程",
+						price: "256.00",
+						hot: 0
+					},{
+						id: 3,
+						src: "../../static/lesson_img3.jpg",
+						lesson: "爵士舞课程",
+						price: "256.00",
+						hot: 0
+					}
 				]
 			}
 		},
 		components:{
-			commonSearch
+			commonSearch,
+			commonLesson
 		},
 		methods:{
 			navbarTap(e){
@@ -112,6 +171,11 @@
 			toVideoDetail(e){
 				uni.navigateTo({
 					url: "/pages/video_detail/video_detail?id="+e
+				})
+			},
+			toNewsDetail(e){
+				uni.navigateTo({
+					url: "/pages/news_detail/news_detail?id="+e
 				})
 			}
 		}
@@ -256,6 +320,67 @@
 							}
 						}
 					}
+				}
+			}
+		}
+	}
+	// 资讯
+	.swiper{
+		height: 260upx;
+	}
+	.swiper .swiper-item image{
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+	.news_list_box{
+		padding: 40upx 30upx;
+		box-sizing: border-box;
+		.news_item{
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			margin-bottom: 40upx;
+			.ni_left{
+				width: 420upx;
+				.nl_title{
+					color: #333;
+					font-size: 28upx;
+					margin-top: 5upx;
+					overflow : hidden;
+					text-overflow: ellipsis;
+					display: -webkit-box;
+					-webkit-line-clamp: 2;
+					-webkit-box-orient: vertical;
+					word-wrap: break-word;
+					word-break: break-all;
+				}
+				.nl_time{
+					color: #999;
+					font-size: 20upx;
+					margin: 10upx 0 20upx;
+				}
+				.nl_num{
+					color: #d3a800;
+					font-size: 20upx;
+					display: flex;
+					align-items: center;
+					image{
+						display: inline-block;
+						width: 29upx;
+						height: 20upx;
+						margin-right: 10upx;
+					}
+				}
+			}
+			.ni_right{
+				width: 210upx;
+				display: flex;
+				justify-content: flex-end;
+				image{
+					display: block;
+					width: 202upx;
+					height: 168upx;
 				}
 			}
 		}

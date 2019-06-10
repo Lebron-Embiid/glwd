@@ -4,7 +4,10 @@
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom",
-                "navigationBarTitleText": ""
+                "navigationBarTitleText": "",
+				"app-plus": {
+					"titleNView": false
+                }
 			}
 		},
 		{
@@ -33,7 +36,10 @@
 			"path": "pages/school/school",
 			"style": {
 				"navigationStyle": "custom",
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "",
+				"app-plus": {
+					"titleNView": false
+                }
 			}
 		},
 		{
@@ -74,6 +80,39 @@
 			"path": "pages/school_detail/school_detail",
 			"style": {
 				"navigationBarTitleText": "校区详情",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
+			"path": "pages/news_detail/news_detail",
+			"style": {
+				"navigationBarTitleText": "资讯详情",
+				"app-plus": {
+                    "titleNView": {
+                        "type": "transparent"//透明渐变导航栏
+                    }
+                }
+			}
+		},
+		{
+			"path": "pages/lesson_detail/lesson_detail",
+			"style": {
+				"navigationBarTitleText": "课程详情",
+				"app-plus": {
+                    "titleNView": {
+                        "type": "transparent"//透明渐变导航栏
+                    }
+                }
+			}
+		},
+		{
+			"path": "pages/scan_code/scan_code",
+			"style": {
+				"navigationBarTitleText": "扫码进群",
 				"app-plus":{
 					"titleNView" : {  
                         "splitLine":{"color":"#F4F4F4"} 
