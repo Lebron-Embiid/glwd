@@ -121,6 +121,17 @@
 			}
 		},
 		{
+			"path": "pages/audio_detail/audio_detail",
+			"style": {
+				"navigationBarTitleText": "",
+				"app-plus": {
+                    "titleNView": {
+                        "type": "transparent"//透明渐变导航栏
+                    }
+                }
+			}
+		},
+		{
 			"path": "pages/list/list",
 			"style": {
 				"navigationStyle": "custom",

@@ -203,7 +203,10 @@
 					.rec_txt{
 						position: absolute;
 						display: inline-block;
-						padding: 6upx 15upx 8upx;
+						width: 110upx;
+						height: 40upx;
+						line-height: 40upx;
+						text-align: center;
 						background: #fbc800;
 						color: #fff;
 						font-size: 20upx;

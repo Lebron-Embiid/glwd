@@ -49,7 +49,7 @@
 			</view>
 			<!-- 音频 -->
 			<view class="audio_box" v-show="currentTab == 1">
-				
+				<view class="audio_item" v-for="(item,index) in audio_list" :key="item.id" @tap="toAudioDetail(item.id)"><image :src="item.src" mode="widthFix"></image><text>{{item.title}}</text></view>
 			</view>
 			<!-- 课程 -->
 			<view class="lesson_box" v-show="currentTab == 2">
@@ -152,6 +152,33 @@
 						price: "256.00",
 						hot: 0
 					}
+				],
+				audio_list: [
+					{
+						id: 1,
+						title: "摇滚",
+						src: "../../static/audio_img1.jpg"
+					},
+					{
+						id: 2,
+						title: "古典",
+						src: "../../static/audio_img2.jpg"
+					},
+					{
+						id: 3,
+						title: "轻音乐",
+						src: "../../static/audio_img3.jpg"
+					},
+					{
+						id: 4,
+						title: "韩风",
+						src: "../../static/audio_img4.jpg"
+					},
+					{
+						id: 5,
+						title: "最新",
+						src: "../../static/audio_img5.jpg"
+					}
 				]
 			}
 		},
@@ -177,6 +204,11 @@
 				uni.navigateTo({
 					url: "/pages/news_detail/news_detail?id="+e
 				})
+			},
+			toAudioDetail(e){
+				uni.navigateTo({
+					url: "/pages/audio_detail/audio_detail?id="+e
+				})				
 			}
 		}
 	}
@@ -186,6 +218,7 @@
 	.index_view{
 		.search_box,.nav_content{
 			padding: 0 25upx;
+			overflow: hidden;
 		}
 		.index_nav{
 			margin-bottom: 15upx;
@@ -280,7 +313,10 @@
 								color: #fff;
 								font-size: 18upx;
 								background: #fbc800;
-								padding: 5upx 15upx 8upx;
+								width: 70upx;
+								height: 40upx;
+								line-height: 40upx;
+								text-align: center;
 								border-radius: 5upx;
 							}
 						}
@@ -382,6 +418,36 @@
 					width: 202upx;
 					height: 168upx;
 				}
+			}
+		}
+	}
+	// 音频
+	.audio_box{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		padding: 20upx 5upx;
+		box-sizing: border-box;
+		.audio_item{
+			display: block;
+			width: 49%;
+			max-height: 140upx;
+			position: relative;
+			margin-bottom: 20upx;
+			border-radius: 15upx;
+			overflow: hidden;
+			image{
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+			text{
+				position: absolute;
+				left: 20upx;
+				top: 15upx;
+				color: #fff;
+				font-size: 26upx;
 			}
 		}
 	}

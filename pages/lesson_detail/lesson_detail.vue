@@ -33,47 +33,75 @@
 		</view>
 		<view class="ld_shadow" :class="[layerShow == true?'active':'']" @tap="hideLayer"></view>
 		<view class="ld_layer_box" :class="[layerShow == true?'active':'']">
-			<scroll-view scroll-y>
-				<view class="lb_close"><image src="../../static/close.png" mode="widthFix" @tap="hideLayer"></image></view>
-				<view class="lb_lesson_info">
-					<image src="../../static/layer_img.jpg" mode="widthFix"></image>
-					<view class="li_box">
-						<view class="li_title">初级拉丁舞课程</view>
-						<view class="li_price">￥256.00</view>
+			<view class="lb_close"><image src="../../static/close.png" mode="widthFix" @tap="hideLayer"></image></view>
+			<view class="lb_lesson_info">
+				<image src="../../static/layer_img.jpg" mode="widthFix"></image>
+				<view class="li_box">
+					<view class="li_title">初级拉丁舞课程</view>
+					<view class="li_price">￥256.00</view>
+				</view>
+			</view>
+			<view class="layer_format">
+				<view class="format_item" v-for="(format,index) in buy_format" :key="index">
+					<view class="format_name">{{format.name}}</view>
+					<view class="format_list">
+						<button class="fl_item" :class="[format.current[0] == index && format.current[1] == idx?'active':''] || [item[idx].dis == true?'disable':'']" v-for="(item,idx) in format.list" :key="idx" @click="selectFormat(format.id,item.attr_id,index,idx)">{{item.attr_name}}</button>
 					</view>
 				</view>
-				<view class="layer_format">
-					<view class="format_item" v-for="(format,index) in buy_format" :key="index">
-						<view class="format_name">{{format.name}}</view>
-						<view class="format_list">
-							<button class="fl_item" :class="[format.current[0] == index && format.current[1] == idx?'active':'']" v-for="(item,idx) in format.list" :key="idx" @click="selectFormat(format.id,item.attr_id,index,idx)">{{item.attr_name}}</button>
-						</view>
+			</view>
+			<view class="layer_num">
+				<view class="ln_txt">数量<text>(没人限购1件)</text></view>
+				<uni-number-box :min="0" :max="1"></uni-number-box>
+			</view>
+			<view class="layer_info">
+				<view class="li_item">
+					<text>类型</text>
+					<view @tap="selectType">{{type}}<image src="../../static/down2.png" mode="widthFix"></image></view>
+				</view>
+				<view class="li_item">
+					<text>姓名</text>
+					<view><input type="text" placeholder="请填写姓名" placeholder-style="color:#999;" value="" v-model="name" /></view>
+				</view>
+				<view class="li_item">
+					<text>手机</text>
+					<view><input type="text" placeholder="请填写手机" placeholder-style="color:#999;" value="" v-model="phone" /></view>
+				</view>
+				<view class="li_item">
+					<text>地址</text>
+					<view><input type="text" placeholder="请填写地址" placeholder-style="color:#999;" value="" v-model="address" /></view>
+				</view>
+			</view>
+			<button class="submit_query" @tap="showPay">确定</button>
+		</view>
+		<view class="layer_pay_box" :class="[payShow == true?'active':'']">
+			<view class="layer_pay_move">
+				<view class="layer_pay">
+					<view class="lp_top">
+						<view class="lpt_title">{{title}}</view>
+						<view class="lpt_price">￥{{price}}</view>
+					</view>
+					<view class="lp_center">
+						<view class="lpc_item">规格：256元1节体验课</view>
+						<view class="lpc_item">类型：无基础</view>
+						<view class="lpc_item">姓名：刘先生</view>
+						<view class="lpc_item">手机：16988886699</view>
+						<view class="lpc_item">地址：广东省深圳市福田区</view>
+						<view class="lpc_item">数量：1</view>
+						<view class="lpc_item">备注：<input type="text" placeholder="请填写备注" value="" /></view>
+					</view>
+					<view class="lp_bottom">
+						<label class="radio">
+							<view>
+								<image src="../../static/wexin.png" mode="widthFix"></image>
+								<text>微信支付</text>
+							</view>
+							<radio value="" color="#e83632" checked />
+						</label>
 					</view>
 				</view>
-				<view class="layer_num">
-					<view class="ln_txt">数量<text>(没人限购1件)</text></view>
-					<uni-number-box :min="0" :max="1"></uni-number-box>
-				</view>
-				<view class="layer_info">
-					<view class="li_item">
-						<text>类型</text>
-						<view @tap="selectType">{{type}}<image src="../../static/down2.png" mode="widthFix"></image></view>
-					</view>
-					<view class="li_item">
-						<text>姓名</text>
-						<view><input type="text" placeholder="请填写姓名" placeholder-style="color:#999;" value="" v-model="name" /></view>
-					</view>
-					<view class="li_item">
-						<text>手机</text>
-						<view><input type="text" placeholder="请填写手机" placeholder-style="color:#999;" value="" v-model="phone" /></view>
-					</view>
-					<view class="li_item">
-						<text>地址</text>
-						<view><input type="text" placeholder="请填写地址" placeholder-style="color:#999;" value="" v-model="address" /></view>
-					</view>
-				</view>
-				<button class="submit_query">确定</button>
-			</scroll-view>
+				<button class="lp_submit" @tap="toPay">支付{{price}}元</button>
+				<view class="lp_txt">购买后客服将在1个工作日内与您联系</view>
+			</view>
 		</view>
 		<view class="fixed_bottom">
 			<view class="fb_collect"><image src="../../static/l_collect.png" mode="widthFix"></image><view>收藏</view></view>
@@ -101,6 +129,7 @@
 				duration: 800,
 				swiper_list: ["../../static/lesson_detail_banner.jpg","../../static/lesson_detail_banner.jpg","../../static/lesson_detail_banner.jpg"],
 				layerShow: false,
+				payShow: false,
 				buy_format: [
 					{
 						id: 1,
@@ -109,11 +138,13 @@
 						list: [
 							{
 								attr_id: 1,
-								attr_name: "3000元33节课"
+								attr_name: "3000元33节课",
+								dis: true
 							},
 							{
 								attr_id: 2,
-								attr_name: "256元1节体验课"
+								attr_name: "256元1节体验课",
+								dis: false
 							}
 						]
 					}
@@ -142,6 +173,20 @@
 			hideLayer(){
 				this.layerShow = false;				
 			},
+			showPay(){
+				this.layerShow = false;
+				this.payShow = true;
+			},
+			toPay(){
+				uni.showToast({
+					title: "支付成功",
+					image: "../../static/pay_ok.png"
+				})
+				uni.showToast({
+					title: "支付失败",
+					image: "../../static/pay_no.png"
+				})
+			},
 			selectFormat: function(id,sid,index,idx){
 				var that = this;
 				let arr_id = [];
@@ -151,15 +196,15 @@
 					attr_id: that.buy_format[index].list[idx].attr_id,
 					attr_name: that.buy_format[index].list[idx].attr_name,
 				}
-				that.attr_id[index] = that.attr[index].attr_id;							 
+				that.attr_id[index] = that.attr[index].attr_id;
 				that.buy_format[index].current = [index,idx];
 				var len = that.buy_format.length;
 				if(that.attr.length == len){
 					that.is_format = 0;
 				} 
-			   if(that.attr_id.length != that.buy_format.length || that.attr_id[0] == undefined){
+				if(that.attr_id.length != that.buy_format.length || that.attr_id[0] == undefined){
 				   return false;
-			   }
+				}
 			},
 			selectType(){
 				var that = this;
@@ -402,6 +447,9 @@
 							color: #fff;
 							background: #fbc800;
 						}
+						&.disable{
+							color: #c1c1c1;
+						}
 						&:after{
 							border: 0;
 						}
@@ -463,6 +511,103 @@
 			font-size: 32upx;
 			&:after{
 				border: 0;
+			}
+		}
+	}
+	.layer_pay_box{
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		background: #fff;
+		z-index: 23;
+		padding: 0 45upx 30upx;
+		box-sizing: border-box;
+		display: none;
+		&.active{
+			display: block;
+		}
+		.layer_pay_move{
+			margin-top: -70upx;
+			.layer_pay{
+				background: #fff;
+				box-shadow: 0 0 20upx #eee;
+				border-radius: 30upx;
+				padding: 30upx 15upx 20upx;
+				box-sizing: border-box;
+				margin-bottom: 40upx;
+				.lp_top{
+					text-align: center;
+					font-size: 28upx;
+					padding-bottom: 5upx;
+					.lpt_title{
+						color: #333;
+					}
+					.lpt_price{
+						color: #d3a800;
+						margin: 20upx 0 25upx;
+					}
+				}
+				.lp_center{
+					color: #333;
+					font-size: 22upx;
+					padding: 0 20upx 20upx;
+					box-sizing: border-box;
+					border-top: 1px solid #F3F3F3;
+					border-bottom: 1px solid #F3F3F3;
+					.lpc_item{
+						margin-top: 30upx;
+						display: flex;
+						justify-content: flex-start;
+						align-items: center;
+						&:last-of-type{
+							margin-top: 20upx;
+						}
+					}
+				}
+				.lp_bottom{
+					padding: 20upx 20upx 0;
+					box-sizing: border-box;
+					.radio{
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						view{
+							display: flex;
+							align-items: center;
+							color: #333;
+							font-size: 24upx;
+							image{
+								display: inline-block;
+								width: 50upx;
+								height: 50upx;
+								margin-right: 20upx;
+							}
+						}
+						radio{
+							border-radius: 50%;
+							transform: scale(.8);
+						}
+					}
+				}
+			}
+			.lp_submit{
+				width: 85%;
+				height: 85upx;
+				line-height: 85upx;
+				color: #fff;
+				font-size: 36upx;
+				background: #fbc800;
+				border-radius: 50upx;
+				margin-bottom: 15upx;
+				&:after{
+					border: 0;
+				}
+			}
+			.lp_txt{
+				color: #999;
+				font-size: 20upx;
+				text-align: center;
 			}
 		}
 	}
