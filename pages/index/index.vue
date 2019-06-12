@@ -220,56 +220,6 @@
 			padding: 0 25upx;
 			overflow: hidden;
 		}
-		.index_nav{
-			margin-bottom: 15upx;
-			.nav_box{
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				padding: 0 25upx;
-				.nav_item{
-					width: 25%;
-					text-align: center;
-					color: #999;
-					font-size: 30upx;
-					padding: 8upx 0;
-					position: relative;
-					&.active{
-						color: #fbc800;
-					}
-					&.active:after{
-						content: "";
-						width: 40upx;
-						height: 4upx;
-						background: #fbc800;
-						position: absolute;
-						left: 50%;
-						transform: translateX(-50%);
-						bottom: 0;
-						border-radius: 5upx;
-					}
-				}	
-			}
-			.index_scroll_box{
-				white-space: nowrap;
-				overflow-x: scroll;
-				padding: 0 25upx;
-				box-sizing: border-box;
-				background: #f5f5f5;
-				view{
-					display: inline-block;
-					height: 60upx;
-					line-height: 60upx;
-					padding: 0 25upx;
-					color: #bebebe;
-					font-size: 24upx;
-					&.active{
-						color: #333;
-						font-size: 26upx;
-					}
-				}
-			}
-		}
 		.video_box{
 			.video_item{
 				margin-bottom: 50upx;

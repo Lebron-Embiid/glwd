@@ -6,7 +6,7 @@
 		</view>  
 		<!-- #endif -->
 		<image :src="banner" class="audio_banner" mode="widthFix"></image>
-		<view class="audio_music_view">
+		<view class="audio_music_view" :class="[isPlay == true?'active':'']">
 			<view class="audio_music_move">
 				<view class="audio_music_info">
 					<view class="ami_title"><image src="../../static/gl_logo.jpg" mode="widthFix"></image>{{music_type}}</view>
@@ -18,20 +18,26 @@
 				<view class="music_item" v-for="(item,index) in music_list" :key="item.id">
 					<text>{{index+1}}</text>
 					<view class="music_profile">
-						<view class="mp_left">
+						<view class="mp_left" @tap="toPlay(index)">
 							<view class="mpl_name">{{item.name}}</view>
-							<view class="mpl_info">{{item.info}}</view>
+							<view class="mpl_info">{{item.person}}·{{item.info}}</view>
 						</view>
 						<view class="mp_right">
-							<image src="../../static/play.png" mode="widthFix" class="mpr_play"></image>
-							<image src="../../static/collect.png" mode="widthFix" class="mpr_love"></image>
-							<image src="../../static/share.png" mode="widthFix" class="mpr_share"></image>
+							<image src="../../static/play.png" mode="widthFix" class="mpr_play" @tap="toPlay(index)"></image>
+							<block v-if="item.iscollect == false">
+								<image src="../../static/collect.png" @tap="toCollect(index)" mode="widthFix" class="mpr_love"></image>
+							</block>
+							<block v-else>
+								<image src="../../static/collect_on.png" @tap="toNoCollect(index)" mode="widthFix" class="mpr_love"></image>
+							</block>
+							<image src="../../static/share.png" mode="widthFix" class="mpr_share" @tap="showShare"></image>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
-		<view class="fixed_music_bottom">
+		<!-- 底部控制区域 -->
+		<view class="fixed_music_bottom" :class="[isPlay == true?'active':'']">
 			<view class="fix_music_left">
 				<image src="../../static/poster.jpg" mode="widthFix" class="fix_poster"></image>
 				<view class="fix_music_info">
@@ -40,8 +46,37 @@
 				</view>
 			</view>
 			<view class="fix_music_right">
-				<image src="../../static/audio_play.png" mode="widthFix" class="fix_play"></image>
-				<image src="../../static/list.png" mode="widthFix" class="fix_list"></image>
+				<block v-if="isStop != true">
+					<image src="../../static/audio_play.png" mode="widthFix" class="fix_play" @tap="audio_pause"></image>
+				</block>
+				<block v-else>
+					<image src="../../static/fix_stop.jpg" mode="widthFix" class="fix_play" @tap="audio_start"></image>
+				</block>
+				<image src="../../static/list.png" mode="widthFix" class="fix_list" @tap="showLayer"></image>
+			</view>
+		</view>
+		<!-- 正在播放列表 -->
+		<view class="fixed_shadow" :class="[layerShow == true?'active':'' || shareShow == true?'active':'']" @tap="hideLayer"></view>
+		<view class="fixed_music_list" :class="[layerShow == true?'active':'']">
+			<view class="fml_all_del" @tap="allDelete"><image src="../../static/delete.png" mode="widthFix"></image>全部清空</view>
+			<scroll-view class="fml_list_view" scroll-y>
+				<view class="flv_item" v-for="(item,index) in play_list" :key="item.id" @tap="toPlay(index)">
+					<view class="flv_left">
+						<view class="flv_name" :class="[item.isplaying == true?'active':'']">{{item.name}}</view>
+						<view class="flv_person" :class="[item.isplaying == true?'active':'']"> - {{item.person}}</view>
+						<block v-if="item.isplaying == true">
+							<image src="../../static/audio_process.png" mode="widthFix"></image>
+						</block>
+					</view>
+					<image src="../../static/delete.png" mode="widthFix" class="flv_del" @tap.stop="toDelete"></image>
+				</view>
+			</scroll-view>
+		</view>
+		<view class="fixed_share_box" :class="[shareShow == true?'active':'']">
+			<view class="fsb_title">分享至</view>
+			<view class="fsb_share">
+				<view class="share_item"><image src="../../static/share_pyq.png" mode="widthFix"></image><text>朋友圈</text></view>
+				<view class="share_item"><image src="../../static/share_wx.png" mode="widthFix"></image><text>微信</text></view>
 			</view>
 		</view>
 	</view>
@@ -59,36 +94,150 @@
 					{
 						id: 1,
 						name: "来自天堂的魔鬼",
-						info: "G.E.M.邓紫棋·《新的心跳》",
-						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3"
+						person: "G.E.M.邓紫棋",
+						info: "《新的心跳》",
+						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						iscollect: false
 					},{
 						id: 2,
 						name: "来自天堂的魔鬼",
-						info: "G.E.M.邓紫棋·《新的心跳》",
-						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3"
+						person: "G.E.M.邓紫棋",
+						info: "《新的心跳》",
+						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						iscollect: false
 					},
 					{
 						id: 3,
 						name: "来自天堂的魔鬼",
-						info: "G.E.M.邓紫棋·《新的心跳》",
-						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3"
+						person: "G.E.M.邓紫棋",
+						info: "《新的心跳》",
+						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						iscollect: false
 					},
 					{
 						id: 4,
 						name: "来自天堂的魔鬼",
-						info: "G.E.M.邓紫棋·《新的心跳》",
-						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3"
+						person: "G.E.M.邓紫棋",
+						info: "《新的心跳》",
+						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						iscollect: false
 					},{
 						id: 5,
 						name: "来自天堂的魔鬼",
-						info: "G.E.M.邓紫棋·《新的心跳》",
-						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3"
+						person: "G.E.M.邓紫棋",
+						info: "《新的心跳》",
+						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						iscollect: false
 					}
-				]
+				],
+				play_list: [
+					
+					{
+						id: 1,
+						name: "来自天堂的魔鬼",
+						person: "G.E.M.邓紫棋",
+						info: "《新的心跳》",
+						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						isplaying: false
+					},{
+						id: 2,
+						name: "来自天堂的魔鬼",
+						person: "G.E.M.邓紫棋",
+						info: "《新的心跳》",
+						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						isplaying: false
+					},
+					{
+						id: 3,
+						name: "来自天堂的魔鬼",
+						person: "G.E.M.邓紫棋",
+						info: "《新的心跳》",
+						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						isplaying: false
+					},{
+						id: 4,
+						name: "来自天堂的魔鬼",
+						person: "G.E.M.邓紫棋",
+						info: "《新的心跳》",
+						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						isplaying: false
+					},{
+						id: 5,
+						name: "来自天堂的魔鬼",
+						person: "G.E.M.邓紫棋",
+						info: "《新的心跳》",
+						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						isplaying: false
+					}
+				],
+				isPlay: false,
+				isStop: true,
+				isplaying: false,
+				layerShow: false,
+				shareShow: false
 			}
 		},
 		methods:{
-			
+			toPlay(e){
+				this.isPlay = true;
+				this.isStop = true;
+				for(var i=0;i<this.music_list.length;i++){
+					this.play_list[i].isplaying = false;
+				}
+				this.play_list[e].isplaying = true;
+			},
+			audio_pause(e){
+				this.isStop = true;
+			},
+			audio_start(e){
+				this.isStop = false;
+			},
+			showLayer(){
+				this.layerShow = true;
+			},
+			hideLayer(){
+				this.layerShow = false;
+				this.shareShow = false;
+			},
+			showShare(){
+				this.shareShow = true;
+			},
+			allDelete(){
+				uni.showModal({
+					content: "确认全部清空？",
+					confirmColor: "#fbc800",
+					success: (res) => {
+						if(res.confirm){
+							
+						}
+					},
+					fail: (err) => {
+						console.log(err)
+					}
+				})
+			},
+			// 喜欢
+			toCollect(e){
+				this.music_list[e].iscollect = true;
+			},
+			// 取消喜欢
+			toNoCollect(e){
+				this.music_list[e].iscollect = false;
+			},
+			toDelete(e){
+				uni.showModal({
+					content: "确认删除？",
+					confirmColor: "#fbc800",
+					success: (res) => {
+						if(res.confirm){
+							
+						}
+					},
+					fail: (err) => {
+						console.log(err)
+					}
+				})
+			}
 		},
 		onLoad() {
 			
@@ -120,7 +269,9 @@
 	}
 	.audio_music_view{
 		margin-top: -80upx;
-		margin-bottom: 110upx;
+		&.active{
+			margin-bottom: 110upx;
+		}
 		.audio_music_move{
 			padding: 0 30upx;
 			box-sizing: border-box;
@@ -240,6 +391,10 @@
 		justify-content: space-between;
 		align-items: center;
 		border-top: 1px solid #EFEFEF;
+		display: none;
+		&.active{
+			display: flex;
+		}
 		.fix_music_left{
 			display: flex;
 			justify-content: flex-start;
@@ -251,7 +406,7 @@
 				height: 80upx;
 				border-radius: 50%;
 				margin-right: 20upx;
-				&.play{
+				&.active{
 					transform-origin: 50%;
 					animation: _rotate 6s linear infinite;	
 				}
@@ -285,6 +440,155 @@
 				width: 34upx;
 				height: 31upx;
 				margin-right: 25upx;
+			}
+		}
+	}
+	.fixed_music_list{
+		position: fixed;
+		left: 0;
+		bottom: -150%;
+		width: 100%;
+		height: 700upx;
+		overflow: hidden;
+		background: #fff;
+		z-index: 30;
+		padding: 20upx 0 0 40upx;
+		box-sizing: border-box;
+		transition: all .5s ease;
+		&.active{
+			bottom: 0;
+		}
+		.fml_all_del{
+			display: flex;
+			justify-content: flex-end;
+			padding-right: 30upx;
+			box-sizing: border-box;
+			color: #999;
+			font-size: 24upx;
+			background: #fff;
+			padding-bottom: 10upx;
+			image{
+				display: inline-block;
+				vertical-align: middle;
+				width: 34upx;
+				height: 34upx;
+			}
+		}
+		.fml_list_view{
+			white-space: nowrap;
+			height: 650upx;
+			.flv_item{
+				padding: 30upx 45upx 30upx 0;
+				border-bottom: 1px solid #F4F4F4;
+				box-sizing: border-box;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				.flv_left{
+					display: flex;
+					justify-content: flex-start;
+					align-items: center;
+					height: 40upx;
+					.flv_name{
+						color: #000;
+						font-size: 30upx;
+						margin-right: 6upx;
+						&.active{
+							color: #fbc800;
+						}
+					}
+					.flv_person{
+						color: #999;
+						font-size: 24upx;
+						margin-right: 60upx;
+						&.active{
+							color: #fbc800;
+						}
+					}
+					image{
+						display: inline-block;
+						width: 28upx;
+						height: 40upx;
+					}
+				}
+				.flv_del{
+					display: block;
+					width: 34upx;
+					height: 34upx;
+				}
+			}
+		}
+	}
+	.fixed_shadow{
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,.5);
+		left: 0;
+		bottom: 0;
+		display: none;
+		z-index: 25;
+		&.active{
+			display: block;
+		}
+	}
+	.fixed_share_box{
+		position: fixed;
+		width: 80%;
+		left: 10%;
+		top: 50%;
+		transform: translateY(-50%);
+		padding: 50upx 100upx 70upx;
+		box-sizing: border-box;
+		background: #fff;
+		border-radius: 20upx;
+		z-index: 28;
+		display: none;
+		&.active{
+			display: block;
+		}
+		.fsb_title{
+			color: #333;
+			font-size: 26upx;
+			text-align: center;
+			position: relative;
+			margin-bottom: 30upx;
+			&:before,&:after{
+				content: "";
+				display: block;
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 77upx;
+				height: 1px;
+				background: #333;
+			}
+			&:before{
+				left: 30upx;
+			}
+			&:after{
+				right: 30upx;
+			}
+		}
+		.fsb_share{
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			.share_item{
+				color: #333;
+				font-size: 22upx;
+				text-align: center;
+				image{
+					display: block;
+					width: 82upx;
+					height: 82upx;
+					margin: 0 auto 10upx;
+				}
+				&:last-of-type{
+					image{
+						width: 100upx;
+					}
+				}
 			}
 		}
 	}
