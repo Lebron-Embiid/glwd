@@ -20,7 +20,7 @@
 		<!-- 导航内容 -->
 		<!-- 视频 -->
 		<view class="nav_content">
-			<view class="video_box" v-show="currentTab == 0">
+			<view class="video_box" v-if="currentTab == 0">
 				<view class="video_item" v-for="(item,index) in video_list" :key="item.id">
 					<view class="vi_img" @tap="toVideoDetail(item.id)">
 						<image :src="item.poster" class="vi_poster" mode="widthFix"></image>
@@ -48,15 +48,15 @@
 				</view>
 			</view>
 			<!-- 音频 -->
-			<view class="audio_box" v-show="currentTab == 1">
+			<view class="audio_box" v-if="currentTab == 1">
 				<view class="audio_item" v-for="(item,index) in audio_list" :key="item.id" @tap="toAudioDetail(item.id)"><image :src="item.src" mode="widthFix"></image><text>{{item.title}}</text></view>
 			</view>
 			<!-- 课程 -->
-			<view class="lesson_box" v-show="currentTab == 2">
+			<view class="lesson_box" v-if="currentTab == 2">
 				<commonLesson :list="lesson_list"></commonLesson>
 			</view>
 			<!-- 资讯 -->
-			<view class="news_box" v-show="currentTab == 3">
+			<view class="news_box" v-if="currentTab == 3">
 				<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" indicator-color="rgba(102,102,102,.5)" indicator-active-color="#666" circular="true">
 					<swiper-item v-for="(item,index) in swiper_list" :key="index">
 						<view class="swiper-item"><image :src="item" mode="widthFix"></image></view>
@@ -313,11 +313,13 @@
 	// 资讯
 	.swiper{
 		height: 260upx;
+		border-radius: 10upx;
 	}
 	.swiper .swiper-item image{
 		display: block;
 		width: 100%;
 		height: 100%;
+		border-radius: 10upx;
 	}
 	.news_list_box{
 		padding: 40upx 30upx;

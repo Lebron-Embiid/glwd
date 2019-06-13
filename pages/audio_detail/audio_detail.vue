@@ -18,12 +18,16 @@
 				<view class="music_item" v-for="(item,index) in music_list" :key="item.id">
 					<text>{{index+1}}</text>
 					<view class="music_profile">
-						<view class="mp_left" @tap="toPlay(index)">
-							<view class="mpl_name">{{item.name}}</view>
-							<view class="mpl_info">{{item.person}}·{{item.info}}</view>
+						<view class="mp_left" @tap="toPlay(index,isMusicList)">
+							<view class="mpl_name">{{item.name}}
+								<block v-if="item.isplaying == true">
+									<image src="../../static/audio_process.png" mode="widthFix"></image>
+								</block>
+							</view>
+							<view class="mpl_info">{{item.person}} · {{item.info}}</view>
 						</view>
 						<view class="mp_right">
-							<image src="../../static/play.png" mode="widthFix" class="mpr_play" @tap="toPlay(index)"></image>
+							<image src="../../static/play.png" mode="widthFix" class="mpr_play" @tap="toPlay(index,isMusicList)"></image>
 							<block v-if="item.iscollect == false">
 								<image src="../../static/collect.png" @tap="toCollect(index)" mode="widthFix" class="mpr_love"></image>
 							</block>
@@ -37,12 +41,12 @@
 			</view>
 		</view>
 		<!-- 底部控制区域 -->
-		<view class="fixed_music_bottom" :class="[isPlay == true?'active':'']">
+		<view class="fixed_music_bottom" :class="[isPlay == true || isPlay == 'true'?'active':'']">
 			<view class="fix_music_left">
-				<image src="../../static/poster.jpg" mode="widthFix" class="fix_poster"></image>
+				<image :src="play_poster" mode="widthFix" class="fix_poster"></image>
 				<view class="fix_music_info">
-					<view class="fmi_title">来自天堂的魔鬼</view>
-					<view class="fmi_name">G.E.M.邓紫棋</view>
+					<view class="fmi_title">{{play_name}}</view>
+					<view class="fmi_name">{{play_person}}</view>
 				</view>
 			</view>
 			<view class="fix_music_right">
@@ -60,7 +64,7 @@
 		<view class="fixed_music_list" :class="[layerShow == true?'active':'']">
 			<view class="fml_all_del" @tap="allDelete"><image src="../../static/delete.png" mode="widthFix"></image>全部清空</view>
 			<scroll-view class="fml_list_view" scroll-y>
-				<view class="flv_item" v-for="(item,index) in play_list" :key="item.id" @tap="toPlay(index)">
+				<view class="flv_item" v-for="(item,index) in play_list" :key="item.id" @tap="toPlay(index,!isMusicList)">
 					<view class="flv_left">
 						<view class="flv_name" :class="[item.isplaying == true?'active':'']">{{item.name}}</view>
 						<view class="flv_person" :class="[item.isplaying == true?'active':'']"> - {{item.person}}</view>
@@ -83,9 +87,11 @@
 </template>
 
 <script>
+	const audioContext = uni.createInnerAudioContext();
 	export default{
 		data(){
 			return{
+				id: "",
 				banner: "../../static/audio_banner.jpg",
 				music_type: "古典音乐",
 				music_info: "古典音乐有广义、狭义之分。广义是指那些从西方中世纪开始至今的、在欧洲主流文化背景下创作的西方古典音乐，主要因其复杂多样的创作技术和所能承载的厚重内涵而有别于通俗音乐和民间音乐。",
@@ -96,101 +102,137 @@
 						name: "来自天堂的魔鬼",
 						person: "G.E.M.邓紫棋",
 						info: "《新的心跳》",
+						poster: "../../static/poster.jpg",
 						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
-						iscollect: false
+						iscollect: false,
+						isplaying: false
 					},{
 						id: 2,
-						name: "来自天堂的魔鬼",
+						name: "于是",
 						person: "G.E.M.邓紫棋",
 						info: "《新的心跳》",
-						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
-						iscollect: false
+						poster: "../../static/poster.jpg",
+						src: "http://www.170mv.com/kw/other.web.rg01.sycdn.kuwo.cn/resource/n2/46/52/3021082115.mp3",
+						iscollect: false,
+						isplaying: false
 					},
 					{
 						id: 3,
-						name: "来自天堂的魔鬼",
+						name: "盲点",
 						person: "G.E.M.邓紫棋",
 						info: "《新的心跳》",
-						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
-						iscollect: false
+						poster: "../../static/poster.jpg",
+						src: "http://www.170mv.com/kw/other.web.rg01.sycdn.kuwo.cn/resource/n1/45/73/2274438905.mp3",
+						iscollect: false,
+						isplaying: false
 					},
 					{
 						id: 4,
-						name: "来自天堂的魔鬼",
+						name: "新的心跳",
 						person: "G.E.M.邓紫棋",
 						info: "《新的心跳》",
-						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
-						iscollect: false
+						poster: "../../static/poster.jpg",
+						src: "http://www.170mv.com/kw/other.web.rh01.sycdn.kuwo.cn/resource/n2/96/21/2340671296.mp3",
+						iscollect: false,
+						isplaying: false
 					},{
 						id: 5,
-						name: "来自天堂的魔鬼",
+						name: "查克靠近",
 						person: "G.E.M.邓紫棋",
 						info: "《新的心跳》",
-						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
-						iscollect: false
+						poster: "../../static/poster.jpg",
+						src: "http://www.ytmp3.cn/down/33632.mp3",
+						iscollect: false,
+						isplaying: false
 					}
 				],
 				play_list: [
-					
 					{
 						id: 1,
 						name: "来自天堂的魔鬼",
 						person: "G.E.M.邓紫棋",
 						info: "《新的心跳》",
+						poster: "../../static/poster.jpg",
 						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
 						isplaying: false
 					},{
 						id: 2,
-						name: "来自天堂的魔鬼",
+						name: "于是",
 						person: "G.E.M.邓紫棋",
 						info: "《新的心跳》",
-						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						poster: "../../static/poster.jpg",
+						src: "http://www.170mv.com/kw/other.web.rg01.sycdn.kuwo.cn/resource/n2/46/52/3021082115.mp3",
 						isplaying: false
 					},
 					{
 						id: 3,
-						name: "来自天堂的魔鬼",
+						name: "盲点",
 						person: "G.E.M.邓紫棋",
 						info: "《新的心跳》",
-						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						poster: "../../static/poster.jpg",
+						src: "http://www.170mv.com/kw/other.web.rg01.sycdn.kuwo.cn/resource/n1/45/73/2274438905.mp3",
 						isplaying: false
 					},{
 						id: 4,
-						name: "来自天堂的魔鬼",
+						name: "新的心跳",
 						person: "G.E.M.邓紫棋",
 						info: "《新的心跳》",
-						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						poster: "../../static/poster.jpg",
+						src: "http://www.170mv.com/kw/other.web.rh01.sycdn.kuwo.cn/resource/n2/96/21/2340671296.mp3",
 						isplaying: false
 					},{
 						id: 5,
-						name: "来自天堂的魔鬼",
+						name: "查克靠近",
 						person: "G.E.M.邓紫棋",
 						info: "《新的心跳》",
-						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
+						poster: "../../static/poster.jpg",
+						src: "http://www.ytmp3.cn/down/33632.mp3",
 						isplaying: false
 					}
 				],
+				isMusicList: "true"?'0':'1',
 				isPlay: false,
 				isStop: true,
 				isplaying: false,
 				layerShow: false,
-				shareShow: false
+				shareShow: false,
+				play_id: "",
+				play_poster: "../../static/poster.jpg",
+				play_name: "来自天堂的魔鬼",
+				play_person: "G.E.M.邓紫棋",
+				play_url: ""
 			}
 		},
 		methods:{
-			toPlay(e){
-				this.isPlay = true;
-				this.isStop = true;
-				for(var i=0;i<this.music_list.length;i++){
-					this.play_list[i].isplaying = false;
+			toPlay(e,isList){
+				console.log(isList)
+				var that = this;
+				that.isPlay = true;
+				that.isStop = true;
+				for(var i=0;i<that.music_list.length;i++){
+					that.music_list[i].isplaying = false;
+					that.play_list[i].isplaying = false;
 				}
-				this.play_list[e].isplaying = true;
+				that.music_list[e].isplaying = true;
+				that.play_list[e].isplaying = true;
+				
+				that.play_id = that.music_list[e].id;
+				that.play_poster = that.music_list[e].poster;
+				that.play_name = that.music_list[e].name;
+				that.play_person = that.music_list[e].person;
+				
+				audioContext.src = that.music_list[e].src;
+				audioContext.play();
 			},
 			audio_pause(e){
 				this.isStop = true;
+				
+				audioContext.pause();
 			},
 			audio_start(e){
 				this.isStop = false;
+				
+				audioContext.play();
 			},
 			showLayer(){
 				this.layerShow = true;
@@ -239,8 +281,16 @@
 				})
 			}
 		},
-		onLoad() {
-			
+		onLoad(opt) {
+			console.log(opt)
+			var that = this;
+			that.id = opt.id;
+			for(var i in that.music_list){
+				if(that.music_list[i].id == that.id){
+					audioContext.src = that.music_list[i].src;
+					audioContext.play();
+				}
+			}
 		}
 	}
 </script>
@@ -345,6 +395,15 @@
 							color: #000;
 							font-size: 30upx;
 							margin-bottom: 5upx;
+							height: 40upx;
+							display: flex;
+							align-items: center;
+							image{
+								display: inline-block;
+								width: 28upx;
+								height: 40upx;
+								margin-left: 30upx;
+							}
 						}
 						.mpl_info{
 							color: #999;

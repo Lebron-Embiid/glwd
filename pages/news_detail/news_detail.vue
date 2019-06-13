@@ -39,8 +39,8 @@
 				
 			},
 		},
-		onLoad() {
-			
+		onLoad(opt) {
+			that.id = opt.id;			
 		}
 	}
 </script>

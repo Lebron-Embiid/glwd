@@ -47,6 +47,7 @@
 	export default{
 		data(){
 			return{
+				id: "",
 				url: "http://220.194.238.114/9/h/m/i/h/hmihhvftxhprygdmjwcxvzjbfwfeba/sh.yinyuetai.com/1C0F016444322A68BADFD8D1CFF5794B.mp4",
 				poster: "../../static/video_img1.jpg",
 				title: "breaking街舞男孩,带你领略街舞的魅力",
@@ -97,8 +98,8 @@
 				})
 			}
 		},
-		onLoad() {
-			
+		onLoad(opt) {
+			that.id = opt.id;
 		}
 	}
 </script>

@@ -117,6 +117,7 @@
 	export default{
 		data(){
 			return{
+				id: "",
 				title: "初级拉丁舞课程",
 				info: "成人次卡3000元33节课，27家直营校区跨校通用",
 				price: "256.00",
@@ -222,8 +223,8 @@
 		onShow: function(){
 			
 		},
-		onLoad() {
-			
+		onLoad(opt) {
+			that.id = opt.id;			
 		}
 	}
 </script>

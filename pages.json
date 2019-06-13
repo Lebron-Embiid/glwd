@@ -13,11 +13,10 @@
 		{
 			"path": "pages/reserve/reserve",
 			"style": {
-				"navigationBarTitleText": "预约",
+				"navigationStyle": "custom",
+                "navigationBarTitleText": "",
 				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
+					"titleNView": false
 				}
 			}
 		},
@@ -45,11 +44,10 @@
 		{
 			"path": "pages/person/person",
 			"style": {
-				"navigationBarTitleText": "个人中心",
+				"navigationStyle": "custom",
+                "navigationBarTitleText": "",
 				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
+					"titleNView": false
 				}
 			}
 		},
@@ -157,6 +155,61 @@
 			"path": "pages/my_collect/my_collect",
 			"style": {
 				"navigationBarTitleText": "我的收藏",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
+			"path": "pages/my_order/my_order",
+			"style": {
+				"navigationBarTitleText": "我的订单",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
+			"path": "pages/order_detail/order_detail",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
+			"path": "pages/my_reserve/my_reserve",
+			"style": {
+				"navigationBarTitleText": "我的预约",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
+			"path": "pages/reserve_detail/reserve_detail",
+			"style": {
+				"navigationBarTitleText": "预约详情",
+				"app-plus":{
+					"titleNView" : {  
+                        "splitLine":{"color":"#F4F4F4"} 
+                    }
+				}
+			}
+		},
+		{
+			"path": "pages/history/history",
+			"style": {
+				"navigationBarTitleText": "历史记录",
 				"app-plus":{
 					"titleNView" : {  
                         "splitLine":{"color":"#F4F4F4"} 

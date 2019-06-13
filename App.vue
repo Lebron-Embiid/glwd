@@ -133,7 +133,9 @@
 					font-size: 20upx;
 					background: #fbc800;
 					border-radius: 5upx;
-					padding: 4upx 10upx 7upx;
+					height: 36upx;
+					line-height: 36upx;
+					padding: 0 10upx;
 					position: absolute;
 					right: 20upx;
 					top: 20upx;
