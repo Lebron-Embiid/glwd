@@ -217,9 +217,9 @@
 					url: "/pages/video_detail/video_detail?id="+e
 				})
 			},
-			toAudioDetail(e){
+			toAudioDetail(e,id){
 				uni.navigateTo({
-					url: "/pages/audio_detail/audio_detail?id="+e
+					url: "/pages/audio_detail/audio_detail?id="+id
 				})				
 			},
 			toLessonDetail(e){

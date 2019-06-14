@@ -18,25 +18,31 @@
 		<view class="mt500"></view>
 		<view class="nearby_school">
 			<view class="near_title">附近校区</view>
-			<view class="near_item" @tap="toSchoolDetail(item.id)" v-for="(item,index) in near_list" :key="item.id">
+			<view class="near_item" @tap="changeMap(item.id)" v-for="(item,index) in school_list" v-if="item.isNear == 1" :key="item.id">
 				<view>
 					<view class="ni_title">{{item.title}}</view>
 					<view class="ni_info">{{item.info}}</view>
 				</view>
-				<view class="ni_dist">{{item.dist}}</view>
+				<view>
+					<button class="ni_btn" @tap.stop="toSchoolDetail(item.id)">详情</button>
+					<view class="ni_dist">{{item.dist}}</view>
+				</view>
 			</view>
 		</view>
 		<view class="nearby_school noborder">
 			<view class="near_title">校区列表</view>
-			<view class="near_item" @tap="toSchoolDetail(item.id)" v-for="(item,index) in school_list" :key="item.id">
+			<view class="near_item" @tap="changeMap(item.id)" v-for="(item,index) in school_list" :key="item.id">
 				<view>
 					<view class="ni_title">{{item.title}}</view>
 					<view class="ni_info">{{item.info}}</view>
 				</view>
-				<view class="ni_dist">{{item.dist}}</view>
+				<view>
+					<button class="ni_btn" @tap.stop="toSchoolDetail(item.id)">详情</button>
+					<view class="ni_dist">{{item.dist}}</view>
+				</view>
 			</view>
 		</view>
-		<view class="invite_box" @tap="toSchoolDetail"><image src="../../static/reserve.png" mode="widthFix"></image>预约</view>
+		<view class="invite_box" @tap="toReserve"><image src="../../static/reserve.png" mode="widthFix"></image>预约</view>
 	</view>
 </template>
 
@@ -62,16 +68,6 @@
 					}
 				}],
 				keywords: "",
-				near_list: [
-					{
-						id: 1,
-						latitude: 39.909,
-						longitude: 116.39742,
-						title: "莲花山校区",
-						info: "深圳市罗湖区建设路火车站大厦5楼",
-						dist: "169m"
-					}
-				],
 				school_list: [
 					{
 						id: 1,
@@ -79,31 +75,35 @@
 						longitude: 116.39742,
 						title: "莲花山校区",
 						info: "深圳市罗湖区建设路火车站大厦5楼",
-						dist: "169m"
+						dist: "169m",
+						isNear: 1
 					},
 					{
 						id: 2,
 						latitude: 39.909,
-						longitude: 116.39742,
+						longitude: 116.19743,
 						title: "莲花山校区",
 						info: "深圳市罗湖区建设路火车站大厦5楼",
-						dist: "169m"
+						dist: "169m",
+						isNear: 0
 					},
 					{
 						id: 3,
 						latitude: 39.909,
-						longitude: 116.39742,
+						longitude: 116.59744,
 						title: "莲花山校区",
 						info: "深圳市罗湖区建设路火车站大厦5楼",
-						dist: "169m"
+						dist: "169m",
+						isNear: 0
 					},
 					{
 						id: 4,
 						latitude: 39.909,
-						longitude: 116.39742,
+						longitude: 116.31345,
 						title: "莲花山校区",
 						info: "深圳市罗湖区建设路火车站大厦5楼",
-						dist: "169m"
+						dist: "169m",
+						isNear: 0
 					}
 				]
 			}
@@ -121,9 +121,29 @@
 					}
 				});
 			},
+			// 切换地图位置
+			changeMap(e){
+				var that = this;
+				var latitude = "";
+				var longitude = "";
+				for(var i in that.school_list){
+					if(that.school_list[i].id == e){
+						latitude = that.school_list[i].latitude;
+						longitude = that.school_list[i].longitude;
+						console.log(latitude,longitude)
+						that.latitude = latitude;
+						that.longitude = longitude;
+					}
+				}
+			},
 			toSchoolDetail(e){
 				uni.navigateTo({
 					url: "/pages/school_detail/school_detail?id="+e
+				})
+			},
+			toReserve(e){
+				uni.reLaunch({
+					url: "/pages/reserve/reserve"
 				})
 			},
 			callouttap(e){
@@ -152,6 +172,7 @@
 			top: var(--status-bar-height);
 			background: #fff;
 			box-shadow: 0 1upx 10upx #E9E9E9;
+			z-index: 5;
 		}
 		.address_txt{
 			color: #333;
@@ -220,6 +241,20 @@
 					color: #444;
 					font-size: 34upx;
 					margin-bottom: 10upx;
+				}
+				.ni_btn{
+					margin: 0;
+					display: inline-block;
+					padding: 0 15upx;
+					height: 45upx;
+					line-height: 45upx;
+					color: #fff;
+					font-size: 22upx;
+					background: #fdc618;
+					border-radius: 0;
+					&:after{
+						border: 0;
+					}
 				}
 				.ni_info,.ni_dist{
 					color: #999;

@@ -18,7 +18,7 @@
 				<view class="music_item" v-for="(item,index) in music_list" :key="item.id">
 					<text>{{index+1}}</text>
 					<view class="music_profile">
-						<view class="mp_left" @tap="toPlay(index,isMusicList)">
+						<view class="mp_left" @tap="toPlay(index,isTop)">
 							<view class="mpl_name">{{item.name}}
 								<block v-if="item.isplaying == true">
 									<image src="../../static/audio_process.png" mode="widthFix"></image>
@@ -27,7 +27,7 @@
 							<view class="mpl_info">{{item.person}} · {{item.info}}</view>
 						</view>
 						<view class="mp_right">
-							<image src="../../static/play.png" mode="widthFix" class="mpr_play" @tap="toPlay(index,isMusicList)"></image>
+							<image src="../../static/play.png" mode="widthFix" class="mpr_play" @tap="toPlay(index,isTop)"></image>
 							<block v-if="item.iscollect == false">
 								<image src="../../static/collect.png" @tap="toCollect(index)" mode="widthFix" class="mpr_love"></image>
 							</block>
@@ -64,7 +64,7 @@
 		<view class="fixed_music_list" :class="[layerShow == true?'active':'']">
 			<view class="fml_all_del" @tap="allDelete"><image src="../../static/delete.png" mode="widthFix"></image>全部清空</view>
 			<scroll-view class="fml_list_view" scroll-y>
-				<view class="flv_item" v-for="(item,index) in play_list" :key="item.id" @tap="toPlay(index,!isMusicList)">
+				<view class="flv_item" v-for="(item,index) in play_list" :key="item.id" @tap="toPlay(index,isBottom)">
 					<view class="flv_left">
 						<view class="flv_name" :class="[item.isplaying == true?'active':'']">{{item.name}}</view>
 						<view class="flv_person" :class="[item.isplaying == true?'active':'']"> - {{item.person}}</view>
@@ -112,7 +112,7 @@
 						person: "G.E.M.邓紫棋",
 						info: "《新的心跳》",
 						poster: "../../static/poster.jpg",
-						src: "http://www.170mv.com/kw/other.web.rg01.sycdn.kuwo.cn/resource/n2/46/52/3021082115.mp3",
+						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
 						iscollect: false,
 						isplaying: false
 					},
@@ -161,7 +161,7 @@
 						person: "G.E.M.邓紫棋",
 						info: "《新的心跳》",
 						poster: "../../static/poster.jpg",
-						src: "http://www.170mv.com/kw/other.web.rg01.sycdn.kuwo.cn/resource/n2/46/52/3021082115.mp3",
+						src: "http://www.170mv.com/kw/other.web.nx01.sycdn.kuwo.cn/resource/n2/46/37/3654869655.mp3",
 						isplaying: false
 					},
 					{
@@ -190,12 +190,13 @@
 						isplaying: false
 					}
 				],
-				isMusicList: "true"?'0':'1',
 				isPlay: false,
 				isStop: true,
 				isplaying: false,
 				layerShow: false,
 				shareShow: false,
+				isTop: 0,
+				isBottom: 1,
 				play_id: "",
 				play_poster: "../../static/poster.jpg",
 				play_name: "来自天堂的魔鬼",
@@ -204,13 +205,31 @@
 			}
 		},
 		methods:{
-			toPlay(e,isList){
-				console.log(isList)
+			toPlay(e,type){
 				var that = this;
 				that.isPlay = true;
 				that.isStop = true;
-				for(var i=0;i<that.music_list.length;i++){
+				
+				// if(type == 0){
+				// 	var item = that.music_list[e];
+				// 	if(that.id != item.id){
+				// 		that.play_list.push({
+				// 			id: item.id,
+				// 			name: item.name,
+				// 			person: item.person,
+				// 			info: item.info,
+				// 			poster: item.poster,
+				// 			src: item.src,
+				// 			isplaying: false
+				// 		})
+				// 	}
+				// }
+				
+				
+				for(let i=0;i<that.music_list.length;i++){
 					that.music_list[i].isplaying = false;
+				}
+				for(let i=0;i<that.play_list.length;i++){
 					that.play_list[i].isplaying = false;
 				}
 				that.music_list[e].isplaying = true;
@@ -245,12 +264,17 @@
 				this.shareShow = true;
 			},
 			allDelete(){
+				var that = this;
 				uni.showModal({
 					content: "确认全部清空？",
 					confirmColor: "#fbc800",
 					success: (res) => {
 						if(res.confirm){
-							
+							that.play_list = "";
+							for(var i in that.music_list){
+								that.music_list[i].isplaying = false;
+							}
+							that.isPlay = false;
 						}
 					},
 					fail: (err) => {
@@ -287,6 +311,21 @@
 			that.id = opt.id;
 			for(var i in that.music_list){
 				if(that.music_list[i].id == that.id){
+					that.music_list[i].isplaying = true;
+					that.play_list[i].isplaying = true;
+					
+					// var item = that.music_list[i];
+					// that.play_list.push({
+					// 	id: item.id,
+					// 	name: item.name,
+					// 	person: item.person,
+					// 	info: item.info,
+					// 	poster: item.poster,
+					// 	src: item.src,
+					// 	isplaying: true
+					// })
+					
+					that.isPlay = true;
 					audioContext.src = that.music_list[i].src;
 					audioContext.play();
 				}

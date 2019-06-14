@@ -207,7 +207,7 @@
 			},
 			toAudioDetail(e){
 				uni.navigateTo({
-					url: "/pages/audio_detail/audio_detail?id="+e
+					url: "/pages/audio_detail/audio_detail?type="+e
 				})				
 			}
 		}
