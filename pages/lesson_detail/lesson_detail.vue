@@ -1,10 +1,8 @@
 <template>
 	<view class="lesson_detail_view">
-		<!-- #ifdef APP-PLUS -->  
 		<view class="status_bar">  
 			<view class="top_view"></view>  
 		</view>  
-		<!-- #endif -->
 		<image src="../../static/lesson_detail_banner.jpg" mode="widthFix" class="ld_banner"></image>
 		<!-- <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" indicator-color="rgba(102,102,102,.5)" indicator-active-color="#666" circular="true">
 			<swiper-item v-for="(item,index) in swiper_list" :key="index">
@@ -31,14 +29,18 @@
 				{{content}}
 			</view>
 		</view>
+		<view class="fix_car_btn" @tap="toCar">
+			<view class="fcb_car"><image src="../../static/car.png" mode="widthFix"></image><text>1</text></view>
+			购物车
+		</view>
 		<view class="ld_shadow" :class="[layerShow == true?'active':'']" @tap="hideLayer"></view>
 		<view class="ld_layer_box" :class="[layerShow == true?'active':'']">
 			<view class="lb_close"><image src="../../static/close.png" mode="widthFix" @tap="hideLayer"></image></view>
 			<view class="lb_lesson_info">
-				<image src="../../static/layer_img.jpg" mode="widthFix"></image>
+				<image :src="src" mode="widthFix"></image>
 				<view class="li_box">
-					<view class="li_title">初级拉丁舞课程</view>
-					<view class="li_price">￥256.00</view>
+					<view class="li_title">{{title}}</view>
+					<view class="li_price">￥{{price}}</view>
 				</view>
 			</view>
 			<view class="layer_format">
@@ -104,10 +106,10 @@
 			</view>
 		</view>
 		<view class="fixed_bottom">
-			<view class="fb_collect"><image src="../../static/l_collect.png" mode="widthFix"></image><view>收藏</view></view>
-			<view class="fb_share"><image src="../../static/l_share.png" mode="widthFix"></image><view>分享</view></view>
-			<view class="fb_addcar"><button>加入购物车</button></view>
-			<view class="fb_buy"><button>立即购买</button></view>
+			<view class="fb_collect" @tap="toCollect(id)"><image src="../../static/l_collect.png" mode="widthFix"></image><view>收藏</view></view>
+			<view class="fb_share" @tap="toShare"><image src="../../static/l_share.png" mode="widthFix"></image><view>分享</view></view>
+			<view class="fb_addcar" @tap="toAddCar"><button>加入购物车</button></view>
+			<view class="fb_buy" @tap="toBuy"><button>立即购买</button></view>
 		</view>
 	</view>
 </template>
@@ -121,6 +123,7 @@
 				title: "初级拉丁舞课程",
 				info: "成人次卡3000元33节课，27家直营校区跨校通用",
 				price: "256.00",
+				src: "../../static/layer_img.jpg",
 				old_price: "368.00",
 				format_txt: "",
 				content: "拉丁舞是体育竞技舞蹈，爆发力，极强的风格，技巧是它的特点，有很大的竞技体育舞蹈发挥空间，现在已经入亚运会正式比赛项目，拉丁舞2014年11月12日正式申请进入奥运会，现正在审批阶段，拉丁舞每年最高赛事WDSF协会会在世界各地成员国选择不同地点举行，对于世界上所有参与国际标准舞工作的人士而言，英国的黑池可谓是国际标准舞活动之首。WDC会在固定地点英国举办黑池舞蹈节，深受欧洲人民喜爱。",
@@ -156,7 +159,8 @@
 				typeList: ['有基础', '无基础', '少儿','成人'],
 				name: "",
 				phone: "",
-				address: ""
+				address: "",
+				shareList: ["分享到微信好友","分享到微信朋友圈"]
 			}
 		},
 		components: {
@@ -177,6 +181,11 @@
 			showPay(){
 				this.layerShow = false;
 				this.payShow = true;
+			},
+			toCar(){
+				uni.navigateTo({
+					url: "/pages/car/car"
+				})
 			},
 			toPay(){
 				uni.showToast({
@@ -218,12 +227,77 @@
 						console.log(res.errMsg);
 					}
 				});
+			},
+			toCollect(e){
+				uni.showToast({
+					title: "收藏成功！",
+					icon: "none"
+				})
+			},
+			toShare(){
+				var that = this;
+				uni.showActionSheet({
+					itemList: that.shareList,
+					success: function (res) {
+						if(res.tapIndex == 0){
+							// 分享到微信好友
+							uni.share({
+								provider: "weixin",
+								scene: "WXSceneSession",
+								type: 0,
+								href: "http://uniapp.dcloud.io/",
+								title: "uni-app分享",
+								summary: "我正在使用HBuilderX开发uni-app，赶紧跟我一起来体验！",
+								imageUrl: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png",
+								success: function (res) {
+									console.log("success:" + JSON.stringify(res));
+								},
+								fail: function (err) {
+									console.log("fail:" + JSON.stringify(err));
+								}
+							});
+						}else{
+							// 分享到微信朋友圈
+							uni.share({
+								provider: "weixin",
+								scene: "WXSenceTimeline",
+								type: 0,
+								href: "http://uniapp.dcloud.io/",
+								title: "uni-app分享",
+								summary: "我正在使用HBuilderX开发uni-app，赶紧跟我一起来体验！",
+								imageUrl: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png",
+								success: function (res) {
+									console.log("success:" + JSON.stringify(res));
+								},
+								fail: function (err) {
+									console.log("fail:" + JSON.stringify(err));
+								}
+							});
+						}
+					},
+					fail: function (res) {
+						console.log(res.errMsg);
+					}
+				});
+			},
+			toAddCar(){
+				var that = this;
+				if(that.layerShow == false){
+					that.layerShow = true;
+				}
+			},
+			toBuy(){
+				var that = this;
+				if(that.layerShow == false){
+					that.layerShow = true;
+				}
 			}
 		},
 		onShow: function(){
 			
 		},
 		onLoad(opt) {
+			var that = this;
 			that.id = opt.id;			
 		}
 	}
@@ -532,7 +606,8 @@
 			margin-top: -70upx;
 			.layer_pay{
 				background: #fff;
-				box-shadow: 0 0 20upx #eee;
+				// box-shadow: 0 0 20upx #eee;
+				box-shadow: 0 5upx 20upx #999;
 				border-radius: 30upx;
 				padding: 30upx 15upx 20upx;
 				box-sizing: border-box;

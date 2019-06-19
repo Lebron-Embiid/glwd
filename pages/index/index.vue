@@ -1,10 +1,8 @@
 <template>
 	<view class="index_view">
-		<!-- #ifdef APP-PLUS -->  
 		<view class="status_bar">  
 			<view class="top_view"></view>  
 		</view>  
-		<!-- #endif -->
 		<view class="search_box">
 			<commonSearch :keywords="keywords"></commonSearch>
 		</view>
@@ -29,7 +27,7 @@
 								<view class="vi_top"><image src="../../static/top.png" mode="widthFix"></image>置顶</view>
 							</block>
 							<block v-if="item.collect == 1">
-								<view class="vi_collect"><text>合集</text></view>
+								<view class="vi_collect" @tap.stop="toSeries"><text>合集</text></view>
 							</block>
 							<view class="vi_title">{{item.title}}</view>
 							<image src="../../static/play_btn2.png" mode="widthFix" class="vi_play"></image>
@@ -41,9 +39,9 @@
 					</view>
 					<view class="vi_share">
 						<view class="vs_item" @tap="toVideoDetail(item.id)"><image src="../../static/detail_icon1.png" mode="widthFix"></image>详情</view>
-						<view class="vs_item"><image src="../../static/detail_icon2.png" mode="widthFix"></image>收藏</view>
-						<view class="vs_item"><image src="../../static/detail_icon3.png" mode="widthFix"></image>朋友圈</view>
-						<view class="vs_item"><image src="../../static/detail_icon4.png" mode="widthFix"></image>微信</view>
+						<view class="vs_item" @tap="toCollect(item.id)"><image src="../../static/detail_icon3.png" mode="widthFix"></image>收藏</view>
+						<view class="vs_item" @tap="shareWxTimeline"><image src="../../static/detail_icon2.png" mode="widthFix"></image>朋友圈</view>
+						<view class="vs_item" @tap="shareWxSession"><image src="../../static/detail_icon4.png" mode="widthFix"></image>微信</view>
 					</view>
 				</view>
 			</view>
@@ -54,6 +52,10 @@
 			<!-- 课程 -->
 			<view class="lesson_box" v-if="currentTab == 2">
 				<commonLesson :list="lesson_list"></commonLesson>
+				<view class="fix_car_btn" @tap="toCar">
+					<view class="fcb_car"><image src="../../static/car.png" mode="widthFix"></image><text>1</text></view>
+					购物车
+				</view>
 			</view>
 			<!-- 资讯 -->
 			<view class="news_box" v-if="currentTab == 3">
@@ -209,6 +211,57 @@
 				uni.navigateTo({
 					url: "/pages/audio_detail/audio_detail?type="+e
 				})				
+			},
+			toSeries(e){
+				uni.navigateTo({
+					url: "/pages/series/series"
+				})
+			},
+			toCar(){
+				uni.navigateTo({
+					url: "/pages/car/car"
+				})
+			},
+			toCollect(e){
+				
+			},
+			// 分享到微信好友
+			shareWxSession(e){
+				var that = this;
+				uni.share({
+					provider: "weixin",
+					scene: "WXSceneSession",
+					type: 0,
+					href: "http://uniapp.dcloud.io/",
+					title: "uni-app分享",
+					summary: "我正在使用HBuilderX开发uni-app，赶紧跟我一起来体验！",
+					imageUrl: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png",
+					success: function (res) {
+						console.log("success:" + JSON.stringify(res));
+					},
+					fail: function (err) {
+						console.log("fail:" + JSON.stringify(err));
+					}
+				});
+			},
+			// 分享到微信朋友圈
+			shareWxTimeline(e){
+				var that = this;
+				uni.share({
+					provider: "weixin",
+					scene: "WXSenceTimeline",
+					type: 0,
+					href: "http://uniapp.dcloud.io/",
+					title: "uni-app分享",
+					summary: "我正在使用HBuilderX开发uni-app，赶紧跟我一起来体验！",
+					imageUrl: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png",
+					success: function (res) {
+						console.log("success:" + JSON.stringify(res));
+					},
+					fail: function (err) {
+						console.log("fail:" + JSON.stringify(err));
+					}
+				});
 			}
 		}
 	}
@@ -311,9 +364,13 @@
 		}
 	}
 	// 资讯
+	.news_box{
+		overflow: hidden;
+	}
 	.swiper{
 		height: 260upx;
 		border-radius: 10upx;
+		margin-bottom: 10upx;
 	}
 	.swiper .swiper-item image{
 		display: block;

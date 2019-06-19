@@ -56,7 +56,7 @@
 			margin: -65upx auto 0;
 			padding: 25upx 10upx 15upx;
 			box-sizing: border-box;
-			box-shadow: 0 0 20upx #EFEFEF;
+			box-shadow: 0 5upx 20upx #999;
 			border-radius: 20upx;
 			position: relative;
 			z-index: 5;

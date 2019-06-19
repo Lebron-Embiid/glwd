@@ -4,217 +4,146 @@
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom",
-                "navigationBarTitleText": "",
-				"app-plus": {
-					"titleNView": false
-                }
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
 			"path": "pages/reserve/reserve",
 			"style": {
 				"navigationStyle": "custom",
-                "navigationBarTitleText": "",
-				"app-plus":{
-					"titleNView": false
-				}
+				"navigationBarTitleText": "预约"
 			}
 		},
 		{
 			"path": "pages/lesson/lesson",
 			"style": {
-				"navigationBarTitleText": "课程",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "课程"
+				// "app-plus": {
+    //                 "titleNView": {
+    //                     "type": "transparent"//透明渐变导航栏
+    //                 }
+    //             }
 			}
 		},
 		{
 			"path": "pages/school/school",
 			"style": {
 				"navigationStyle": "custom",
-				"navigationBarTitleText": "",
-				"app-plus": {
-					"titleNView": false
-                }
+				"navigationBarTitleText": "校区"
 			}
 		},
 		{
 			"path": "pages/person/person",
 			"style": {
 				"navigationStyle": "custom",
-                "navigationBarTitleText": "",
-				"app-plus":{
-					"titleNView": false
-				}
+				"navigationBarTitleText": "我的"
 			}
 		},
 		{
 			"path": "pages/video_detail/video_detail",
 			"style": {
 				"navigationStyle": "custom",
-				"navigationBarTitleText": "",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationBarTitleText": "视频详情"
 			}
 		},
 		{
 			"path": "pages/series/series",
 			"style": {
-				"navigationBarTitleText": "舞蹈系列",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationBarTitleText": "舞蹈系列"
 			}
 		},
 		{
 			"path": "pages/school_detail/school_detail",
 			"style": {
-				"navigationBarTitleText": "校区详情",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationBarTitleText": "校区详情"
 			}
 		},
 		{
 			"path": "pages/news_detail/news_detail",
 			"style": {
-				"navigationBarTitleText": "资讯详情",
-				"app-plus": {
-                    "titleNView": {
-                        "type": "transparent"//透明渐变导航栏
-                    }
-                }
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "资讯详情"
 			}
 		},
 		{
 			"path": "pages/lesson_detail/lesson_detail",
 			"style": {
-				"navigationBarTitleText": "课程详情",
-				"app-plus": {
-                    "titleNView": {
-                        "type": "transparent"//透明渐变导航栏
-                    }
-                }
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "课程详情"
 			}
 		},
 		{
 			"path": "pages/scan_code/scan_code",
 			"style": {
-				"navigationBarTitleText": "扫码进群",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationBarTitleText": "扫码进群"
 			}
 		},
 		{
 			"path": "pages/audio_detail/audio_detail",
 			"style": {
-				"navigationBarTitleText": "",
-				"app-plus": {
-                    "titleNView": {
-                        "type": "transparent"//透明渐变导航栏
-                    }
-                }
+				"navigationStyle": "custom",
+				"navigationBarTitleText": ""
 			}
 		},
 		{
 			"path": "pages/person_info/person_info",
 			"style": {
-				"navigationBarTitleText": "个人资料",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationBarTitleText": "个人资料"
 			}
 		},
 		{
 			"path": "pages/change_name/change_name",
 			"style": {
-				"navigationBarTitleText": "修改昵称",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationBarTitleText": "修改昵称"
 			}
 		},
 		{
 			"path": "pages/my_collect/my_collect",
 			"style": {
-				"navigationBarTitleText": "我的收藏",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationBarTitleText": "我的收藏"
 			}
 		},
 		{
 			"path": "pages/my_order/my_order",
 			"style": {
-				"navigationBarTitleText": "我的订单",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationBarTitleText": "我的订单"
 			}
 		},
 		{
 			"path": "pages/order_detail/order_detail",
 			"style": {
-				"navigationBarTitleText": "订单详情",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationBarTitleText": "订单详情"
 			}
 		},
 		{
 			"path": "pages/my_reserve/my_reserve",
 			"style": {
-				"navigationBarTitleText": "我的预约",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationBarTitleText": "我的预约"
 			}
 		},
 		{
 			"path": "pages/reserve_detail/reserve_detail",
 			"style": {
-				"navigationBarTitleText": "预约详情",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationBarTitleText": "预约详情"
 			}
 		},
 		{
 			"path": "pages/history/history",
 			"style": {
-				"navigationBarTitleText": "历史记录",
-				"app-plus":{
-					"titleNView" : {  
-                        "splitLine":{"color":"#F4F4F4"} 
-                    }
-				}
+				"navigationBarTitleText": "历史记录"
+			}
+		},
+		{
+			"path": "pages/account/account",
+			"style": {
+				"navigationBarTitleText": "结算"
+			}
+		},
+		{
+			"path": "pages/car/car",
+			"style": {
+				"navigationBarTitleText": "购物车"
 			}
 		},
 		{

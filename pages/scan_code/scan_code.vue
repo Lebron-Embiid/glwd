@@ -2,8 +2,8 @@
 	<view class="scan_code_view">
 		<view class="sc_title">扫描二维码进群</view>
 		<view class="code_box">
-			<view class="cb_title">港龙舞蹈培训</view>
-			<image src="../../static/code.png" mode="widthFix" class="code_img"></image>
+			<view class="cb_title">{{title}}</view>
+			<image :src="code" mode="widthFix" class="code_img"></image>
 			<image src="../../static/code_icon.jpg" mode="widthFix" class="code_icon"></image>
 			<view>1.扫码加群认识志同道合的朋友</view>
 			<view>2.及时了解我们的动态</view>
@@ -16,7 +16,8 @@
 	export default{
 		data(){
 			return{
-				
+				title: "港龙舞蹈培训",
+				code: "../../static/code.png"
 			}
 		},
 		methods:{

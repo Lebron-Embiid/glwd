@@ -1,5 +1,8 @@
 <template>
 	<view class="lesson_view">
+		<view class="status_bar">  
+			<view class="top_view"></view>  
+		</view>  
 		<commonSearch :keywords="keywords"></commonSearch>
 		<!-- <view class="lesson_box">
 			<view class="lesson_item" v-for="(item,index) in lesson_list" :key="item.id">
@@ -8,6 +11,10 @@
 			</view>
 		</view> -->
 		<commonLesson :list="lesson_list"></commonLesson>
+		<view class="fix_car_btn" @tap="toCar">
+			<view class="fcb_car"><image src="../../static/car.png" mode="widthFix"></image><text>1</text></view>
+			购物车
+		</view>
 	</view>
 </template>
 
@@ -46,7 +53,11 @@
 			commonLesson
 		},
 		methods:{
-			
+			toCar(){
+				uni.navigateTo({
+					url: "/pages/car/car"
+				})
+			}
 		},
 		onLoad() {
 			

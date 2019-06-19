@@ -17,15 +17,15 @@
 	.page_bg{background: #f5f5f7 !important;min-height: 100%;position: fixed;width: 100%;z-index: -1;left: 0;top: 0;}
 	.mt500{margin-top: 540upx;}
 	.status_bar {  
-		height: var(--status-bar-height);  
+		height: 25px;  
 		width: 100%;  
-		background-color: #F8F8F8;  
+		background-color: transparent;  
 	}  
 	.top_view {  
-		height: var(--status-bar-height);  
+		height: 25px;  
 		width: 100%;  
 		position: fixed;  
-		background-color: #F8F8F8;  
+		background-color: transparent;  
 		top: 0;  
 		z-index: 999;  
 	}  
@@ -89,7 +89,7 @@
 		// position: fixed;
 		// left: 0;
 		// top: var(--window-top);
-		width: 100%;
+		width: 450upx;
 		background: #f5f5f5;
 		border-radius: 50upx;
 		margin: 20upx 0;
@@ -104,6 +104,7 @@
 		}
 		.input_box{
 			width: 80%;
+			height: 60upx;
 			padding-left: 70upx;
 			display: flex;
 			align-items: center;
@@ -203,8 +204,111 @@
 				&.active{
 					color: #333;
 					font-size: 26upx;
+					font-weight: bold;
 				}
 			}
 		}
+	}
+	// 购物车按钮
+	.fix_car_btn{
+		position: fixed;
+		width: 175upx;
+		height: 70upx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		right: 30upx;
+		bottom: 100px;
+		background: linear-gradient(top, #ffd42c,#fbb802);
+		color: #fff;
+		font-size: 28upx;
+		border-radius: 50upx;
+		z-index: 10;
+		.fcb_car{
+			position: relative;
+			margin-right: 15upx;
+			image{
+				display: inline-block;
+				width: 44upx;
+				height: 40upx;
+			}
+			text{
+				display: block;
+				position: absolute;
+				right: -15upx;
+				top: -10upx;
+				background: #fff;
+				border-radius: 50%;
+				color: #fbc800;
+				font-size: 24upx;
+				width: 30upx;
+				height: 30upx;
+				line-height: 30upx;
+				text-align: center;
+			}
+		}
+	}
+	.fix_car_bottom{
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 96upx;
+		padding: 20upx 25upx;
+		box-sizing: border-box;
+		border-top: 1px solid #D4D4D4;
+		background: #fff;
+		z-index: 20;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.radio{
+			color: #666;
+			font-size: 30upx;
+			display: flex;
+			align-items: center;
+			radio{
+				transform: scale(.8);
+			}
+		}
+		.fix_car_info{
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			text{
+				color: #e83632;
+				font-size: 30upx;
+				margin-right: 20upx;
+			}
+			button{
+				padding: 0;
+				margin: 0;
+				width: 190upx;
+				height: 60upx;
+				line-height: 60upx;
+				background: #e83632;
+				color: #fff;
+				font-size: 30upx;
+				border-radius: 50upx;
+			}
+		}
+	}
+	// 轮播样式修改
+	.swiper .uni-swiper-wrapper{
+		overflow: visible;
+	}
+	.swiper .uni-swiper-dots-horizontal{
+		bottom: -15px;
+	}
+	.swiper .uni-swiper-dots-horizontal .uni-swiper-dot{
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: #999;
+	}
+	.swiper .uni-swiper-dots-horizontal .uni-swiper-dot-active{
+		background: #666;
+		width: 22px;
+		border-radius: 10upx;
 	}
 </style>

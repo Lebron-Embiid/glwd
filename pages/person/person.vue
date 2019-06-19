@@ -1,10 +1,8 @@
 <template>
 	<view class="person_view">
-		<!-- #ifdef APP-PLUS -->  
 		<view class="status_bar">  
 			<view class="top_view"></view>  
 		</view>  
-		<!-- #endif -->
 		<view class="person_top">
 			<image src="../../static/person_bg.png" mode="widthFix" class="person_bg"></image>
 			<view class="person_layer">
@@ -13,23 +11,23 @@
 			</view>
 		</view>
 		<view class="person_nav">
-			<navigator url="/pages/my_order/my_order?id=1" class="person_item"><image src="../../static/person_nav1.png" mode="widthFix"></image>待付款</navigator>
-			<navigator url="/pages/my_order/my_order?id=2" class="person_item"><image src="../../static/person_nav2.png" mode="widthFix"></image>已完成</navigator>
-			<navigator url="/pages/my_order/my_order?id=3" class="person_item"><image src="../../static/person_nav3.png" mode="widthFix"></image>已取消</navigator>
+			<view v-for="(item,index) in orderList" :key="index" @tap="toMyOrder(index+1)" class="person_item"><image :src="item.icon" mode="widthFix"></image>{{item.title}}</view>
+			<!-- <navigator url="/pages/my_order/my_order?id=2" class="person_item"><image src="../../static/person_nav1.png" mode="widthFix"></image>已完成</navigator> -->
+			<!-- <navigator url="/pages/my_order/my_order?id=3" class="person_item"><image src="../../static/person_nav3.png" mode="widthFix"></image>已取消</navigator> -->
 		</view>
 		<view class="person_list">
-			<navigator url="/pages/my_reserve/my_reserve" class="pl_item">
-				<view><image src="../../static/person_icon1.png" mode="widthFix"></image>我的预约</view>
+			<view class="pl_item" v-for="(item,index) in nav_list" @tap="toDetail(item.url)" :key="index">
+				<view><image :src="item.icon" mode="widthFix"></image>{{item.title}}</view>
 				<image src="../../static/next.png" mode="widthFix" class="next"></image>
-			</navigator>
-			<navigator url="/pages/my_collect/my_collect" class="pl_item">
+			</view>
+			<!-- <navigator url="/pages/my_collect/my_collect" class="pl_item">
 				<view><image src="../../static/person_icon2.png" mode="widthFix"></image>我的收藏</view>
 				<image src="../../static/next.png" mode="widthFix" class="next"></image>
 			</navigator>
 			<navigator url="/pages/history/history" class="pl_item">
 				<view><image src="../../static/person_icon3.png" mode="widthFix"></image>历史记录</view>
 				<image src="../../static/next.png" mode="widthFix" class="next"></image>
-			</navigator>
+			</navigator> -->
 			<view class="pl_item">
 				<view><image src="../../static/person_icon4.png" mode="widthFix"></image>官方客服</view>
 				<text>4008529629</text>
@@ -43,11 +41,30 @@
 		data(){
 			return{
 				nickname: "刘小姐",
-				avatar: "../../static/person_avatar.jpg"
+				avatar: "../../static/person_avatar.jpg",
+				orderList: [
+					{title: "待付款",icon: "../../static/person_nav2.png"},
+					{title: "已完成",icon: "../../static/person_nav1.png"},
+					{title: "已取消",icon: "../../static/person_nav3.png"}
+				],
+				nav_list: [
+					{title: "我的预约",icon: "../../static/person_icon1.png",url: "/pages/my_reserve/my_reserve"},
+					{title: "我的收藏",icon: "../../static/person_icon2.png",url: "/pages/my_collect/my_collect"},
+					{title: "历史记录",icon: "../../static/person_icon3.png",url: "/pages/history/history"}
+				]
 			}
 		},
 		methods:{
-			
+			toMyOrder(e){
+				uni.navigateTo({
+					url: "/pages/my_order/my_order?id="+e
+				})
+			},
+			toDetail(e){
+				uni.navigateTo({
+					url: e
+				})
+			}
 		},
 		onLoad() {
 			
@@ -96,7 +113,8 @@
 		background: #fff;
 		margin: -90upx auto 20upx;
 		border-radius: 20upx;
-		box-shadow: 0 0 20upx #EAEAEA;
+		// box-shadow: 0 0 20upx #EAEAEA;
+		box-shadow: 0 5upx 20upx #999;
 		z-index: 5;
 		display: flex;
 		justify-content: space-around;

@@ -1,10 +1,8 @@
 <template>
-	<view class="school_view">
-		<!-- #ifdef APP-PLUS -->  
+	<view class="school_view"> 
 		<view class="status_bar">  
 			<view class="top_view"></view>  
 		</view>  
-		<!-- #endif -->
 		<view class="fixed_top">
 			<view class="address_txt" @tap="chooseLocation">{{address}}<image src="../../static/down.png" mode="widthFix"></image></view>
 			<view class="search_school">
@@ -58,6 +56,8 @@
 					latitude: 39.909,
 					longitude: 116.39742,
 					iconPath: "/static/icon.png",
+					width: 20,
+					height: 20,
 					callout: {
 						content: "离我最近",
 						color: "#fff",
@@ -171,7 +171,7 @@
 			left: 0;
 			top: var(--status-bar-height);
 			background: #fff;
-			box-shadow: 0 1upx 10upx #E9E9E9;
+			// box-shadow: 0 1upx 10upx #E9E9E9;
 			z-index: 5;
 		}
 		.address_txt{

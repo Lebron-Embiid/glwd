@@ -1,9 +1,9 @@
 <template>
 	<view class="school_detail_view">
-		<view class="sd_title">莲花北校区</view>
-		<image src="../../static/school_banner.jpg" class="sd_img" mode="widthFix"></image>
-		<view class="sd_info">深圳市福田区彩田路西、红荔路南中银花园裙楼 2号楼 L3 层05号铺</view>
-		<view class="sd_dist">169m</view>
+		<view class="sd_title">{{title}}</view>
+		<image :src="src" class="sd_img" mode="widthFix"></image>
+		<view class="sd_info">{{info}}</view>
+		<view class="sd_dist">{{near}}</view>
 		<view class="sd_fixed">
 			<view class="sf_call" @tap="callPhone"><image src="../../static/phone.png" mode="widthFix"></image>电话</view>
 			<view class="sf_call"><image src="../../static/yuyue.png" mode="widthFix"></image>预约</view>
@@ -15,6 +15,10 @@
 	export default{
 		data(){
 			return{
+				title: "莲花北校区",
+				src: "../../static/school_banner.jpg",
+				info: "深圳市福田区彩田路西、红荔路南中银花园裙楼 2号楼 L3 层05号铺",
+				near: "169m",
 				phone: "0755-256843"
 			}
 		},

@@ -1,10 +1,8 @@
 <template>
 	<view class="audio_detail_view">
-		<!-- #ifdef APP-PLUS -->  
 		<view class="status_bar">  
 			<view class="top_view"></view>  
 		</view>  
-		<!-- #endif -->
 		<image :src="banner" class="audio_banner" mode="widthFix"></image>
 		<view class="audio_music_view" :class="[isPlay == true?'active':'']">
 			<view class="audio_music_move">
@@ -60,8 +58,8 @@
 			</view>
 		</view>
 		<!-- 正在播放列表 -->
-		<view class="fixed_shadow" :class="[layerShow == true?'active':'' || shareShow == true?'active':'']" @tap="hideLayer"></view>
-		<view class="fixed_music_list" :class="[layerShow == true?'active':'']">
+		<view class="fixed_shadow" @touchmove.stop="preventTouchMove" :class="[layerShow == true?'active':'' || shareShow == true?'active':'']" @tap="hideLayer"></view>
+		<view class="fixed_music_list" @touchmove.stop="preventTouchMove" :class="[layerShow == true?'active':'']">
 			<view class="fml_all_del" @tap="allDelete"><image src="../../static/delete.png" mode="widthFix"></image>全部清空</view>
 			<scroll-view class="fml_list_view" scroll-y>
 				<view class="flv_item" v-for="(item,index) in play_list" :key="item.id" @tap="toPlay(index,isBottom)">
@@ -79,8 +77,8 @@
 		<view class="fixed_share_box" :class="[shareShow == true?'active':'']">
 			<view class="fsb_title">分享至</view>
 			<view class="fsb_share">
-				<view class="share_item"><image src="../../static/share_pyq.png" mode="widthFix"></image><text>朋友圈</text></view>
-				<view class="share_item"><image src="../../static/share_wx.png" mode="widthFix"></image><text>微信</text></view>
+				<view class="share_item" @tap="shareWxTimeline"><image src="../../static/share_pyq.png" mode="widthFix"></image><text>朋友圈</text></view>
+				<view class="share_item" @tap="shareWxSession"><image src="../../static/share_wx.png" mode="widthFix"></image><text>微信</text></view>
 			</view>
 		</view>
 	</view>
@@ -205,6 +203,7 @@
 			}
 		},
 		methods:{
+			preventTouchMove(){},
 			toPlay(e,type){
 				var that = this;
 				that.isPlay = true;
@@ -303,6 +302,44 @@
 						console.log(err)
 					}
 				})
+			},
+			// 分享到微信好友
+			shareWxSession(e){
+				var that = this;
+				uni.share({
+					provider: "weixin",
+					scene: "WXSceneSession",
+					type: 0,
+					href: "http://uniapp.dcloud.io/",
+					title: "uni-app分享",
+					summary: "我正在使用HBuilderX开发uni-app，赶紧跟我一起来体验！",
+					imageUrl: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png",
+					success: function (res) {
+						console.log("success:" + JSON.stringify(res));
+					},
+					fail: function (err) {
+						console.log("fail:" + JSON.stringify(err));
+					}
+				});
+			},
+			// 分享到微信朋友圈
+			shareWxTimeline(e){
+				var that = this;
+				uni.share({
+					provider: "weixin",
+					scene: "WXSenceTimeline",
+					type: 0,
+					href: "http://uniapp.dcloud.io/",
+					title: "uni-app分享",
+					summary: "我正在使用HBuilderX开发uni-app，赶紧跟我一起来体验！",
+					imageUrl: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png",
+					success: function (res) {
+						console.log("success:" + JSON.stringify(res));
+					},
+					fail: function (err) {
+						console.log("fail:" + JSON.stringify(err));
+					}
+				});
 			}
 		},
 		onLoad(opt) {
@@ -368,7 +405,7 @@
 				padding: 30upx 30upx 50upx;
 				box-sizing: border-box;
 				background: #fff;
-				box-shadow: 0 0 20upx #F1F1F1;
+				box-shadow: 0 5upx 20upx #999;
 				border-radius: 30upx;
 				margin-bottom: 40upx;
 				position: relative;

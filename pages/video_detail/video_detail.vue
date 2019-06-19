@@ -1,10 +1,8 @@
 <template>
 	<view class="video_detail_view">
-		<!-- #ifdef APP-PLUS -->  
 		<view class="status_bar">  
 			<view class="top_view"></view>  
 		</view>  
-		<!-- #endif -->
 		<video id="myVideo" :src="url" controls direction="-90" :poster="poster"></video>
 		<!-- 视频详情信息 -->
 		<view class="video_detail">
@@ -13,11 +11,11 @@
 			<view class="vd_status">{{num}}人观看<text>{{time}}</text></view>
 			<view class="vd_bottom">
 				<view class="vd_share">
-					<view class="vs_item"><image src="../../static/detail_icon2.png" mode="widthFix"></image>收藏</view>
-					<view class="vs_item"><image src="../../static/detail_icon3.png" mode="widthFix"></image>朋友圈</view>
-					<view class="vs_item"><image src="../../static/detail_icon4.png" mode="widthFix"></image>微信</view>
+					<view class="vs_item" @tap="toCollect(id)"><image src="../../static/detail_icon3.png" mode="widthFix"></image>收藏</view>
+					<view class="vs_item" @tap="shareWxTimeline"><image src="../../static/detail_icon2.png" mode="widthFix"></image>朋友圈</view>
+					<view class="vs_item" @tap="shareWxSession"><image src="../../static/detail_icon4.png" mode="widthFix"></image>微信</view>
 				</view>
-				<button>免费预约</button>
+				<button @tap="toReserve(id)">免费预约</button>
 			</view>
 		</view>
 		<!-- 相关推荐 -->
@@ -31,10 +29,12 @@
 							<view class="rec_txt">推荐课程</view>
 						</block>
 						<image src="../../static/play_btn2.png" mode="widthFix" class="rec_play"></image>
-						<view class="rec_status">
-							<view><image src="../../static/look.png" mode="widthFix"></image>{{item.num}}</view>
-							<text>{{item.time}}</text>
-						</view>
+						<block v-if="item.hot != 1">
+							<view class="rec_status">
+								<view><image src="../../static/look.png" mode="widthFix"></image>{{item.num}}</view>
+								<text>{{item.time}}</text>
+							</view>
+						</block>
 					</view>
 					<view class="rec_title"><text class="rt_title">{{title}}</text><text class="rt_price">￥{{item.price}}</text></view>
 				</view>
@@ -96,9 +96,56 @@
 				uni.navigateTo({
 					url: "/pages/video_detail/video_detail?id="+e
 				})
+			},
+			toCollect(e){
+				
+			},
+			// 分享到微信好友
+			shareWxSession(e){
+				var that = this;
+				uni.share({
+					provider: "weixin",
+					scene: "WXSceneSession",
+					type: 0,
+					href: "http://uniapp.dcloud.io/",
+					title: "uni-app分享",
+					summary: "我正在使用HBuilderX开发uni-app，赶紧跟我一起来体验！",
+					imageUrl: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png",
+					success: function (res) {
+						console.log("success:" + JSON.stringify(res));
+					},
+					fail: function (err) {
+						console.log("fail:" + JSON.stringify(err));
+					}
+				});
+			},
+			// 分享到微信朋友圈
+			shareWxTimeline(e){
+				var that = this;
+				uni.share({
+					provider: "weixin",
+					scene: "WXSenceTimeline",
+					type: 0,
+					href: "http://uniapp.dcloud.io/",
+					title: "uni-app分享",
+					summary: "我正在使用HBuilderX开发uni-app，赶紧跟我一起来体验！",
+					imageUrl: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png",
+					success: function (res) {
+						console.log("success:" + JSON.stringify(res));
+					},
+					fail: function (err) {
+						console.log("fail:" + JSON.stringify(err));
+					}
+				});
+			},
+			toReserve(e){
+				uni.reLaunch({
+					url: "/pages/reserve/reserve?id="+e
+				})
 			}
 		},
 		onLoad(opt) {
+			var that = this;
 			that.id = opt.id;
 		}
 	}

@@ -1,10 +1,8 @@
 <template>
 	<view class="reserve_view">
-		<!-- #ifdef APP-PLUS -->  
 		<view class="status_bar">  
 			<view class="top_view"></view>  
 		</view>  
-		<!-- #endif -->
 		<view class="search_box">
 			<commonSearch :keywords="keywords"></commonSearch>
 		</view>
@@ -21,7 +19,7 @@
 			<view class="reserve_item"><input type="text" placeholder="请输入手机号码" placeholder-style="color: #a6a6a6;" v-model="phone" :value="phone" /></view>
 			<view class="reserve_item" @tap="typeChange"><text>{{type}}</text><image src="../../static/down3.png" mode="widthFix"></image></view>
 			<view class="reserve_item" @tap="schoolChange"><text>{{school}}</text><image src="../../static/down3.png" mode="widthFix"></image></view>
-			<button class="reserve_now_btn">立即预约</button>
+			<button class="reserve_now_btn" @tap="toReserve">立即预约</button>
 		</view>
 	</view>
 </template>
@@ -69,6 +67,20 @@
 			},
 			selectCity(e){
 				this.city_index = e;
+			},
+			toReserve(e){
+				var that = this;
+				if(that.name == "" || that.phone == "" || that.type == "请选择体验类型或舞种" || that.school == "请选择校区" || that.city_index == "-1"){
+					uni.showToast({
+						title: "选择错误",
+						image: "../../static/pay_no.png"
+					})
+				}else{
+					uni.showToast({
+						title: "预约成功",
+						image: "../../static/pay_ok.png"
+					})
+				}
 			}
 		},
 		components:{
