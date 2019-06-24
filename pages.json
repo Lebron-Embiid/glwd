@@ -29,8 +29,9 @@
 		{
 			"path": "pages/school/school",
 			"style": {
-				"navigationStyle": "custom",
-				"navigationBarTitleText": "校区"
+				// "navigationStyle": "custom",
+				// "navigationBarTitleText": "校区"
+				"navigationBarTitleText": ""
 			}
 		},
 		{
@@ -69,7 +70,7 @@
 		{
 			"path": "pages/lesson_detail/lesson_detail",
 			"style": {
-				"navigationStyle": "custom",
+				// "navigationStyle": "custom",
 				"navigationBarTitleText": "课程详情"
 			}
 		},
@@ -174,28 +175,28 @@
 		"borderStyle": "black",
 		"list": [{
 			"pagePath": "pages/index/index",
-			"iconPath": "static/footer1.png",
-			"selectedIconPath": "static/footer1_on.png",
+			"iconPath": "static/footer_icon1.png",
+			"selectedIconPath": "static/footer_icon1_on.png",
 			"text": "首页"
 		}, {
 			"pagePath": "pages/reserve/reserve",
-			"iconPath": "static/footer2.png",
-			"selectedIconPath": "static/footer2_on.png",
+			"iconPath": "static/footer_icon2.png",
+			"selectedIconPath": "static/footer_icon2_on.png",
 			"text": "预约"
 		}, {
 			"pagePath": "pages/lesson/lesson",
-			"iconPath": "static/footer3.png",
-			"selectedIconPath": "static/footer3_on.png",
+			"iconPath": "static/footer_icon3.png",
+			"selectedIconPath": "static/footer_icon3_on.png",
 			"text": "课程"
 		}, {
 			"pagePath": "pages/school/school",
-			"iconPath": "static/footer4.png",
-			"selectedIconPath": "static/footer4_on.png",
+			"iconPath": "static/footer_icon4.png",
+			"selectedIconPath": "static/footer_icon4_on.png",
 			"text": "校区"
 		}, {
 			"pagePath": "pages/person/person",
-			"iconPath": "static/footer5.png",
-			"selectedIconPath": "static/footer5_on.png",
+			"iconPath": "static/footer_icon5.png",
+			"selectedIconPath": "static/footer_icon5_on.png",
 			"text": "我的"
 		}]
 	},

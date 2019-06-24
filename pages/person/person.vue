@@ -91,7 +91,7 @@
 				color: #fff;
 				font-size: 30upx;
 				text-align: center;
-				margin: 60upx 0 20upx;
+				margin: 100upx 0 20upx;
 			}
 			.person_avatar{
 				overflow: hidden;

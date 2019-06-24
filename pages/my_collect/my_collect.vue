@@ -11,7 +11,7 @@
 			<view class="video_collect" v-if="currentTab == 0">
 				<view class="v_collect_item" v-for="(item,index) in video_collect_list" :key="item.id" @tap="toVideoDetail(item.id)">
 					<image :src="item.src" class="v_collect_img" mode="widthFix"></image>
-					<view class="v_collect_title"><text>{{item.title}}</text><image src="../../static/delete.png" mode="widthFix" @tap.stop="toDel(item.id)"></image></view>
+					<view class="v_collect_title"><text>{{item.title}}</text><image src="../../static/delete2.jpg" mode="widthFix" @tap.stop="toDel(item.id)"></image></view>
 				</view>
 			</view>
 			<!-- 音频收藏 -->
@@ -26,7 +26,7 @@
 					</view>
 					<view class="v_audio_right">
 						<image src="../../static/play.png" mode="widthFix" class="var_play"></image>
-						<image src="../../static/delete.png" mode="widthFix" class="var_del" @tap.stop="toDel(item.id)"></image>
+						<image src="../../static/delete2.jpg" mode="widthFix" class="var_del" @tap.stop="toDel(item.id)"></image>
 					</view>
 				</view>
 			</view>
@@ -45,7 +45,7 @@
 							<view class="lri_info">规格：{{item.type}}</view>
 							<view class="lri_price">￥{{item.price}}</view>
 						</view>
-						<image src="../../static/delete.png" mode="widthFix" @tap.stop="toDel(item.id)"></image>
+						<image src="../../static/delete2.jpg" mode="widthFix" @tap.stop="toDel(item.id)"></image>
 					</view>
 				</view>
 			</view>
@@ -58,12 +58,12 @@
 						<view class="nic_time">{{item.time}}</view>
 						<view class="nic_look"><image src="../../static/eye.jpg" mode="widthFix"></image>{{item.look}}</view>
 					</view>
-					<image src="../../static/delete.png" mode="widthFix" class="news_del" @tap.stop="toDel(item.id)"></image>
+					<image src="../../static/delete2.jpg" mode="widthFix" class="news_del" @tap.stop="toDel(item.id)"></image>
 				</view>
 			</view>
 		</view>
 		<view class="fixed_del_box">
-			<view class="fixed_del" @tap="allDelete(currentTab)"><image src="../../static/delete.png" mode="widthFix"></image>全部删除</view>
+			<view class="fixed_del" @tap="allDelete(currentTab)"><image src="../../static/delete2.jpg" mode="widthFix"></image>全部删除</view>
 		</view>
 	</view>
 </template>
@@ -264,7 +264,7 @@
 					justify-content: space-between;
 					align-items: center;
 					margin: 15upx 0 25upx;
-					padding-left: 10upx;
+					padding: 0 10upx;
 					box-sizing: border-box;
 					text{
 						display: block;
@@ -275,8 +275,8 @@
 					}
 					image{
 						display: block;
-						width: 34upx;
-						height: 34upx;
+						width: 26upx;
+						height: 28upx;
 					}
 				}
 			}
@@ -336,8 +336,8 @@
 					}
 					.var_del{
 						display: block;
-						width: 34upx;
-						height: 34upx;
+						width: 26upx;
+						height: 28upx;
 						margin-right: 30upx;
 					}
 				}
@@ -409,8 +409,8 @@
 					}
 					image{
 						display: block;
-						width: 34upx;
-						height: 34upx;
+						width: 26upx;
+						height: 28upx;
 					}
 				}
 			}
@@ -461,8 +461,8 @@
 				}
 				.news_del{
 					display: block;
-					width: 34upx;
-					height: 34upx;
+					width: 26upx;
+					height: 28upx;
 					margin: 0 20upx 0 30upx;
 				}
 			}
@@ -487,8 +487,8 @@
 			image{
 				display: inline-block;
 				vertical-align: middle;
-				width: 34upx;
-				height: 34upx;
+				width: 33upx;
+				height: 36upx;
 				margin-right: 10upx;
 			}
 		}

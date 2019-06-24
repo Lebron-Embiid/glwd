@@ -55,6 +55,7 @@
 		.sd_title{
 			color: #333;
 			font-size: 40upx;
+			font-weight: bold;
 		}
 		.sd_img{
 			display: block;

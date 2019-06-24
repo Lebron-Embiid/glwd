@@ -6,7 +6,7 @@
 		<view class="search_box">
 			<commonSearch :keywords="keywords"></commonSearch>
 		</view>
-		<image src="../../static/reserve_banner.png" mode="widthFix" class="reserve_banner"></image>
+		<image src="../../static/reserve_banner.jpg" mode="widthFix" class="reserve_banner"></image>
 		<view class="reserve_box">
 			<view class="reserve_title"><image src="../../static/circle.png" mode="widthFix"></image>预约体验课</view>
 			<view class="reserve_city">
@@ -20,6 +20,15 @@
 			<view class="reserve_item" @tap="typeChange"><text>{{type}}</text><image src="../../static/down3.png" mode="widthFix"></image></view>
 			<view class="reserve_item" @tap="schoolChange"><text>{{school}}</text><image src="../../static/down3.png" mode="widthFix"></image></view>
 			<button class="reserve_now_btn" @tap="toReserve">立即预约</button>
+		</view>
+		<view class="ld_shadow" :class="[layerShow == true?'active':'']" @tap="hideLayer"></view>
+		<view class="pay_success" :class="[reserve_ok == true?'active':'']">
+			<image src="../../static/pay_ok.png" mode="widthFix"></image>
+			<text>预约成功</text>
+		</view>
+		<view class="pay_fail" :class="[reserve_no == true?'active':'']">
+			<image src="../../static/pay_no.png" mode="widthFix"></image>
+			<text>选择错误</text>
 		</view>
 	</view>
 </template>
@@ -37,10 +46,18 @@
 				school: "请选择校区",
 				school_list: ["莲花山校区","景田校区","华强南校区","南头校区"],
 				city_list: ["深圳市","广州市","惠州市","成都市"],
-				city_index: "-1"
+				city_index: "-1",
+				layerShow: false,
+				reserve_ok: false,
+				reserve_no: false
 			}
 		},
 		methods:{
+			hideLayer(){
+				this.layerShow = false;
+				this.reserve_ok = false;
+				this.reserve_no = false;
+			},
 			typeChange(e){
 				var that = this;
 				uni.showActionSheet({
@@ -71,15 +88,11 @@
 			toReserve(e){
 				var that = this;
 				if(that.name == "" || that.phone == "" || that.type == "请选择体验类型或舞种" || that.school == "请选择校区" || that.city_index == "-1"){
-					uni.showToast({
-						title: "选择错误",
-						image: "../../static/pay_no.png"
-					})
+					that.layerShow = true;
+					that.reserve_no = true;
 				}else{
-					uni.showToast({
-						title: "预约成功",
-						image: "../../static/pay_ok.png"
-					})
+					that.layerShow = true;
+					that.reserve_ok = true;
 				}
 			}
 		},
@@ -113,13 +126,15 @@
 		.reserve_title{
 			color: #333;
 			font-size: 32upx;
-			margin-bottom: 20upx;
+			margin-bottom: 15upx;
+			font-weight: bold;
 			image{
 				display: inline-block;
 				width: 24upx;
 				height: 24upx;
 				margin-right: 12upx;
 				vertical-align: middle;
+				margin-bottom: 3upx;
 			}
 		}
 		.reserve_city{
@@ -127,6 +142,7 @@
 				color: #a6a6a6;
 				font-size: 28upx;
 				margin-bottom: 15upx;
+				font-weight: bold;
 			}
 			.city_box{
 				display: flex;
@@ -160,7 +176,8 @@
 			justify-content: space-between;
 			align-items: center;
 			padding: 0 15upx;
-			height: 82upx;
+			height: 80upx;
+			box-sizing: border-box;
 			border: 4upx solid #ededed;
 			border-radius: 10upx;
 			margin-bottom: 20upx;

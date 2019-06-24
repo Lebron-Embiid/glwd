@@ -14,6 +14,17 @@
 
 <style lang="scss">
 	/*每个页面公共css */
+	uni-page-head .uni-page-head__title{font-weight: normal;}
+	.uni-actionsheet__action{margin-top: 0 !important;border-top: 1upx solid #F2F2F3;}
+	.uni-actionsheet__action .uni-actionsheet__cell{color: #FBC800 !important;}
+	
+	uni-modal .uni-modal{width: 480upx;height: 220upx;border-radius: 15upx;}
+	uni-modal .uni-modal__bd{color: #333;font-size: 36upx;padding: 1em 1.6em 1em;}
+	uni-modal .uni-modal__btn_default{color: #333;font-size: 30upx;}
+	uni-modal .uni-modal__btn_primary{font-size: 30upx;}
+	uni-modal .uni-modal__btn:after,.uni-modal .uni-modal__ft:after{display: none;}
+	uni-modal .uni-modal__btn:active{background: none;}
+	*{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
 	.page_bg{background: #f5f5f7 !important;min-height: 100%;position: fixed;width: 100%;z-index: -1;left: 0;top: 0;}
 	.mt500{margin-top: 540upx;}
 	.status_bar {  
@@ -310,5 +321,52 @@
 		background: #666;
 		width: 22px;
 		border-radius: 10upx;
+	}
+	// 支付弹框样式
+	.pay_success,.pay_fail{
+		position: fixed;
+		width: 350upx;
+		height: 350upx;
+		background: #fff;
+		border-radius: 30upx;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+		display: none;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		padding: 60upx 0;
+		box-sizing: border-box;
+		z-index: 30;
+		&.active{
+			display: flex;
+		}
+		image{
+			display: block;
+			width: 147upx;
+			height: 172upx;
+			margin: 0 auto 20upx;
+		}
+		text{
+			color: #333;
+			font-size: 30upx;
+			display: block;
+			width: 100%;
+			text-align: center;
+		}
+	}
+	.ld_shadow{
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,.3);
+		left: 0;
+		bottom: 0;
+		display: none;
+		z-index: 25;
+		&.active{
+			display: block;
+		}
 	}
 </style>

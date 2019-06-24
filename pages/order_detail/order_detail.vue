@@ -1,6 +1,6 @@
 <template>
 	<view class="order_detail_view">
-		<image src="../../static/lesson_detail_banner.jpg" class="order_banner" mode="widthFix"></image>
+		<image src="../../static/order_detail_banner.jpg" class="order_banner" mode="widthFix"></image>
 		<view class="order_detail">
 			<view class="od_title">{{title}}</view>
 			<view class="od_price">￥{{price}}</view>
@@ -49,7 +49,7 @@
 		.order_banner{
 			display: block;
 			width: 750upx;
-			height: 430upx;
+			// height: 430upx;
 		}
 		.order_detail{
 			width: 660upx;

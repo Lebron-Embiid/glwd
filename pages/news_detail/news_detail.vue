@@ -128,7 +128,9 @@
 		.news_info{
 			color: #333;
 			font-size: 24upx;
-			line-height: 1.8;
+			line-height: 1.7;
+			padding-left: 30upx;
+			box-sizing: border-box;
 			image{
 				display: block;
 				max-width: 100% !important;
@@ -137,5 +139,6 @@
 	}
 	.invite_box{
 		right: 20upx;
+		bottom: 80upx;
 	}
 </style>

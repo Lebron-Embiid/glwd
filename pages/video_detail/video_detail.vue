@@ -168,6 +168,7 @@
 		.vd_info{
 			color: #666;
 			font-size: 22upx;
+			line-height: 1.5;
 		}
 		.vd_status{
 			color: #999;
@@ -217,6 +218,7 @@
 			padding-left: 15upx;
 			position: relative;
 			margin-bottom: 20upx;
+			font-weight: bold;
 			&:before{
 				content: "";
 				width: 4upx;
@@ -225,6 +227,7 @@
 				position: absolute;
 				left: 0;
 				top: 50%;
+				border-radius: 20upx;
 				transform: translateY(-50%);
 			}
 		}

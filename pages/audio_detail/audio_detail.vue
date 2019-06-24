@@ -11,7 +11,7 @@
 					<view class="ami_info">{{music_info}}</view>
 				</view>
 			</view>
-			<view class="music_play_title"><image src="../../static/audio_play.png" mode="widthFix"></image>全部播放<text>({{music_num}})</text></view>
+			<view class="music_play_title" @tap="allPlay"><image src="../../static/all_play.jpg" mode="widthFix"></image>全部播放<text>({{music_num}})</text></view>
 			<view class="music_list">
 				<view class="music_item" v-for="(item,index) in music_list" :key="item.id">
 					<text>{{index+1}}</text>
@@ -204,6 +204,10 @@
 		},
 		methods:{
 			preventTouchMove(){},
+			// 全部播放
+			allPlay(){
+				
+			},
 			toPlay(e,type){
 				var that = this;
 				that.isPlay = true;
@@ -406,7 +410,7 @@
 				box-sizing: border-box;
 				background: #fff;
 				box-shadow: 0 5upx 20upx #999;
-				border-radius: 30upx;
+				border-radius: 20upx;
 				margin-bottom: 40upx;
 				position: relative;
 				z-index: 5;
@@ -438,8 +442,8 @@
 			align-items: center;
 			image{
 				display: inline-block;
-				width: 50upx;
-				height: 50upx;
+				width: 49upx;
+				height: 49upx;
 				margin-right: 15upx;
 			}
 			text{
@@ -462,9 +466,9 @@
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
-					padding: 30upx 25upx 20upx 0;
+					padding: 30upx 40upx 20upx 0;
 					box-sizing: border-box;
-					border-bottom: 1px solid #FAFAFA;
+					border-bottom: 1px solid #F1F1F1;
 					.mp_left{
 						width: 70%;
 						.mpl_name{

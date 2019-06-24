@@ -27,7 +27,7 @@
 				<view class="order_bottom">
 					<block v-if="item.is_pay == 1">
 						<button>取消订单</button>
-						<button class="active">去支付</button>
+						<button class="active" @tap="toPay">去支付</button>
 					</block>
 					<block v-if="item.is_finish == 1">
 						<button class="active">已完成</button>
@@ -118,6 +118,11 @@
 			toOrderDetail(e){
 				uni.navigateTo({
 					url: "/pages/order_detail/order_detail?id="+e
+				})
+			},
+			toPay(e){
+				uni.navigateTo({
+					url: "/pages/account/account"
 				})
 			}
 		},

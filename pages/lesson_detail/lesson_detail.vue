@@ -1,8 +1,8 @@
 <template>
 	<view class="lesson_detail_view">
-		<view class="status_bar">  
+		<!-- <view class="status_bar">  
 			<view class="top_view"></view>  
-		</view>  
+		</view> --> 
 		<image src="../../static/lesson_detail_banner.jpg" mode="widthFix" class="ld_banner"></image>
 		<!-- <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" indicator-color="rgba(102,102,102,.5)" indicator-active-color="#666" circular="true">
 			<swiper-item v-for="(item,index) in swiper_list" :key="index">
@@ -34,7 +34,7 @@
 			购物车
 		</view>
 		<view class="ld_shadow" :class="[layerShow == true?'active':'']" @tap="hideLayer"></view>
-		<view class="ld_layer_box" :class="[layerShow == true?'active':'']">
+		<view class="ld_layer_box" :class="[layerBox == true?'active':'']">
 			<view class="lb_close"><image src="../../static/close.png" mode="widthFix" @tap="hideLayer"></image></view>
 			<view class="lb_lesson_info">
 				<image :src="src" mode="widthFix"></image>
@@ -47,7 +47,12 @@
 				<view class="format_item" v-for="(format,index) in buy_format" :key="index">
 					<view class="format_name">{{format.name}}</view>
 					<view class="format_list">
-						<button class="fl_item" :class="[format.current[0] == index && format.current[1] == idx?'active':''] || [item[idx].dis == true?'disable':'']" v-for="(item,idx) in format.list" :key="idx" @click="selectFormat(format.id,item.attr_id,index,idx)">{{item.attr_name}}</button>
+						<block v-if="item.dis == 0" v-for="(item,idx) in format.list" :key="idx">							
+							<button class="fl_item" :class="[format.current[0] == index && format.current[1] == idx?'active':'']" @click="selectFormat(format.id,item.attr_id,index,idx)">{{item.attr_name}}</button>						
+						</block>
+						<block v-if="item.dis == 1" v-for="(item,idx) in format.list" :key="idx">
+							<button class="fl_item disable">{{item.attr_name}}</button>
+						</block>
 					</view>
 				</view>
 			</view>
@@ -105,6 +110,14 @@
 				<view class="lp_txt">购买后客服将在1个工作日内与您联系</view>
 			</view>
 		</view>
+		<view class="pay_success" :class="[payOk == true?'active':'']">
+			<image src="../../static/pay_ok.png" mode="widthFix"></image>
+			<text>支付成功</text>
+		</view>
+		<view class="pay_fail" :class="[payNo == true?'active':'']">
+			<image src="../../static/pay_no.png" mode="widthFix"></image>
+			<text>支付失败</text>
+		</view>
 		<view class="fixed_bottom">
 			<view class="fb_collect" @tap="toCollect(id)"><image src="../../static/l_collect.png" mode="widthFix"></image><view>收藏</view></view>
 			<view class="fb_share" @tap="toShare"><image src="../../static/l_share.png" mode="widthFix"></image><view>分享</view></view>
@@ -133,22 +146,25 @@
 				duration: 800,
 				swiper_list: ["../../static/lesson_detail_banner.jpg","../../static/lesson_detail_banner.jpg","../../static/lesson_detail_banner.jpg"],
 				layerShow: false,
+				layerBox: false,
 				payShow: false,
+				payOk: false,
+				payNo: false,
 				buy_format: [
 					{
 						id: 1,
 						name: "规格",
-						current: [0,0],
+						current: [-1,-1],
 						list: [
 							{
 								attr_id: 1,
 								attr_name: "3000元33节课",
-								dis: true
+								dis: 0
 							},
 							{
 								attr_id: 2,
 								attr_name: "256元1节体验课",
-								dis: false
+								dis: 1
 							}
 						]
 					}
@@ -174,13 +190,21 @@
 			},
 			showLayer(){
 				this.layerShow = true;
+				this.layerBox = true;
 			},
 			hideLayer(){
-				this.layerShow = false;				
+				this.layerBox = false;
+				this.layerShow = false;		
+				this.payOk = false;
+				this.payNo = false;
 			},
 			showPay(){
 				this.layerShow = false;
+				this.layerBox = false;
 				this.payShow = true;
+				uni.setNavigationBarTitle({
+					title: '订单详情'
+				});
 			},
 			toCar(){
 				uni.navigateTo({
@@ -188,14 +212,10 @@
 				})
 			},
 			toPay(){
-				uni.showToast({
-					title: "支付成功",
-					image: "../../static/pay_ok.png"
-				})
-				uni.showToast({
-					title: "支付失败",
-					image: "../../static/pay_no.png"
-				})
+				var that = this;
+				that.layerShow = true;
+				// that.payOk = true;	//支付成功
+				that.payNo = true;	//支付失败
 			},
 			selectFormat: function(id,sid,index,idx){
 				var that = this;
@@ -283,12 +303,14 @@
 			toAddCar(){
 				var that = this;
 				if(that.layerShow == false){
+					that.layerBox = true;
 					that.layerShow = true;
 				}
 			},
 			toBuy(){
 				var that = this;
 				if(that.layerShow == false){
+					that.layerBox = true;
 					that.layerShow = true;
 				}
 			}
@@ -428,19 +450,6 @@
 			font-size: 22upx;
 		}
 	}
-	.ld_shadow{
-		position: fixed;
-		width: 100%;
-		height: 100%;
-		background: rgba(0,0,0,.3);
-		left: 0;
-		bottom: 0;
-		display: none;
-		z-index: 25;
-		&.active{
-			display: block;
-		}
-	}
 	.ld_layer_box{
 		position: fixed;
 		left: 0;
@@ -502,7 +511,7 @@
 			.format_item{
 				margin-bottom: 10upx;
 				.format_name{
-					font-size: 28upx;
+					font-size: 24upx;
 					margin-bottom: 20upx;
 				}
 				.format_list{
@@ -632,12 +641,15 @@
 					border-top: 1px solid #F3F3F3;
 					border-bottom: 1px solid #F3F3F3;
 					.lpc_item{
-						margin-top: 30upx;
+						margin-top: 20upx;
 						display: flex;
 						justify-content: flex-start;
 						align-items: center;
+						&:first-of-type{
+							margin-top: 30upx;
+						}
 						&:last-of-type{
-							margin-top: 20upx;
+							margin-top: 10upx;
 						}
 					}
 				}
@@ -662,7 +674,7 @@
 						}
 						radio{
 							border-radius: 50%;
-							transform: scale(.8);
+							transform: scale(.7);
 						}
 					}
 				}

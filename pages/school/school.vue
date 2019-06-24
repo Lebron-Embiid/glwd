@@ -1,45 +1,46 @@
 <template>
 	<view class="school_view"> 
-		<view class="status_bar">  
+		<!-- <view class="status_bar">  
 			<view class="top_view"></view>  
-		</view>  
+		</view>  -->
 		<view class="fixed_top">
-			<view class="address_txt" @tap="chooseLocation">{{address}}<image src="../../static/down.png" mode="widthFix"></image></view>
+			<view class="address_txt">{{address}}<image src="../../static/down.png" mode="widthFix"></image></view>
 			<view class="search_school">
 				<view class="form_box">
 					<image src="../../static/search1.png" mode="widthFix"></image>
-					<input type="text" placeholder="搜校区" v-model="keywords" :value="keywords" placeholder-style="color:#fdcb05;" />
+					<input type="text" placeholder="搜校区" @tap="chooseLocation" disabled v-model="keywords" :value="keywords" placeholder-style="color:#fdcb05;" />
 				</view>
 			</view>
 			<map id="map" :latitude="latitude" :longitude="longitude" show-location="true" :markers="covers"></map>
 		</view>
-		<view class="mt500"></view>
-		<view class="nearby_school">
-			<view class="near_title">附近校区</view>
-			<view class="near_item" @tap="changeMap(item.id)" v-for="(item,index) in school_list" v-if="item.isNear == 1" :key="item.id">
-				<view>
-					<view class="ni_title">{{item.title}}</view>
-					<view class="ni_info">{{item.info}}</view>
-				</view>
-				<view>
-					<button class="ni_btn" @tap.stop="toSchoolDetail(item.id)">详情</button>
-					<view class="ni_dist">{{item.dist}}</view>
-				</view>
-			</view>
-		</view>
-		<view class="nearby_school noborder">
-			<view class="near_title">校区列表</view>
-			<view class="near_item" @tap="changeMap(item.id)" v-for="(item,index) in school_list" :key="item.id">
-				<view>
-					<view class="ni_title">{{item.title}}</view>
-					<view class="ni_info">{{item.info}}</view>
-				</view>
-				<view>
-					<button class="ni_btn" @tap.stop="toSchoolDetail(item.id)">详情</button>
-					<view class="ni_dist">{{item.dist}}</view>
+		<scroll-view scroll-y="true" style="height: 640upx;" class="school_list_box">
+			<view class="nearby_school">
+				<view class="near_title">附近校区</view>
+				<view class="near_item" @tap="changeMap(item.id)" v-for="(item,index) in school_list" v-if="item.isNear == 1" :key="item.id">
+					<view>
+						<view class="ni_title">{{item.title}}</view>
+						<view class="ni_info">{{item.info}}</view>
+					</view>
+					<view>
+						<button class="ni_btn" @tap.stop="toSchoolDetail(item.id)">详情</button>
+						<view class="ni_dist">{{item.dist}}</view>
+					</view>
 				</view>
 			</view>
-		</view>
+			<view class="nearby_school noborder">
+				<view class="near_title">校区列表</view>
+				<view class="near_item" @tap="changeMap(item.id)" v-for="(item,index) in school_list" :key="item.id">
+					<view>
+						<view class="ni_title">{{item.title}}</view>
+						<view class="ni_info">{{item.info}}</view>
+					</view>
+					<view>
+						<button class="ni_btn" @tap.stop="toSchoolDetail(item.id)">详情</button>
+						<view class="ni_dist">{{item.dist}}</view>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
 		<view class="invite_box" @tap="toReserve"><image src="../../static/reserve.png" mode="widthFix"></image>预约</view>
 	</view>
 </template>
@@ -151,7 +152,7 @@
 			}
 		},
 		onLoad() {
-			
+			this.covers[0].callout.content = "莲花山校区离我最近";
 		},
 		onReady() {
 			var that = this;
@@ -166,10 +167,11 @@
 			padding-bottom: 30upx;
 			overflow: hidden;
 			width: 100%;
-			height: 490upx;
-			position: fixed;
-			left: 0;
-			top: var(--status-bar-height);
+			// height: 490upx;
+			// position: fixed;
+			box-sizing: border-box;
+			// left: 0;
+			// top: var(--status-bar-height);
 			background: #fff;
 			// box-shadow: 0 1upx 10upx #E9E9E9;
 			z-index: 5;
@@ -182,6 +184,7 @@
 			box-sizing: border-box;
 			display: flex;
 			align-items: center;
+			font-weight: bold;
 			image{
 				display: inline-block;
 				width: 14upx;
@@ -241,6 +244,7 @@
 					color: #444;
 					font-size: 34upx;
 					margin-bottom: 10upx;
+					font-weight: bold;
 				}
 				.ni_btn{
 					margin: 0;
@@ -269,5 +273,9 @@
 		height: 240upx;
 		padding: 0 40upx;
 		box-sizing: border-box;
+	}
+	.invite_box{
+		right: 30upx;
+		bottom: 120upx;
 	}
 </style>

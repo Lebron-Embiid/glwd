@@ -95,9 +95,9 @@
 	}
 </script>
 <style lang="scss">
-	$numbox-btn-width:70upx;
+	$numbox-btn-width:60upx;
 	$numbox-input-width:80upx;
-	$numbox-height:70upx;
+	$numbox-height:60upx;
 	$uni-font-size-xxl:40upx;
 
 	.uni-numbox {
@@ -125,11 +125,11 @@
 		&__minus,
 		&__plus {
 			margin: 0;
-			background-color: $uni-bg-color-grey;
+			background-color: #fff;
 			width: $numbox-btn-width;
 			font-size: $uni-font-size-xxl;
 			height: 100%;
-			line-height: $numbox-height;
+			// line-height: $numbox-height;
 			text-align: center;
 			color: $uni-text-color;
 			position: relative;
