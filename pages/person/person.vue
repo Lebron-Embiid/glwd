@@ -7,7 +7,7 @@
 			<image src="../../static/person_bg.png" mode="widthFix" class="person_bg"></image>
 			<view class="person_layer">
 				<view class="person_name">{{nickname}}</view>
-				<view class="person_avatar"><image :src="avatar" mode="widthFix"></image></view>
+				<view class="person_avatar" @tap="toPersonInfo"><image :src="avatar" mode="widthFix"></image></view>
 			</view>
 		</view>
 		<view class="person_nav">
@@ -63,6 +63,11 @@
 			toDetail(e){
 				uni.navigateTo({
 					url: e
+				})
+			},
+			toPersonInfo(){
+				uni.navigateTo({
+					url: "/pages/person_info/person_info"
 				})
 			}
 		},

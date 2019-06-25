@@ -11,7 +11,7 @@
 					<input type="text" placeholder="搜校区" @tap="chooseLocation" disabled v-model="keywords" :value="keywords" placeholder-style="color:#fdcb05;" />
 				</view>
 			</view>
-			<map id="map" :latitude="latitude" :longitude="longitude" show-location="true" :markers="covers"></map>
+			<map id="map" @tap="toMap" :latitude="latitude" :longitude="longitude" show-location="true" :markers="covers"></map>
 		</view>
 		<scroll-view scroll-y="true" style="height: 640upx;" class="school_list_box">
 			<view class="nearby_school">
@@ -110,6 +110,11 @@
 			}
 		},
 		methods:{
+			toMap(){
+				uni.navigateTo({
+					url: "/pages/map/map"
+				})
+			},
 			chooseLocation(){
 				var that = this;
 				uni.chooseLocation({
@@ -179,7 +184,7 @@
 		.address_txt{
 			color: #333;
 			font-size: 50upx;
-			margin: 30upx 0;
+			margin: 0 0 30upx;
 			padding: 0 40upx;
 			box-sizing: border-box;
 			display: flex;
@@ -276,6 +281,6 @@
 	}
 	.invite_box{
 		right: 30upx;
-		bottom: 120upx;
+		bottom: 30upx;
 	}
 </style>

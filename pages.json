@@ -148,6 +148,13 @@
 			}
 		},
 		{
+			"path": "pages/map/map",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": ""
+			}
+		},
+		{
 			"path": "pages/list/list",
 			"style": {
 				"navigationStyle": "custom",

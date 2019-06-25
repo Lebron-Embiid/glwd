@@ -13,6 +13,8 @@
 </script>
 
 <style lang="scss">
+	.uni-picker .uni-picker-action.uni-picker-action-cancel,.uni-picker .uni-picker-action.uni-picker-action-confirm{color: #FBC800;}
+	uni-picker .uni-picker-item{font-size: 28upx;}
 	/*每个页面公共css */
 	uni-page-head .uni-page-head__title{font-weight: normal;}
 	.uni-actionsheet__action{margin-top: 0 !important;border-top: 1upx solid #F2F2F3;}
@@ -30,7 +32,7 @@
 	.status_bar {  
 		height: 25px;  
 		width: 100%;  
-		background-color: transparent;  
+		background-color: #fff;  
 	}  
 	.top_view {  
 		height: 25px;  
@@ -103,7 +105,8 @@
 		width: 450upx;
 		background: #f5f5f5;
 		border-radius: 50upx;
-		margin: 20upx 0;
+		// margin: 20upx 0;
+		margin: 0 0 20upx;
 		position: relative;
 		image{
 			position: absolute;
