@@ -20,14 +20,14 @@
 		<view class="nav_content">
 			<view class="video_box" v-if="currentTab == 0">
 				<view class="video_item" v-for="(item,index) in video_list" :key="item.id">
-					<view class="vi_img" @tap="toVideoDetail(item.id)">
+					<view class="vi_img" @tap="toVideoDetail(item.id,item.collect)">
 						<image :src="item.poster" class="vi_poster" mode="widthFix"></image>
 						<view class="vi_layer">
 							<block v-if="item.top == 1">
 								<view class="vi_top"><image src="../../static/top.png" mode="widthFix"></image>置顶</view>
 							</block>
 							<block v-if="item.collect == 1">
-								<view class="vi_collect" @tap.stop="toSeries"><text>合集</text></view>
+								<view class="vi_collect"><text>合集</text></view>
 							</block>
 							<view class="vi_title">{{item.title}}</view>
 							<image src="../../static/play_btn2.png" mode="widthFix" class="vi_play"></image>
@@ -197,10 +197,16 @@
 				console.log(e)
 				this.typeDef = e;
 			},
-			toVideoDetail(e){
-				uni.navigateTo({
-					url: "/pages/video_detail/video_detail?id="+e
-				})
+			toVideoDetail(e,collect){
+				if(collect != 1){
+					uni.navigateTo({
+						url: "/pages/video_detail/video_detail?id="+e
+					})
+				}else{
+					uni.navigateTo({
+						url: "/pages/series/series"
+					})
+				}
 			},
 			toNewsDetail(e){
 				uni.navigateTo({
@@ -211,11 +217,6 @@
 				uni.navigateTo({
 					url: "/pages/audio_detail/audio_detail?type="+e
 				})				
-			},
-			toSeries(e){
-				uni.navigateTo({
-					url: "/pages/series/series"
-				})
 			},
 			toCar(){
 				uni.navigateTo({

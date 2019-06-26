@@ -117,7 +117,7 @@
 			},
 			toOrderDetail(e){
 				uni.navigateTo({
-					url: "/pages/order_detail/order_detail?id="+e
+					url: "/pages/order_detail/order_detail?write=1&id="+e
 				})
 			},
 			toPay(e){

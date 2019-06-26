@@ -3,6 +3,7 @@
 		<!-- <view class="status_bar">  
 			<view class="top_view"></view>  
 		</view> --> 
+		<navbar></navbar>
 		<image src="../../static/lesson_detail_banner.jpg" mode="widthFix" class="ld_banner"></image>
 		<!-- <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" indicator-color="rgba(102,102,102,.5)" indicator-active-color="#666" circular="true">
 			<swiper-item v-for="(item,index) in swiper_list" :key="index">
@@ -110,14 +111,6 @@
 				<view class="lp_txt">购买后客服将在1个工作日内与您联系</view>
 			</view>
 		</view>
-		<view class="pay_success" :class="[payOk == true?'active':'']">
-			<image src="../../static/pay_ok.png" mode="widthFix"></image>
-			<text>支付成功</text>
-		</view>
-		<view class="pay_fail" :class="[payNo == true?'active':'']">
-			<image src="../../static/pay_no.png" mode="widthFix"></image>
-			<text>支付失败</text>
-		</view>
 		<view class="fixed_bottom">
 			<view class="fb_collect" @tap="toCollect(id)"><image src="../../static/l_collect.png" mode="widthFix"></image><view>收藏</view></view>
 			<view class="fb_share" @tap="toShare"><image src="../../static/l_share.png" mode="widthFix"></image><view>分享</view></view>
@@ -128,6 +121,7 @@
 </template>
 
 <script>
+	import navbar from '../../components/navbar.vue'
 	import uniNumberBox from "@/components/uni-number-box/uni-number-box.vue"
 	export default{
 		data(){
@@ -148,8 +142,6 @@
 				layerShow: false,
 				layerBox: false,
 				payShow: false,
-				payOk: false,
-				payNo: false,
 				buy_format: [
 					{
 						id: 1,
@@ -180,7 +172,8 @@
 			}
 		},
 		components: {
-			uniNumberBox
+			uniNumberBox,
+			navbar
 		},
 		methods:{
 			toScanCode(){
@@ -199,12 +192,15 @@
 				this.payNo = false;
 			},
 			showPay(){
-				this.layerShow = false;
-				this.layerBox = false;
-				this.payShow = true;
-				uni.setNavigationBarTitle({
-					title: '订单详情'
-				});
+				uni.navigateTo({
+					url: "/pages/order_detail/order_detail?write=0"
+				})
+				// this.layerShow = false;
+				// this.layerBox = false;
+				// this.payShow = true;
+				// uni.setNavigationBarTitle({
+				// 	title: '订单详情'
+				// });
 			},
 			toCar(){
 				uni.navigateTo({
@@ -653,49 +649,6 @@
 						}
 					}
 				}
-				.lp_bottom{
-					padding: 20upx 20upx 0;
-					box-sizing: border-box;
-					.radio{
-						display: flex;
-						justify-content: space-between;
-						align-items: center;
-						view{
-							display: flex;
-							align-items: center;
-							color: #333;
-							font-size: 24upx;
-							image{
-								display: inline-block;
-								width: 50upx;
-								height: 50upx;
-								margin-right: 20upx;
-							}
-						}
-						radio{
-							border-radius: 50%;
-							transform: scale(.7);
-						}
-					}
-				}
-			}
-			.lp_submit{
-				width: 85%;
-				height: 85upx;
-				line-height: 85upx;
-				color: #fff;
-				font-size: 36upx;
-				background: #fbc800;
-				border-radius: 50upx;
-				margin-bottom: 15upx;
-				&:after{
-					border: 0;
-				}
-			}
-			.lp_txt{
-				color: #999;
-				font-size: 20upx;
-				text-align: center;
 			}
 		}
 	}

@@ -1,8 +1,8 @@
 <template>
 	<view class="person_view">
-		<view class="status_bar">  
+		<!-- <view class="status_bar">  
 			<view class="top_view"></view>  
-		</view>  
+		</view> --> 
 		<view class="person_top">
 			<image src="../../static/person_bg.png" mode="widthFix" class="person_bg"></image>
 			<view class="person_layer">
@@ -95,8 +95,9 @@
 			.person_name{
 				color: #fff;
 				font-size: 30upx;
+				font-weight: bold;
 				text-align: center;
-				margin: 100upx 0 20upx;
+				margin: 110upx 0 20upx;
 			}
 			.person_avatar{
 				overflow: hidden;

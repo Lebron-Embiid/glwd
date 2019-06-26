@@ -70,7 +70,7 @@
 		{
 			"path": "pages/lesson_detail/lesson_detail",
 			"style": {
-				// "navigationStyle": "custom",
+				"navigationStyle": "custom",
 				"navigationBarTitleText": "课程详情"
 			}
 		},

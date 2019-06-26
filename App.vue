@@ -13,6 +13,8 @@
 </script>
 
 <style lang="scss">
+	uni-radio .uni-radio-input{margin-right: 0}
+	
 	.uni-picker .uni-picker-action.uni-picker-action-cancel,.uni-picker .uni-picker-action.uni-picker-action-confirm{color: #FBC800;}
 	uni-picker .uni-picker-item{font-size: 28upx;}
 	/*每个页面公共css */
@@ -26,7 +28,7 @@
 	uni-modal .uni-modal__btn_primary{font-size: 30upx;}
 	uni-modal .uni-modal__btn:after,.uni-modal .uni-modal__ft:after{display: none;}
 	uni-modal .uni-modal__btn:active{background: none;}
-	*{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+	*{font-family: PingFang SC Bold,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif}
 	.page_bg{background: #f5f5f7 !important;min-height: 100%;position: fixed;width: 100%;z-index: -1;left: 0;top: 0;}
 	.mt500{margin-top: 540upx;}
 	.status_bar {  
@@ -232,7 +234,8 @@
 		justify-content: center;
 		align-items: center;
 		right: 30upx;
-		bottom: 100px;
+		// bottom: 120upx;
+		bottom: 30upx;
 		background: linear-gradient(top, #ffd42c,#fbb802);
 		color: #fff;
 		font-size: 28upx;
@@ -370,6 +373,20 @@
 		z-index: 25;
 		&.active{
 			display: block;
+		}
+	}
+	
+	// 自定义返回按钮样式
+	.navbar_box{
+		position: fixed;
+		width: 100%;
+		top: 58upx;
+		left: 28upx;
+		z-index: 50;
+		image{
+			display: block;
+			width: 20upx;
+			height: 36upx;
 		}
 	}
 </style>

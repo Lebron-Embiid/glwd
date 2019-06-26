@@ -1,8 +1,9 @@
 <template>
 	<view class="video_detail_view">
-		<view class="status_bar">  
+		<!-- <view class="status_bar">  
 			<view class="top_view"></view>  
-		</view>  
+		</view>  -->
+		<navbar></navbar>
 		<video id="myVideo" :src="url" controls direction="-90" :poster="poster"></video>
 		<!-- 视频详情信息 -->
 		<view class="video_detail">
@@ -22,14 +23,14 @@
 		<view class="recommend_box">
 			<view class="recommend_title">相关推荐</view>
 			<view class="rec_box">
-				<view class="rec_item" @tap="toVideoDetail(item.id)" v-for="(item,index) in recommend_list" :key="item.id">
+				<view class="rec_item" @tap="toVideoDetail(item.id,item.hot)" v-for="(item,index) in recommend_list" :key="item.id">
 					<view class="rec_img">
 						<image :src="item.src" class="rec_photo" mode="aspectFill"></image>
 						<block v-if="item.hot == 1">
 							<view class="rec_txt">推荐课程</view>
 						</block>
-						<image src="../../static/play_btn2.png" mode="widthFix" class="rec_play"></image>
 						<block v-if="item.hot != 1">
+							<image src="../../static/play_btn2.png" mode="widthFix" class="rec_play"></image>
 							<view class="rec_status">
 								<view><image src="../../static/look.png" mode="widthFix"></image>{{item.num}}</view>
 								<text>{{item.time}}</text>
@@ -44,6 +45,7 @@
 </template>
 
 <script>
+	import navbar from '../../components/navbar.vue'
 	export default{
 		data(){
 			return{
@@ -91,11 +93,20 @@
 				]
 			}
 		},
+		components:{
+			navbar
+		},
 		methods:{
-			toVideoDetail(e){
-				uni.navigateTo({
-					url: "/pages/video_detail/video_detail?id="+e
-				})
+			toVideoDetail(e,hot){
+				if(hot != 1){
+					uni.navigateTo({
+						url: "/pages/video_detail/video_detail?id="+e
+					})
+				}else{
+					uni.reLaunch({
+						url: "/pages/lesson/lesson"
+					})
+				}
 			},
 			toCollect(e){
 				
@@ -227,7 +238,7 @@
 				position: absolute;
 				left: 0;
 				top: 50%;
-				border-radius: 20upx;
+				border-radius: 50upx;
 				transform: translateY(-50%);
 			}
 		}

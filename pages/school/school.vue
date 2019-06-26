@@ -11,31 +11,33 @@
 					<input type="text" placeholder="搜校区" @tap="chooseLocation" disabled v-model="keywords" :value="keywords" placeholder-style="color:#fdcb05;" />
 				</view>
 			</view>
-			<map id="map" @tap="toMap" :latitude="latitude" :longitude="longitude" show-location="true" :markers="covers"></map>
+			<view class="map_box">
+				<map id="map" @tap="toMap" @markertap="toMap" :latitude="latitude" :longitude="longitude" show-location="true" :markers="covers"></map>
+			</view>
 		</view>
 		<scroll-view scroll-y="true" style="height: 640upx;" class="school_list_box">
 			<view class="nearby_school">
 				<view class="near_title">附近校区</view>
-				<view class="near_item" @tap="changeMap(item.id)" v-for="(item,index) in school_list" v-if="item.isNear == 1" :key="item.id">
+				<view class="near_item" @tap="toSchoolDetail(item.id)" v-for="(item,index) in school_list" v-if="item.isNear == 1" :key="item.id">
 					<view>
 						<view class="ni_title">{{item.title}}</view>
 						<view class="ni_info">{{item.info}}</view>
 					</view>
 					<view>
-						<button class="ni_btn" @tap.stop="toSchoolDetail(item.id)">详情</button>
+						<!-- <button class="ni_btn" @tap.stop="toSchoolDetail(item.id)">详情</button> -->
 						<view class="ni_dist">{{item.dist}}</view>
 					</view>
 				</view>
 			</view>
 			<view class="nearby_school noborder">
 				<view class="near_title">校区列表</view>
-				<view class="near_item" @tap="changeMap(item.id)" v-for="(item,index) in school_list" :key="item.id">
+				<view class="near_item" @tap="toSchoolDetail(item.id)" v-for="(item,index) in school_list" :key="item.id">
 					<view>
 						<view class="ni_title">{{item.title}}</view>
 						<view class="ni_info">{{item.info}}</view>
 					</view>
 					<view>
-						<button class="ni_btn" @tap.stop="toSchoolDetail(item.id)">详情</button>
+						<!-- <button class="ni_btn" @tap.stop="toSchoolDetail(item.id)">详情</button> -->
 						<view class="ni_dist">{{item.dist}}</view>
 					</view>
 				</view>
@@ -272,11 +274,19 @@
 			}
 		}
 	}
+	.map_box{
+		display: block;
+		border-radius: 20upx;
+		overflow: hidden;
+		width: 670upx;
+		height: 240upx;
+		margin: 0 auto;
+	}
 	#map{
 		display: block;
 		width: 750upx;
 		height: 240upx;
-		padding: 0 40upx;
+		// padding: 0 40upx;
 		box-sizing: border-box;
 	}
 	.invite_box{

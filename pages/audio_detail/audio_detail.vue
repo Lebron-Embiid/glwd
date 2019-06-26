@@ -1,8 +1,9 @@
 <template>
 	<view class="audio_detail_view">
-		<view class="status_bar">  
+		<!-- <view class="status_bar">  
 			<view class="top_view"></view>  
-		</view>  
+		</view>  -->
+		<navbar></navbar>
 		<image :src="banner" class="audio_banner" mode="widthFix"></image>
 		<view class="audio_music_view" :class="[isPlay == true?'active':'']">
 			<view class="audio_music_move">
@@ -85,6 +86,7 @@
 </template>
 
 <script>
+	import navbar from '../../components/navbar.vue'
 	const audioContext = uni.createInnerAudioContext();
 	export default{
 		data(){
@@ -201,6 +203,9 @@
 				play_person: "G.E.M.邓紫棋",
 				play_url: ""
 			}
+		},
+		components:{
+			navbar
 		},
 		methods:{
 			preventTouchMove(){},
