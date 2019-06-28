@@ -1,10 +1,12 @@
 <template>
 	<view class="map_view">
+		<navbar></navbar>
 		<map :latitude="latitude" :longitude="longitude" :markers="covers"></map>
 	</view>
 </template>
 
 <script>
+	import navbar from '../../components/navbar.vue'
 	export default{
 		data(){
 			return{
@@ -22,10 +24,14 @@
 						fontSize: 12,
 						bgColor: "#848484",
 						borderRadius: 5,
+						padding: 10,
 						display: 'ALWAYS'
 					}
 				}]
 			}
+		},
+		components: {
+			navbar
 		},
 		onLoad() {
 			this.covers[0].callout.content = "莲花山校区离我最近";

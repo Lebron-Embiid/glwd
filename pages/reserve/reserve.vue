@@ -4,10 +4,10 @@
 			<view class="top_view"></view>  
 		</view>  
 		<view class="search_box">
-			<commonSearch :keywords="keywords"></commonSearch>
+			<commonSearch :keywords="keywords" :placeholder="placeholder"></commonSearch>
 		</view>
 		<image src="../../static/reserve_banner.jpg" mode="widthFix" class="reserve_banner"></image>
-		<view class="reserve_box">
+		<scroll-view scroll-y="true" class="reserve_box">
 			<view class="reserve_title"><image src="../../static/circle.png" mode="widthFix"></image>预约体验课</view>
 			<view class="reserve_city">
 				<view class="rc_title">请选择城市</view>
@@ -20,7 +20,7 @@
 			<view class="reserve_item" @tap="typeChange"><text>{{type}}</text><image src="../../static/down3.png" mode="widthFix"></image></view>
 			<view class="reserve_item" @tap="schoolChange"><text>{{school}}</text><image src="../../static/down3.png" mode="widthFix"></image></view>
 			<button class="reserve_now_btn" @tap="toReserve">立即预约</button>
-		</view>
+		</scroll-view>
 		<view class="ld_shadow" :class="[layerShow == true?'active':'']" @tap="hideLayer"></view>
 		<view class="pay_success" :class="[reserve_ok == true?'active':'']">
 			<image src="../../static/pay_ok.png" mode="widthFix"></image>
@@ -38,6 +38,7 @@
 	export default{
 		data(){
 			return{
+				placeholder: "搜索你想看的",
 				keywords: "",
 				name: "",
 				phone: "",
@@ -117,6 +118,7 @@
 	}
 	.reserve_box{
 		width: 700upx;
+		// height: 720upx;
 		margin: 40upx auto 30upx;
 		box-sizing: border-box;
 		box-shadow: 0 0 20upx #F1F1F1;

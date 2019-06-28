@@ -4,11 +4,11 @@
 			<view class="top_view"></view>  
 		</view>  -->
 		<view class="fixed_top">
-			<view class="address_txt">{{address}}<image src="../../static/down.png" mode="widthFix"></image></view>
+			<view class="address_txt" @tap="toSelectCity">{{address}}<image src="../../static/down.png" mode="widthFix"></image></view>
 			<view class="search_school">
-				<view class="form_box">
+				<view class="form_box" @tap="chooseLocation">
 					<image src="../../static/search1.png" mode="widthFix"></image>
-					<input type="text" placeholder="搜校区" @tap="chooseLocation" disabled v-model="keywords" :value="keywords" placeholder-style="color:#fdcb05;" />
+					<input type="text" placeholder="搜校区" disabled v-model="keywords" :value="keywords" placeholder-style="color:#fdcb05;" />
 				</view>
 			</view>
 			<view class="map_box">
@@ -67,6 +67,7 @@
 						fontSize: 12,
 						bgColor: "#848484",
 						borderRadius: 5,
+						padding: 10,
 						display: 'ALWAYS'
 					}
 				}],
@@ -112,6 +113,11 @@
 			}
 		},
 		methods:{
+			toSelectCity(){
+				uni.navigateTo({
+					url: "/pages/select_city/select_city"
+				})
+			},
 			toMap(){
 				uni.navigateTo({
 					url: "/pages/map/map"
@@ -158,7 +164,8 @@
 				console.log(e)
 			}
 		},
-		onLoad() {
+		onLoad(opt) {
+			this.address = getApp().globalData.address+"市";
 			this.covers[0].callout.content = "莲花山校区离我最近";
 		},
 		onReady() {
@@ -284,7 +291,7 @@
 	}
 	#map{
 		display: block;
-		width: 750upx;
+		width: 670upx;
 		height: 240upx;
 		// padding: 0 40upx;
 		box-sizing: border-box;

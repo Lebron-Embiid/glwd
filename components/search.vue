@@ -1,7 +1,7 @@
 <template>
 	<form class="common_search" @submit="formSubmit">
 		<image src="/static/search.png" mode="aspectFit"></image>
-		<view class="input_box"><input type="text" v-model="keywords" :value="keywords" placeholder="搜索你想看的" /></view>
+		<view class="input_box"><input type="text" v-model="keywords" :value="keywords" :placeholder="placeholder" /></view>
 	</form>
 </template>
 
@@ -13,6 +13,7 @@
 			}
 		},
 		props:{
+			placeholder: String,
 			keywords: String
 		},
 		methods:{

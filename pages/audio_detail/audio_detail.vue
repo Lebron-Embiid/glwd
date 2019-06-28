@@ -434,7 +434,7 @@
 				}
 				.ami_info{
 					color: #999;
-					font-size: 22upx;
+					font-size: 26upx;
 				}
 			}
 		}
@@ -492,7 +492,7 @@
 						}
 						.mpl_info{
 							color: #999;
-							font-size: 24upx;
+							font-size: 26upx;
 						}
 					}
 					.mp_right{

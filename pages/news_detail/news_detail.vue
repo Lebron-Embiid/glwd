@@ -86,6 +86,7 @@
 			}
 		},
 		onLoad(opt) {
+			var that = this;
 			that.id = opt.id;			
 		}
 	}
@@ -112,7 +113,7 @@
 				display: flex;
 				align-content: center;
 				color: #999;
-				font-size: 20upx;
+				font-size: 24upx;
 				image{
 					display: inline-block;					
 					width: 70upx;
@@ -120,19 +121,19 @@
 				}
 				text{
 					color: #333;
-					font-size: 24upx;
+					font-size: 28upx;
 					margin: 0 10upx 0 20upx;
 				}
 			}
 			.nt_title{
 				color: #333;
-				font-size: 28upx;
+				font-size: 30upx;
 				margin: 30upx 0 40upx;
 			}
 		}
 		.news_info{
 			color: #333;
-			font-size: 24upx;
+			font-size: 28upx;
 			line-height: 1.7;
 			padding-left: 30upx;
 			box-sizing: border-box;

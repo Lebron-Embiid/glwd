@@ -67,7 +67,7 @@
 						hot: 1
 					},{
 						id: 2,
-						src: "../../static/video_img2.jpg",
+						src: "../../static/video_img1.jpg",
 						num: "2598",
 						time: "10:58",
 						title: "初级班拉丁舞课程",
@@ -83,7 +83,7 @@
 						hot: 0
 					},{
 						id: 4,
-						src: "../../static/video_img2.jpg",
+						src: "../../static/video_img1.jpg",
 						num: "2598",
 						time: "10:58",
 						title: "初级班拉丁舞课程",
@@ -173,17 +173,17 @@
 		margin-bottom: 30upx;
 		.vd_title{
 			color: #000;
-			font-size: 28upx;
+			font-size: 30upx;
 			margin: 25upx 0 30upx;
 		}
 		.vd_info{
 			color: #666;
-			font-size: 22upx;
+			font-size: 26upx;
 			line-height: 1.5;
 		}
 		.vd_status{
 			color: #999;
-			font-size: 18upx;
+			font-size: 22upx;
 			margin: 10upx 0;
 			text{
 				margin-left: 20upx;
@@ -198,6 +198,7 @@
 				.vs_item{
 					margin-left: 0;
 					margin-right: 25upx;
+					font-size: 24upx;
 					&:nth-child(3){
 						image{
 							width: 36upx;
@@ -212,7 +213,7 @@
 				line-height: 55upx;
 				padding: 0;
 				color: #fff;
-				font-size: 24upx;
+				font-size: 26upx;
 				background: #fbc800;
 				margin: 0;
 				&:after{
@@ -309,7 +310,7 @@
 				.rec_title{
 					width: 330upx;
 					color: #333;
-					font-size: 24upx;
+					font-size: 26upx;
 					margin-top: 15upx;
 					display: flex;
 					justify-content: space-between;
@@ -322,7 +323,7 @@
 					}
 					.rt_price{
 						color: #d3a800;
-						font-size: 22upx;
+						font-size: 24upx;
 					}
 				}
 			}

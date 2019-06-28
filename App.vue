@@ -1,5 +1,8 @@
 <script>
 	export default {
+		globalData:{
+			address: ""
+		},
 		onLaunch: function () {
 			console.log('App Launch')
 		},
@@ -29,18 +32,20 @@
 	uni-modal .uni-modal__btn:after,.uni-modal .uni-modal__ft:after{display: none;}
 	uni-modal .uni-modal__btn:active{background: none;}
 	*{font-family: PingFang SC Bold,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif}
-	.page_bg{background: #f5f5f7 !important;min-height: 100%;position: fixed;width: 100%;z-index: -1;left: 0;top: 0;}
+	.page_bg{background: #f2f2f2 !important;min-height: 100%;position: fixed;width: 100%;z-index: -1;left: 0;top: 0;}
 	.mt500{margin-top: 540upx;}
+	.height200{margin-top: 180upx;}
+	.height230{margin-top: 240upx;}
 	.status_bar {  
 		height: 25px;  
-		width: 100%;  
+		width: 100%;
 		background-color: #fff;  
 	}  
 	.top_view {  
 		height: 25px;  
 		width: 100%;  
 		position: fixed;  
-		background-color: transparent;  
+		background-color: #fff;  
 		top: 0;  
 		z-index: 999;  
 	}  
@@ -76,7 +81,7 @@
 			display: flex;
 			align-items: center;
 			color: #333;
-			font-size: 22upx;
+			font-size: 24upx;
 			margin-left: 25upx;
 			image{
 				display: inline-block;
@@ -107,8 +112,8 @@
 		width: 450upx;
 		background: #f5f5f5;
 		border-radius: 50upx;
-		// margin: 20upx 0;
-		margin: 0 0 20upx;
+		margin: 22upx 0;
+		// margin: 5upx 0 20upx;
 		position: relative;
 		image{
 			position: absolute;
@@ -133,6 +138,7 @@
 	// 课程
 	.lesson_box{
 		overflow: hidden;
+		// height: 80vh;
 		.lesson_item{
 			margin-bottom: 30upx;
 			.li_img{
@@ -379,14 +385,17 @@
 	// 自定义返回按钮样式
 	.navbar_box{
 		position: fixed;
-		width: 100%;
-		top: 58upx;
-		left: 28upx;
-		z-index: 50;
+		width: 50upx;
+		height: 50upx;
+		top: 88upx;
+		left: 8upx;
+		z-index: 20;
+		// background: rgba(0,0,0,.3);
 		image{
 			display: block;
 			width: 20upx;
 			height: 36upx;
+			margin: 0 auto;
 		}
 	}
 </style>

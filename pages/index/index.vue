@@ -3,22 +3,25 @@
 		<view class="status_bar">  
 			<view class="top_view"></view>  
 		</view>  
-		<view class="search_box">
-			<commonSearch :keywords="keywords"></commonSearch>
-		</view>
-		<!-- 导航 -->
-		<view class="index_nav">
-			<view class="nav_box">
-				<view class="nav_item" v-for="(item,index) in navbar" :key="index" :class="[currentTab==index ? 'active' : '']" @click="navbarTap(index)">{{item.name}}</view>
+		<view class="index_top_nav_box">
+			<view class="search_box">
+				<commonSearch :keywords="keywords" :placeholder="placeholder"></commonSearch>
 			</view>
-			<scroll-view class="index_scroll_box" scroll-x="true" @scroll="scroll">
-				<view :class="[typeDef==index ? 'active' : '']" v-for="(item,index) in navtype[currentTab]" :key="index" @click="navTypeTap(index)">{{item.name}}</view>
-			</scroll-view>
+			<!-- 导航 -->
+			<view class="index_nav">
+				<view class="nav_box">
+					<view class="nav_item" v-for="(item,index) in navbar" :key="index" :class="[currentTab==index ? 'active' : '']" @click="navbarTap(index)">{{item.name}}</view>
+				</view>
+				<view class="index_scroll_box" @scroll="scroll">
+					<view :class="[typeDef==index ? 'active' : '']" v-for="(item,index) in navtype[currentTab]" :key="index" @click="navTypeTap(index)">{{item.name}}</view>
+				</view>
+			</view>
 		</view>
 		<!-- 导航内容 -->
 		<!-- 视频 -->
 		<view class="nav_content">
 			<view class="video_box" v-if="currentTab == 0">
+				<view class="height230"></view>
 				<view class="video_item" v-for="(item,index) in video_list" :key="item.id">
 					<view class="vi_img" @tap="toVideoDetail(item.id,item.collect)">
 						<image :src="item.poster" class="vi_poster" mode="widthFix"></image>
@@ -47,10 +50,14 @@
 			</view>
 			<!-- 音频 -->
 			<view class="audio_box" v-if="currentTab == 1">
-				<view class="audio_item" v-for="(item,index) in audio_list" :key="item.id" @tap="toAudioDetail(item.id)"><image :src="item.src" mode="widthFix"></image><text>{{item.title}}</text></view>
+				<view class="height200"></view>
+				<view class="audio_list_box">
+					<view class="audio_item" v-for="(item,index) in audio_list" :key="item.id" @tap="toAudioDetail(item.id)"><image :src="item.src" mode="widthFix"></image><text>{{item.title}}</text></view>
+				</view>
 			</view>
 			<!-- 课程 -->
 			<view class="lesson_box" v-if="currentTab == 2">
+				<view class="height200"></view>
 				<commonLesson :list="lesson_list"></commonLesson>
 				<view class="fix_car_btn" @tap="toCar">
 					<view class="fcb_car"><image src="../../static/car.png" mode="widthFix"></image><text>1</text></view>
@@ -59,6 +66,7 @@
 			</view>
 			<!-- 资讯 -->
 			<view class="news_box" v-if="currentTab == 3">
+				<view class="height200"></view>
 				<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" indicator-color="rgba(102,102,102,.5)" indicator-active-color="#666" circular="true">
 					<swiper-item v-for="(item,index) in swiper_list" :key="index">
 						<view class="swiper-item"><image :src="item" mode="widthFix"></image></view>
@@ -87,6 +95,7 @@
 	export default{
 		data(){
 			return{
+				placeholder: "搜索你想看的",
 				keywords: "",
 				navbar: [{name:"视频"},{name:"音频"},{name:"课程"},{name:"资讯"}],
 				navtype: [
@@ -107,7 +116,7 @@
 					{
 						id: 2,
 						title: "带你走进芭蕾舞的世界",
-						poster: "../../static/video_img2.jpg",
+						poster: "../../static/video_img1.jpg",
 						num: "2598",
 						time: "10:58",
 						top: 0,
@@ -131,7 +140,7 @@
 						title: "翩翩舞不停,2019国际舞蹈日“共享舞蹈多元之美”",
 						time: "2019.05.10 16:00",
 						num: "2598",
-						src: "../../static/news_img2.jpg"
+						src: "../../static/news_img1.jpg"
 					}
 				],
 				lesson_list: [
@@ -143,13 +152,13 @@
 						hot: 1
 					},{
 						id: 2,
-						src: "/static/lesson_img2.jpg",
+						src: "/static/lesson_img1.jpg",
 						lesson: "爵士舞课程",
 						price: "256.00",
 						hot: 0
 					},{
 						id: 3,
-						src: "/static/lesson_img3.jpg",
+						src: "/static/lesson_img1.jpg",
 						lesson: "爵士舞课程",
 						price: "256.00",
 						hot: 0
@@ -164,22 +173,22 @@
 					{
 						id: 2,
 						title: "古典",
-						src: "../../static/audio_img2.jpg"
+						src: "../../static/audio_img1.jpg"
 					},
 					{
 						id: 3,
 						title: "轻音乐",
-						src: "../../static/audio_img3.jpg"
+						src: "../../static/audio_img1.jpg"
 					},
 					{
 						id: 4,
 						title: "韩风",
-						src: "../../static/audio_img4.jpg"
+						src: "../../static/audio_img1.jpg"
 					},
 					{
 						id: 5,
 						title: "最新",
-						src: "../../static/audio_img5.jpg"
+						src: "../../static/audio_img1.jpg"
 					}
 				]
 			}
@@ -269,11 +278,24 @@
 </script>
 
 <style scoped lang="scss">
+	.index_top_nav_box{
+		position: fixed;
+		width: 100%;
+		left: 0;
+		top: 25px;
+		overflow: hidden;
+		z-index: 20;
+		background: #fff;
+	}
 	.index_view{
 		.search_box,.nav_content{
 			padding: 0 25upx;
+			box-sizing: border-box;
 			overflow: hidden;
 		}
+		// .nav_content{
+		// 	height: 70vh;
+		// }
 		.video_box{
 			.video_item{
 				margin-bottom: 50upx;
@@ -432,12 +454,13 @@
 		}
 	}
 	// 音频
-	.audio_box{
+	.audio_list_box{
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		flex-wrap: wrap;
-		padding: 20upx 5upx;
+		// padding: 20 5upx;
+		padding: 0 5upx;
 		box-sizing: border-box;
 		.audio_item{
 			display: block;

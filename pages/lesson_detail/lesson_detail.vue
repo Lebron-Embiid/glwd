@@ -58,7 +58,7 @@
 				</view>
 			</view>
 			<view class="layer_num">
-				<view class="ln_txt">数量<text>(没人限购1件)</text></view>
+				<view class="ln_txt">数量<text>(每人限购1件)</text></view>
 				<uni-number-box :min="0" :max="1"></uni-number-box>
 			</view>
 			<view class="layer_info">
@@ -345,19 +345,19 @@
 		.ld_left{
 			width: 70%;
 			.ldi_title{
-				font-size: 28upx;
+				font-size: 30upx;
 			}
 			.ldi_info{
 				color: #999;
-				font-size: 22upx;
+				font-size: 26upx;
 				margin: 10upx 0 20upx;
 			}
 			.ldi_price{
 				color: #d3a800;
-				font-size: 28upx;
+				font-size: 30upx;
 				text{
 					color: #999;
-					font-size: 20upx;
+					font-size: 24upx;
 					margin-left: 20upx;
 					text-decoration: line-through;
 				}
@@ -375,7 +375,7 @@
 				padding: 0;
 				margin: 0;
 				color: #fff;
-				font-size: 24upx;
+				font-size: 26upx;
 				&:after{
 					border: 0;
 				}
@@ -396,7 +396,7 @@
 		padding: 30upx 25upx;
 		box-sizing: border-box;
 		color: #333;
-		font-size: 24upx;
+		font-size: 28upx;
 		text{
 			padding-left: 15upx;
 			position: relative;
@@ -424,11 +424,12 @@
 		padding: 30upx 25upx;
 		box-sizing: border-box;
 		color: #333;
-		font-size: 24upx;
+		font-size: 26upx;
 		.lc_txt{
 			padding-left: 15upx;
 			position: relative;
 			margin-bottom: 20upx;
+			font-size: 28upx;
 			&:before{
 				content: "";
 				width: 4upx;
@@ -704,5 +705,8 @@
 				background: #e83632;				
 			}
 		}
+	}
+	.fix_car_btn{
+		bottom: 120upx;
 	}
 </style>

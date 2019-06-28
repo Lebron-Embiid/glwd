@@ -3,7 +3,7 @@
 		<view class="status_bar">  
 			<view class="top_view"></view>  
 		</view>  
-		<commonSearch :keywords="keywords"></commonSearch>
+		<commonSearch :keywords="keywords" :placeholder="placeholder"></commonSearch>
 		<!-- <view class="lesson_box">
 			<view class="lesson_item" v-for="(item,index) in lesson_list" :key="item.id">
 				<view class="li_img"><image :src="item.src" mode="aspectFill"></image><block v-if="item.hot == 1"><text>推荐课程</text></block></view>
@@ -24,6 +24,7 @@
 	export default{
 		data(){
 			return{
+				placeholder: "搜索你想看的",
 				keywords: "",
 				lesson_list: [
 					{
@@ -34,13 +35,13 @@
 						hot: 1
 					},{
 						id: 2,
-						src: "/static/lesson_img2.jpg",
+						src: "/static/lesson_img1.jpg",
 						lesson: "爵士舞课程",
 						price: "256.00",
 						hot: 0
 					},{
 						id: 3,
-						src: "/static/lesson_img3.jpg",
+						src: "/static/lesson_img1.jpg",
 						lesson: "爵士舞课程",
 						price: "256.00",
 						hot: 0

@@ -28,12 +28,12 @@
 						person: "港龙12届成员吴小姐"
 					},{
 						id: 2,
-						src: "../../static/series_img2.jpg",
+						src: "../../static/series_img1.jpg",
 						title: "芭蕾舞",
 						person: "港龙12届成员吴小姐"
 					},{
 						id: 3,
-						src: "../../static/series_img3.jpg",
+						src: "../../static/series_img1.jpg",
 						title: "芭蕾舞",
 						person: "港龙12届成员吴小姐"
 					}
