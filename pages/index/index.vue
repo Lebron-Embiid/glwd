@@ -1,11 +1,12 @@
 <template>
 	<view class="index_view">
 		<view class="status_bar">  
-			<view class="top_view"></view>  
+			<!-- <view class="ipxHeight" v-if="isIpx == true"></view> -->
+			<view class="top_view" :class="[isIpx == true?'ipx':'']"></view>  
 		</view>  
-		<view class="index_top_nav_box">
+		<view class="index_top_nav_box" :class="[isIpx == true?'ipx':'']">
 			<view class="search_box">
-				<commonSearch :keywords="keywords" :placeholder="placeholder"></commonSearch>
+				<common-search :isAndroid="isAndroid" :keywords="keywords" :placeholder="placeholder"></common-search>
 			</view>
 			<!-- 导航 -->
 			<view class="index_nav">
@@ -21,7 +22,7 @@
 		<!-- 视频 -->
 		<view class="nav_content">
 			<view class="video_box" v-if="currentTab == 0">
-				<view class="height230"></view>
+				<view class="height230" :class="[isAndroid == true?'and':'' || isIpx == true?'ipx':'']"></view>
 				<view class="video_item" v-for="(item,index) in video_list" :key="item.id">
 					<view class="vi_img" @tap="toVideoDetail(item.id,item.collect)">
 						<image :src="item.poster" class="vi_poster" mode="widthFix"></image>
@@ -50,14 +51,14 @@
 			</view>
 			<!-- 音频 -->
 			<view class="audio_box" v-if="currentTab == 1">
-				<view class="height200"></view>
+				<view class="height200" :class="[isAndroid == true?'and':'' || isIpx == true?'ipx':'']"></view>
 				<view class="audio_list_box">
 					<view class="audio_item" v-for="(item,index) in audio_list" :key="item.id" @tap="toAudioDetail(item.id)"><image :src="item.src" mode="widthFix"></image><text>{{item.title}}</text></view>
 				</view>
 			</view>
 			<!-- 课程 -->
 			<view class="lesson_box" v-if="currentTab == 2">
-				<view class="height200"></view>
+				<view class="height200" :class="[isAndroid == true?'and':'' || isIpx == true?'ipx':'']"></view>
 				<commonLesson :list="lesson_list"></commonLesson>
 				<view class="fix_car_btn" @tap="toCar">
 					<view class="fcb_car"><image src="../../static/car.png" mode="widthFix"></image><text>1</text></view>
@@ -66,7 +67,7 @@
 			</view>
 			<!-- 资讯 -->
 			<view class="news_box" v-if="currentTab == 3">
-				<view class="height200"></view>
+				<view class="height200" :class="[isAndroid == true?'and':'' || isIpx == true?'ipx':'']"></view>
 				<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" indicator-color="rgba(102,102,102,.5)" indicator-active-color="#666" circular="true">
 					<swiper-item v-for="(item,index) in swiper_list" :key="index">
 						<view class="swiper-item"><image :src="item" mode="widthFix"></image></view>
@@ -95,6 +96,8 @@
 	export default{
 		data(){
 			return{
+				isAndroid: getApp().globalData.isAndroid,
+				isIpx: getApp().globalData.isIpx,
 				placeholder: "搜索你想看的",
 				keywords: "",
 				navbar: [{name:"视频"},{name:"音频"},{name:"课程"},{name:"资讯"}],
@@ -150,6 +153,30 @@
 						lesson: "初级拉丁舞课程",
 						price: "256.00",
 						hot: 1
+					},{
+						id: 2,
+						src: "/static/lesson_img1.jpg",
+						lesson: "爵士舞课程",
+						price: "256.00",
+						hot: 0
+					},{
+						id: 3,
+						src: "/static/lesson_img1.jpg",
+						lesson: "爵士舞课程",
+						price: "256.00",
+						hot: 0
+					},{
+						id: 2,
+						src: "/static/lesson_img1.jpg",
+						lesson: "爵士舞课程",
+						price: "256.00",
+						hot: 0
+					},{
+						id: 3,
+						src: "/static/lesson_img1.jpg",
+						lesson: "爵士舞课程",
+						price: "256.00",
+						hot: 0
 					},{
 						id: 2,
 						src: "/static/lesson_img1.jpg",
@@ -273,20 +300,15 @@
 					}
 				});
 			}
+		},
+		onShow() {
+			var that = this;
+			console.log(that.isAndroid)
 		}
 	}
 </script>
 
 <style scoped lang="scss">
-	.index_top_nav_box{
-		position: fixed;
-		width: 100%;
-		left: 0;
-		top: 25px;
-		overflow: hidden;
-		z-index: 20;
-		background: #fff;
-	}
 	.index_view{
 		.search_box,.nav_content{
 			padding: 0 25upx;

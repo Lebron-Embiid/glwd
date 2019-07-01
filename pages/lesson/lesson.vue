@@ -3,7 +3,10 @@
 		<view class="status_bar">  
 			<view class="top_view"></view>  
 		</view>  
-		<commonSearch :keywords="keywords" :placeholder="placeholder"></commonSearch>
+		<view class="search_box">
+			<common-search :isAndroid="isAndroid" :keywords="keywords" :placeholder="placeholder"></common-search>
+		</view>
+		<view class="mt100" :class="[isAndroid == true?'and':'']"></view>
 		<!-- <view class="lesson_box">
 			<view class="lesson_item" v-for="(item,index) in lesson_list" :key="item.id">
 				<view class="li_img"><image :src="item.src" mode="aspectFill"></image><block v-if="item.hot == 1"><text>推荐课程</text></block></view>
@@ -24,6 +27,8 @@
 	export default{
 		data(){
 			return{
+				isAndroid: getApp().globalData.isAndroid,
+				isIpx: getApp().globalData.isIpx,
 				placeholder: "搜索你想看的",
 				keywords: "",
 				lesson_list: [
@@ -62,11 +67,25 @@
 		},
 		onLoad() {
 			
+		},
+		onShow() {
+			var that = this;
 		}
 	}
 </script>
 
 <style scoped lang="scss">
+	.search_box{
+		padding: 0 25upx;
+		overflow: hidden;
+		position: fixed;
+		background: #fff;
+		left: 0;
+		top: 25px;
+		width: 100%;
+		z-index: 20;
+		box-sizing: border-box;
+	}
 	.lesson_view{
 		padding: 0 25upx;
 	}

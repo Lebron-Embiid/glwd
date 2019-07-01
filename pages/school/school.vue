@@ -165,7 +165,9 @@
 			}
 		},
 		onLoad(opt) {
-			this.address = getApp().globalData.address+"市";
+			if(getApp().globalData.address != ""){
+				this.address = getApp().globalData.address+"市";
+			}
 			this.covers[0].callout.content = "莲花山校区离我最近";
 		},
 		onReady() {

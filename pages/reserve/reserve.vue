@@ -4,8 +4,9 @@
 			<view class="top_view"></view>  
 		</view>  
 		<view class="search_box">
-			<commonSearch :keywords="keywords" :placeholder="placeholder"></commonSearch>
+			<common-search :isAndroid="isAndroid" :keywords="keywords" :placeholder="placeholder"></common-search>
 		</view>
+		<view class="mt100" :class="[isAndroid == true?'and':'']"></view>
 		<image src="../../static/reserve_banner.jpg" mode="widthFix" class="reserve_banner"></image>
 		<scroll-view scroll-y="true" class="reserve_box">
 			<view class="reserve_title"><image src="../../static/circle.png" mode="widthFix"></image>预约体验课</view>
@@ -50,7 +51,9 @@
 				city_index: "-1",
 				layerShow: false,
 				reserve_ok: false,
-				reserve_no: false
+				reserve_no: false,
+				isAndroid: getApp().globalData.isAndroid,
+				isIpx: getApp().globalData.isIpx,
 			}
 		},
 		methods:{
@@ -102,6 +105,9 @@
 		},
 		onLoad() {
 			
+		},
+		onShow() {
+			var that = this;
 		}
 	}
 </script>
@@ -110,6 +116,13 @@
 	.search_box{
 		padding: 0 25upx;
 		overflow: hidden;
+		position: fixed;
+		background: #fff;
+		left: 0;
+		top: 25px;
+		width: 100%;
+		z-index: 20;
+		box-sizing: border-box;
 	}
 	.reserve_banner{
 		display: block;

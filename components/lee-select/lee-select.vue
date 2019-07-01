@@ -238,6 +238,7 @@
 		.common_search{
 			box-sizing: border-box;
 			width: 92%;
+			padding: 0;
 			background: #fff;
 			margin: 0 auto;
 		}

@@ -1,9 +1,33 @@
 <script>
 	export default {
 		globalData:{
-			address: ""
+			address: "",
+			isIpx: false,
+			isAndroid: true
 		},
 		onLaunch: function () {
+			var that = this;
+			uni.getSystemInfo({
+				success: function(res) {
+					//model中包含着设备信息
+					console.log(res)
+					var model = res.model
+					if (model.search('iPhone X') != -1){
+						that.$options.globalData.isIpx = true;
+					}else{
+						that.$options.globalData.isIpx = false;
+					}
+					
+					if(res.system.search('Android') != -1){
+						that.$options.globalData.isAndroid = true;
+					}else{
+						that.$options.globalData.isAndroid = false;
+					}
+					console.log(res.system);
+					console.log(that.$options.globalData.isIpx);
+					console.log(that.$options.globalData.isAndroid);
+				}
+			})
 			console.log('App Launch')
 		},
 		onShow: function () {
@@ -34,21 +58,69 @@
 	*{font-family: PingFang SC Bold,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif}
 	.page_bg{background: #f2f2f2 !important;min-height: 100%;position: fixed;width: 100%;z-index: -1;left: 0;top: 0;}
 	.mt500{margin-top: 540upx;}
-	.height200{margin-top: 180upx;}
-	.height230{margin-top: 240upx;}
+	.height200{
+		margin-top: 220upx;
+		&.and{
+			margin-top: 235upx;
+		}
+		&.ipx{
+			margin-top: 260upx;			
+		}
+	}
+	.height230{
+		margin-top: 280upx;
+		&.and{
+			margin-top: 295upx;
+		}
+		&.ipx{
+			margin-top: 320upx;			
+		}
+	}
+	.mt100{
+		margin-top: 140upx;
+		// margin-top: 82upx;
+		&.and{
+			margin-top: 165upx;
+		}
+		&.ipx{
+			margin-top: 150upx;			
+		}
+	}
+	.ipxHeight{
+		// position: fixed;
+		width: 100%;height: 88upx;
+		// left: 0;top: 0;
+	}
 	.status_bar {  
-		height: 25px;  
+		// height: 25px;
+		position: fixed;  
+		background: rgba(255,255,255,.5); 
+		top: 0;  
+		left: 0;
+		z-index: 999;  
 		width: 100%;
-		background-color: #fff;  
 	}  
 	.top_view {  
 		height: 25px;  
+		height: --status-bar-height;
 		width: 100%;  
-		position: fixed;  
-		background-color: #fff;  
-		top: 0;  
-		z-index: 999;  
+		background: rgba(0,0,0,.5); 
+		&.ipx{
+			height: 44px;
+		}
 	}  
+	.index_top_nav_box{
+		position: fixed;
+		width: 100%;
+		left: 0;
+		top: 25px;
+		overflow: hidden;
+		z-index: 20;
+		background: #fff;
+		&.ipx{
+			top: 44px;
+		}
+	}
 	// 预约按钮
 	.invite_box{
 		position: fixed;
@@ -112,9 +184,15 @@
 		width: 450upx;
 		background: #f5f5f5;
 		border-radius: 50upx;
-		margin: 22upx 0;
-		// margin: 5upx 0 20upx;
+		margin: 10upx 0 25upx;
+		// margin: 0 0 20upx;
 		position: relative;
+		&.ipx{
+			margin: 15upx 0 25upx;
+		}
+		&.and{
+			margin: 25upx 0;
+		}
 		image{
 			position: absolute;
 			left: 20upx;
