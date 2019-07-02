@@ -444,7 +444,7 @@
 		}
 		.lc_content{
 			color: #666;
-			font-size: 22upx;
+			font-size: 26upx;
 		}
 	}
 	.ld_layer_box{

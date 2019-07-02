@@ -6,7 +6,7 @@
 		</view>  
 		<view class="index_top_nav_box" :class="[isIpx == true?'ipx':'']">
 			<view class="search_box">
-				<common-search :isAndroid="isAndroid" :keywords="keywords" :placeholder="placeholder"></common-search>
+				<common-search :isAndroid="isAndroid" :isIpx="isIpx" :keywords="keywords" :placeholder="placeholder"></common-search>
 			</view>
 			<!-- 导航 -->
 			<view class="index_nav">

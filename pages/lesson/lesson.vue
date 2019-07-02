@@ -1,12 +1,12 @@
 <template>
 	<view class="lesson_view">
 		<view class="status_bar">  
-			<view class="top_view"></view>  
+			<view class="top_view" :class="[isIpx == true?'ipx':'']"></view>  
 		</view>  
-		<view class="search_box">
-			<common-search :isAndroid="isAndroid" :keywords="keywords" :placeholder="placeholder"></common-search>
+		<view class="search_box" :class="[isIpx == true?'ipx':'']">
+			<common-search :isAndroid="isAndroid" :isIpx="isIpx" :keywords="keywords" :placeholder="placeholder"></common-search>
 		</view>
-		<view class="mt100" :class="[isAndroid == true?'and':'']"></view>
+		<view class="mt100" :class="[isAndroid == true?'and':'' || isIpx == true?'ipx':'']"></view>
 		<!-- <view class="lesson_box">
 			<view class="lesson_item" v-for="(item,index) in lesson_list" :key="item.id">
 				<view class="li_img"><image :src="item.src" mode="aspectFill"></image><block v-if="item.hot == 1"><text>推荐课程</text></block></view>
@@ -85,6 +85,9 @@
 		width: 100%;
 		z-index: 20;
 		box-sizing: border-box;
+		&.ipx{
+			top: 44px;
+		}
 	}
 	.lesson_view{
 		padding: 0 25upx;

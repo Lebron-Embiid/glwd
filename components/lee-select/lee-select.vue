@@ -327,7 +327,7 @@
 				position: fixed;
 				top: 50%;
 				transform: translateY(-50%);
-				right: 35upx;
+				right: 25upx;
 				display: flex;
 				flex-direction: column;
 				text-align: center;

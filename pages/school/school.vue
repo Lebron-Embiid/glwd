@@ -4,11 +4,11 @@
 			<view class="top_view"></view>  
 		</view>  -->
 		<view class="fixed_top">
-			<view class="address_txt" @tap="toSelectCity">{{address}}<image src="../../static/down.png" mode="widthFix"></image></view>
+			<view class="address_txt" @tap="toSelectCity">{{address}}<image src="../../static/down.png" mode="widthFix"></image><text>切换城市</text></view>
 			<view class="search_school">
-				<view class="form_box" @tap="chooseLocation">
+				<view class="form_box">
 					<image src="../../static/search1.png" mode="widthFix"></image>
-					<input type="text" placeholder="搜校区" disabled v-model="keywords" :value="keywords" placeholder-style="color:#fdcb05;" />
+					<input type="text" placeholder="搜校区" v-model="keywords" :value="keywords" placeholder-style="color:#fdcb05;" />
 				</view>
 			</view>
 			<view class="map_box">
@@ -206,6 +206,11 @@
 				width: 14upx;
 				height: 8upx;
 				margin-left: 10upx;
+			}
+			text{
+				color: #fdcb05;
+				font-size: 26upx;
+				margin-left: 20upx;
 			}
 		}
 		.search_school{

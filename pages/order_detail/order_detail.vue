@@ -109,7 +109,7 @@
 		.order_detail{
 			width: 660upx;
 			margin: -65upx auto 30upx;
-			padding: 25upx 10upx 15upx;
+			padding: 25upx 10upx;
 			box-sizing: border-box;
 			box-shadow: 0 5upx 20upx #999;
 			border-radius: 20upx;
@@ -124,7 +124,7 @@
 			.od_price{
 				color: #d3a800;
 				font-size: 28upx;
-				margin: 20upx 0 40upx;
+				margin: 15upx 0 25upx;
 				text-align: center;
 			}
 			.od_content{

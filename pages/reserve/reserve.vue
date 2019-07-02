@@ -1,12 +1,12 @@
 <template>
 	<view class="reserve_view">
 		<view class="status_bar">  
-			<view class="top_view"></view>  
+			<view class="top_view" :class="[isIpx == true?'ipx':'']"></view>  
 		</view>  
-		<view class="search_box">
-			<common-search :isAndroid="isAndroid" :keywords="keywords" :placeholder="placeholder"></common-search>
+		<view class="search_box" :class="[isIpx == true?'ipx':'']">
+			<common-search :isAndroid="isAndroid" :isIpx="isIpx" :keywords="keywords" :placeholder="placeholder"></common-search>
 		</view>
-		<view class="mt100" :class="[isAndroid == true?'and':'']"></view>
+		<view class="mt100" :class="[isAndroid == true?'and':'' || isIpx == true?'ipx':'']"></view>
 		<image src="../../static/reserve_banner.jpg" mode="widthFix" class="reserve_banner"></image>
 		<scroll-view scroll-y="true" class="reserve_box">
 			<view class="reserve_title"><image src="../../static/circle.png" mode="widthFix"></image>预约体验课</view>
@@ -123,6 +123,9 @@
 		width: 100%;
 		z-index: 20;
 		box-sizing: border-box;
+		&.ipx{
+			top: 44px;
+		}
 	}
 	.reserve_banner{
 		display: block;

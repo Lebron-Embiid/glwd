@@ -1,9 +1,10 @@
 <template>
 	<view class="news_detail_view">
 		<!-- <view class="status_bar">  
-			<view class="top_view"></view>  
+			<view class="top_view" :class="[isIpx == true?'ipx':'']"></view>  
 		</view> -->
 		<navbar></navbar>
+		<view class="fix_title" :class="[isAndroid == true?'and':'' || isIpx == true?'ipx':'']">咨询详情</view>
 		<image src="../../static/news_bg.jpg" mode="widthFix" class="news_bg"></image>
 		<view class="news_content">
 			<view class="news_top">
@@ -28,6 +29,8 @@
 	export default{
 		data(){
 			return{
+				isAndroid: getApp().globalData.isAndroid,
+				isIpx: getApp().globalData.isIpx,
 				id: 1,
 				time: "2019.05.10 16:00",
 				title: "跳舞让一个女孩光芒万丈的出现在舞台",

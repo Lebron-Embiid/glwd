@@ -61,29 +61,29 @@
 	.height200{
 		margin-top: 220upx;
 		&.and{
-			margin-top: 235upx;
+			margin-top: 230upx;
 		}
 		&.ipx{
-			margin-top: 260upx;			
+			margin-top: 265upx;			
 		}
 	}
 	.height230{
 		margin-top: 280upx;
 		&.and{
-			margin-top: 295upx;
+			margin-top: 290upx;
 		}
 		&.ipx{
-			margin-top: 320upx;			
+			margin-top: 325upx;
 		}
 	}
 	.mt100{
 		margin-top: 140upx;
 		// margin-top: 82upx;
 		&.and{
-			margin-top: 165upx;
+			margin-top: 170upx;
 		}
 		&.ipx{
-			margin-top: 150upx;			
+			margin-top: 185upx;			
 		}
 	}
 	.ipxHeight{
@@ -94,7 +94,8 @@
 	.status_bar {  
 		// height: 25px;
 		position: fixed;  
-		background: rgba(255,255,255,.5); 
+		// background: rgba(255,255,255,.5); 
+		background: #fff;
 		top: 0;  
 		left: 0;
 		z-index: 999;  
@@ -104,7 +105,8 @@
 		height: 25px;  
 		height: --status-bar-height;
 		width: 100%;  
-		background: rgba(0,0,0,.5); 
+		// background: rgba(0,0,0,.5); 
+		background: #fff;
 		&.ipx{
 			height: 44px;
 		}
@@ -184,11 +186,11 @@
 		width: 450upx;
 		background: #f5f5f5;
 		border-radius: 50upx;
-		margin: 10upx 0 25upx;
+		margin: 0 0 25upx;
 		// margin: 0 0 20upx;
 		position: relative;
 		&.ipx{
-			margin: 15upx 0 25upx;
+			margin: 10upx 0 25upx;
 		}
 		&.and{
 			margin: 25upx 0;
@@ -395,19 +397,20 @@
 		}
 	}
 	// 轮播样式修改
-	.swiper .uni-swiper-wrapper{
+	.swiper .wx-swiper-wrapper{
 		overflow: visible;
 	}
-	.swiper .uni-swiper-dots-horizontal{
+	.swiper .wx-swiper-dots-horizontal{
 		bottom: -15px;
 	}
-	.swiper .uni-swiper-dots-horizontal .uni-swiper-dot{
+	.swiper .wx-swiper-dots-horizontal .wx-swiper-dot{
 		width: 6px;
 		height: 6px;
 		border-radius: 50%;
 		background: #999;
+		transition: width .5s ease;
 	}
-	.swiper .uni-swiper-dots-horizontal .uni-swiper-dot-active{
+	.swiper .wx-swiper-dots-horizontal .wx-swiper-dot-active{
 		background: #666;
 		width: 22px;
 		border-radius: 10upx;
@@ -465,7 +468,7 @@
 		position: fixed;
 		width: 50upx;
 		height: 50upx;
-		top: 88upx;
+		top: 60upx;
 		left: 8upx;
 		z-index: 20;
 		// background: rgba(0,0,0,.3);
@@ -474,6 +477,30 @@
 			width: 20upx;
 			height: 36upx;
 			margin: 0 auto;
+		}
+		&.and{
+			top: 88upx;
+		}
+		&.ipx{
+			top: 110upx;
+		}
+	}
+	.fix_title{
+		position: fixed;
+		width: 50%;
+		height: 60upx;
+		line-height: 60upx;
+		text-align: center;
+		left: 25%;
+		top: 48upx;
+		color: #fff;
+		font-size: 34upx;
+		z-index: 20;
+		&.and{
+			top: 78upx;
+		}
+		&.ipx{
+			top: 100upx;
 		}
 	}
 </style>

@@ -54,9 +54,9 @@
 					color: '#fdcb05',
 					activeColor: '#fdcb05',
 					fontSize: 24,
-					itemPadding:'10 0',
+					itemPadding:'5 0',
 					borderRadius: 100,
-					padding:'20 0'
+					padding:'5 0'
 				}				
 			}
 		},

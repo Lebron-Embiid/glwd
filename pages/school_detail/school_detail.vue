@@ -6,7 +6,7 @@
 		<view class="sd_dist">{{near}}</view>
 		<view class="sd_fixed">
 			<view class="sf_call" @tap="callPhone"><image src="../../static/phone.png" mode="widthFix"></image>电话</view>
-			<view class="sf_call"><image src="../../static/yuyue.png" mode="widthFix"></image>预约</view>
+			<view class="sf_call" @tap="toReserve"><image src="../../static/yuyue.png" mode="widthFix"></image>预约</view>
 		</view>
 	</view>
 </template>
@@ -40,6 +40,11 @@
 						}
 					}
 				});
+			},
+			toReserve(){
+				uni.reLaunch({
+					url: "/pages/reserve/reserve"
+				})
 			}
 		},
 		onLoad() {
