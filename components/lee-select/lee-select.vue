@@ -1,12 +1,12 @@
 <template>
 	<view class="select-page">
-		<scroll-view class="scroll-list-panel" scroll-y="true" :scroll-into-view="scrollId" scroll-with-animation="true" @scroll="scroll">
-			<view class="common_search_bg">
-				<form class="common_search" @submit="formSubmit">
-					<image src="/static/search.png" mode="aspectFit"></image>
-					<view class="input_box"><input type="text" v-model="keywords" :value="keywords" :placeholder="placeholder" /></view>
-				</form>
-			</view>
+		<view class="common_search_bg">
+			<form class="common_search" style="width: 100%;" @submit="formSubmit">
+				<image src="/static/search.png" mode="aspectFit"></image>
+				<view class="input_box"><input type="text" v-model="keywords" :value="keywords" :placeholder="placeholder" /></view>
+			</form>
+		</view>
+		<scroll-view class="scroll-list-panel" style="padding-right: 80upx;" scroll-y="true" :scroll-into-view="scrollId" scroll-with-animation="true" @scroll="scroll">
 			<view class="mt80"></view>
 			<base-classes v-for="(item, index) in quickPanelData" :classesAttr="item" :id="'view'+ index" :curIndex="curIndex" :curIndex1="curIndex1" :cIndex="index" :key="index" @chooseItem="chooseItem"></base-classes>
 			<view class="main-wrap">
@@ -247,7 +247,7 @@
 		// margin-top: 110upx;
 	}
 	.select-page {
-		padding: 0 30upx;
+		padding: 0 80upx 0 30upx;
 		width: 100%;
 		box-sizing: border-box;
 		position: fixed;
@@ -332,6 +332,11 @@
 				flex-direction: column;
 				text-align: center;
 				z-index:99999;
+				text{
+					&:first-of-type{
+						display: none;
+					}
+				}
 			}
 
 	}
