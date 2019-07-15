@@ -90,7 +90,8 @@
 						price: "256.00",
 						hot: 0
 					}
-				]
+				],
+				videoContent: ""
 			}
 		},
 		components:{
@@ -98,6 +99,8 @@
 		},
 		methods:{
 			toVideoDetail(e,hot){
+				this.videoContent.pause();
+				console.log(455)
 				if(hot != 1){
 					uni.navigateTo({
 						url: "/pages/video_detail/video_detail?id="+e
@@ -158,6 +161,7 @@
 		onLoad(opt) {
 			var that = this;
 			that.id = opt.id;
+			that.videoContent = uni.createVideoContext("myVideo");
 		}
 	}
 </script>
