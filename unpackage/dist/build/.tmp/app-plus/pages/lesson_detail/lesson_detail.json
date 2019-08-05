@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "课程详情",
+  "titleNView": {
+    "type": "transparent"
+  },
+  "usingComponents": {
+    "uni-number-box": "/components/uni-number-box/uni-number-box"
+  }
+}

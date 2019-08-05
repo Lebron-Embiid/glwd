@@ -1,0 +1,1 @@
+<view class="lesson_view data-v-4c35d78e" bind:__l="__l"><common-search keywords="{{keywords}}" class="data-v-4c35d78e"></common-search><common-lesson list="{{lesson_list}}" class="data-v-4c35d78e"></common-lesson></view>

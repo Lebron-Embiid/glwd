@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "预约",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "common-search": "/components/search"
+  }
+}

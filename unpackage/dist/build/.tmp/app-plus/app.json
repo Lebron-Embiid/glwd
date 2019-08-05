@@ -1,0 +1,89 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/reserve/reserve",
+    "pages/lesson/lesson",
+    "pages/school/school",
+    "pages/person/person",
+    "pages/video_detail/video_detail",
+    "pages/series/series",
+    "pages/school_detail/school_detail",
+    "pages/news_detail/news_detail",
+    "pages/lesson_detail/lesson_detail",
+    "pages/scan_code/scan_code",
+    "pages/audio_detail/audio_detail",
+    "pages/person_info/person_info",
+    "pages/change_name/change_name",
+    "pages/my_collect/my_collect",
+    "pages/my_order/my_order",
+    "pages/order_detail/order_detail",
+    "pages/my_reserve/my_reserve",
+    "pages/reserve_detail/reserve_detail",
+    "pages/history/history",
+    "pages/detail/detail",
+    "pages/ucenter/ucenter"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "港龙舞蹈",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#fbc800",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/footer1.png",
+        "selectedIconPath": "static/footer1_on.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/reserve/reserve",
+        "iconPath": "static/footer2.png",
+        "selectedIconPath": "static/footer2_on.png",
+        "text": "预约"
+      },
+      {
+        "pagePath": "pages/lesson/lesson",
+        "iconPath": "static/footer3.png",
+        "selectedIconPath": "static/footer3_on.png",
+        "text": "课程"
+      },
+      {
+        "pagePath": "pages/school/school",
+        "iconPath": "static/footer4.png",
+        "selectedIconPath": "static/footer4_on.png",
+        "text": "校区"
+      },
+      {
+        "pagePath": "pages/person/person",
+        "iconPath": "static/footer5.png",
+        "selectedIconPath": "static/footer5_on.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "nvue": {
+    "pages": {
+      "pages/list/list.html": {
+        "window": {
+          "usingComponents": {},
+          "navigationStyle": "custom",
+          "navigationBarTitleText": ""
+        }
+      }
+    }
+  },
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "港龙舞蹈",
+  "compilerVersion": "1.9.9",
+  "usingComponents": {}
+}

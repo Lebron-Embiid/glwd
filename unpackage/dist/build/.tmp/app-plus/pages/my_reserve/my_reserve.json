@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我的预约",
+  "titleNView": {
+    "splitLine": {
+      "color": "#F4F4F4"
+    }
+  },
+  "usingComponents": {}
+}

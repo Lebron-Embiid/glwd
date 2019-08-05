@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "扫码进群",
+  "titleNView": {
+    "splitLine": {
+      "color": "#F4F4F4"
+    }
+  },
+  "usingComponents": {}
+}

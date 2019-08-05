@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "历史记录",
+  "titleNView": {
+    "splitLine": {
+      "color": "#F4F4F4"
+    }
+  },
+  "usingComponents": {}
+}

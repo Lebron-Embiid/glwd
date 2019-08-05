@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "舞蹈系列",
+  "titleNView": {
+    "splitLine": {
+      "color": "#F4F4F4"
+    }
+  },
+  "usingComponents": {}
+}

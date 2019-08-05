@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "",
+  "titleNView": false,
+  "usingComponents": {
+    "common-search": "/components/search",
+    "common-lesson": "/components/lesson"
+  }
+}

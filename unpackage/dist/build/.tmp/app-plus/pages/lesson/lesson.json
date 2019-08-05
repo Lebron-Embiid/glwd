@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "课程",
+  "titleNView": {
+    "splitLine": {
+      "color": "#F4F4F4"
+    }
+  },
+  "usingComponents": {
+    "common-search": "/components/search",
+    "common-lesson": "/components/lesson"
+  }
+}

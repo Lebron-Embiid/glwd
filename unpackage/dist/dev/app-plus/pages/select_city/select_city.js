@@ -1,0 +1,2 @@
+setCssToHead(["@charset \x22UTF-8\x22;\n.",[1],"city_view.",[1],"data-v-3ecd0a7c { height: 100vh; }\n",],undefined,{path:"./pages/select_city/select_city.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/select_city/select_city.wxml') } }));

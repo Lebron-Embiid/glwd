@@ -1,0 +1,1 @@
+<view class="map_view data-v-792eb63a"><navbar vue-id="1" class="data-v-792eb63a" bind:__l="__l"></navbar><map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{covers}}" class="data-v-792eb63a"></map></view>

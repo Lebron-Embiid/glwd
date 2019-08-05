@@ -1,0 +1,2 @@
+setCssToHead(["@charset \x22UTF-8\x22;\nwx-map.",[1],"data-v-8c1410d0 { position: fixed; left: 0; top: 0; display: block; width: 100%; height: 100%; z-index: 50; }\n",],undefined,{path:"./pages/map/map.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/map/map.wxml') } }));

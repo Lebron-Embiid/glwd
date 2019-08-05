@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "课程详情",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "uni-number-box": "/components/uni-number-box/uni-number-box",
+    "navbar": "/components/navbar"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "出行",
+  "usingComponents": {
+    "navbar": "/components/navbar"
+  }
+}

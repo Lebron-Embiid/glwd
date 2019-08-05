@@ -1,0 +1,1 @@
+<view class="{{['navbar_box',isAndroid==true?'and':''||isIpx==true?'ipx':'']}}"><image src="../static/back1.png" mode="widthFix" data-event-opts="{{[['tap',[['back',['$event']]]]]}}" catchtap="__e"></image></view>

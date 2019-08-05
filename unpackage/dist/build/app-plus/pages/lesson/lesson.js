@@ -1,0 +1,2 @@
+setCssToHead(["@charset \x22UTF-8\x22;\n.",[1],"lesson_view.",[1],"data-v-4c35d78e { padding: 0 ",[0,25],"; }\n",],undefined,{path:"./pages/lesson/lesson.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/lesson/lesson.wxml') } }));

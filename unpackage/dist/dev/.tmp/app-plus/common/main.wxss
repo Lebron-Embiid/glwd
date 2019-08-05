@@ -1,0 +1,612 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+uni-radio .uni-radio-input {
+  margin-right: 0;
+}
+.uni-picker .uni-picker-action.uni-picker-action-cancel, .uni-picker .uni-picker-action.uni-picker-action-confirm {
+  color: #FBC800;
+}
+uni-picker .uni-picker-item {
+  font-size: 28rpx;
+}
+/*每个页面公共css */
+uni-page-head .uni-page-head__title {
+  font-weight: normal;
+}
+.uni-actionsheet__action {
+  margin-top: 0 !important;
+  border-top: 1rpx solid #F2F2F3;
+}
+.uni-actionsheet__action .uni-actionsheet__cell {
+  color: #FBC800 !important;
+}
+uni-modal .uni-modal {
+  width: 480rpx;
+  height: 220rpx;
+  border-radius: 15rpx;
+}
+uni-modal .uni-modal__bd {
+  color: #333;
+  font-size: 36rpx;
+  padding: 1em 1.6em 1em;
+}
+uni-modal .uni-modal__btn_default {
+  color: #333;
+  font-size: 30rpx;
+}
+uni-modal .uni-modal__btn_primary {
+  font-size: 30rpx;
+}
+uni-modal .uni-modal__btn:after, .uni-modal .uni-modal__ft:after {
+  display: none;
+}
+uni-modal .uni-modal__btn:active {
+  background: none;
+}
+.page_bg {
+  background: #f2f2f2 !important;
+  min-height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: -1;
+  left: 0;
+  top: 0;
+}
+.mt500 {
+  margin-top: 540rpx;
+}
+.height200 {
+  margin-top: 220rpx;
+}
+.height200.and {
+    margin-top: 230rpx;
+}
+.height200.ipx {
+    margin-top: 265rpx;
+}
+.height230 {
+  margin-top: 280rpx;
+}
+.height230.and {
+    margin-top: 290rpx;
+}
+.height230.ipx {
+    margin-top: 325rpx;
+}
+.mt100 {
+  margin-top: 140rpx;
+}
+.mt100.and {
+    margin-top: 170rpx;
+}
+.mt100.ipx {
+    margin-top: 185rpx;
+}
+.ipxHeight {
+  width: 100%;
+  height: 88rpx;
+}
+.status_bar {
+  position: fixed;
+  background: #fff;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+}
+.top_view {
+  height: 25px;
+  height: --status-bar-height;
+  width: 100%;
+  background: #fff;
+}
+.top_view.ipx {
+    height: 44px;
+}
+.index_top_nav_box {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 25px;
+  overflow: hidden;
+  z-index: 20;
+  background: #fff;
+}
+.index_top_nav_box.ipx {
+    top: 44px;
+}
+.invite_box {
+  position: fixed;
+  right: 55rpx;
+  bottom: 130rpx;
+  width: 155rpx;
+  height: 75rpx;
+  color: #fff;
+  font-size: 28rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fed027), color-stop(#fdc618), to(#fbb801));
+  background: -o-linear-gradient(#fed027, #fdc618, #fbb801);
+  background: linear-gradient(#fed027, #fdc618, #fbb801);
+  border-radius: 50rpx;
+  z-index: 5;
+}
+.invite_box image {
+    display: inline-block;
+    width: 44rpx;
+    height: 44rpx;
+    margin-right: 10rpx;
+}
+.vi_share, .vd_share {
+  margin-top: 15rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.vi_share .vs_item, .vd_share .vs_item {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: #333;
+    font-size: 24rpx;
+    margin-left: 25rpx;
+}
+.vi_share .vs_item image, .vd_share .vs_item image {
+      display: inline-block;
+      width: 32rpx;
+      height: 32rpx;
+      margin-right: 10rpx;
+}
+.vi_share .vs_item:nth-child(3) image, .vd_share .vs_item:nth-child(3) image {
+      width: 28rpx;
+      height: 30rpx;
+}
+.vi_share .vs_item:nth-child(4) image, .vd_share .vs_item:nth-child(4) image {
+      width: 36rpx;
+      height: 29rpx;
+}
+/* 搜索 */
+.common_search {
+  display: block;
+  width: 450rpx;
+  background: #f5f5f5;
+  border-radius: 50rpx;
+  margin: 0 0 25rpx;
+  position: relative;
+}
+.common_search.ipx {
+    margin: 10rpx 0 25rpx;
+}
+.common_search.and {
+    margin: 25rpx 0;
+}
+.common_search image {
+    position: absolute;
+    left: 20rpx;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    width: 34rpx;
+    height: 34rpx;
+}
+.common_search .input_box {
+    width: 80%;
+    height: 60rpx;
+    padding-left: 70rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.common_search .input_box input {
+      color: #b0b0b0;
+      font-size: 24rpx;
+}
+.lesson_box {
+  overflow: hidden;
+}
+.lesson_box .lesson_item {
+    margin-bottom: 30rpx;
+}
+.lesson_box .lesson_item .li_img {
+      border-radius: 5rpx;
+      margin-bottom: 15rpx;
+      position: relative;
+}
+.lesson_box .lesson_item .li_img image {
+        display: block;
+        width: 100%;
+        max-height: 400rpx;
+}
+.lesson_box .lesson_item .li_img text {
+        display: inline-block;
+        color: #fff;
+        font-size: 20rpx;
+        background: #fbc800;
+        border-radius: 5rpx;
+        height: 36rpx;
+        line-height: 36rpx;
+        padding: 0 10rpx;
+        position: absolute;
+        right: 20rpx;
+        top: 20rpx;
+}
+.lesson_box .lesson_item .li_info {
+      color: #333;
+      font-size: 26rpx;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      padding: 0 25rpx 0 10rpx;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+}
+.lesson_box .lesson_item .li_info .li_price {
+        color: #d3a800;
+        font-size: 22rpx;
+}
+.index_nav {
+  margin-bottom: 15rpx;
+}
+.index_nav .nav_box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0 25rpx;
+}
+.index_nav .nav_box .nav_item {
+      width: 25%;
+      text-align: center;
+      color: #999;
+      font-size: 30rpx;
+      padding: 8rpx 0;
+      position: relative;
+}
+.index_nav .nav_box .nav_item.active {
+        color: #fbc800;
+}
+.index_nav .nav_box .nav_item.active:after {
+        content: "";
+        width: 40rpx;
+        height: 4rpx;
+        background: #fbc800;
+        position: absolute;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+                transform: translateX(-50%);
+        bottom: 0;
+        border-radius: 5rpx;
+}
+.index_nav .index_scroll_box {
+    white-space: nowrap;
+    overflow-x: scroll;
+    padding: 0 25rpx;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    background: #f5f5f5;
+}
+.index_nav .index_scroll_box view {
+      display: inline-block;
+      height: 60rpx;
+      line-height: 60rpx;
+      padding: 0 25rpx;
+      color: #bebebe;
+      font-size: 24rpx;
+}
+.index_nav .index_scroll_box view.active {
+        color: #333;
+        font-size: 26rpx;
+        font-weight: bold;
+}
+.fix_car_btn {
+  position: fixed;
+  width: 175rpx;
+  height: 70rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  right: 30rpx;
+  bottom: 30rpx;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffd42c), to(#fbb802));
+  background: -o-linear-gradient(top, #ffd42c, #fbb802);
+  background: linear-gradient(top, #ffd42c, #fbb802);
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 50rpx;
+  z-index: 10;
+}
+.fix_car_btn .fcb_car {
+    position: relative;
+    margin-right: 15rpx;
+}
+.fix_car_btn .fcb_car image {
+      display: inline-block;
+      width: 44rpx;
+      height: 40rpx;
+}
+.fix_car_btn .fcb_car text {
+      display: block;
+      position: absolute;
+      right: -15rpx;
+      top: -10rpx;
+      background: #fff;
+      border-radius: 50%;
+      color: #fbc800;
+      font-size: 24rpx;
+      width: 30rpx;
+      height: 30rpx;
+      line-height: 30rpx;
+      text-align: center;
+}
+.fix_car_bottom {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 96rpx;
+  padding: 20rpx 25rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-top: 1px solid #D4D4D4;
+  background: #fff;
+  z-index: 20;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.fix_car_bottom .radio {
+    color: #666;
+    font-size: 30rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.fix_car_bottom .radio radio {
+      -webkit-transform: scale(0.8);
+          -ms-transform: scale(0.8);
+              transform: scale(0.8);
+}
+.fix_car_bottom .fix_car_info {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.fix_car_bottom .fix_car_info text {
+      color: #e83632;
+      font-size: 30rpx;
+      margin-right: 20rpx;
+}
+.fix_car_bottom .fix_car_info button {
+      padding: 0;
+      margin: 0;
+      width: 190rpx;
+      height: 60rpx;
+      line-height: 60rpx;
+      background: #e83632;
+      color: #fff;
+      font-size: 30rpx;
+      border-radius: 50rpx;
+}
+.swiper .wx-swiper-wrapper {
+  overflow: visible;
+}
+.swiper .wx-swiper-dots-horizontal {
+  bottom: -15px;
+}
+.swiper .wx-swiper-dots-horizontal .wx-swiper-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #999;
+  -webkit-transition: width .5s ease;
+  -o-transition: width .5s ease;
+  transition: width .5s ease;
+}
+.swiper .wx-swiper-dots-horizontal .wx-swiper-dot-active {
+  background: #666;
+  width: 22px;
+  border-radius: 10rpx;
+}
+.pay_success, .pay_fail {
+  position: fixed;
+  width: 350rpx;
+  height: 350rpx;
+  background: #fff;
+  border-radius: 30rpx;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: none;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  padding: 60rpx 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  z-index: 30;
+}
+.pay_success.active, .pay_fail.active {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+.pay_success image, .pay_fail image {
+    display: block;
+    width: 147rpx;
+    height: 172rpx;
+    margin: 0 auto 20rpx;
+}
+.pay_success text, .pay_fail text {
+    color: #333;
+    font-size: 30rpx;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.ld_shadow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  left: 0;
+  bottom: 0;
+  display: none;
+  z-index: 25;
+}
+.ld_shadow.active {
+    display: block;
+}
+.navbar_box {
+  position: fixed;
+  width: 50rpx;
+  height: 50rpx;
+  top: 60rpx;
+  left: 8rpx;
+  z-index: 20;
+}
+.navbar_box image {
+    display: block;
+    width: 20rpx;
+    height: 36rpx;
+    margin: 0 auto;
+}
+.navbar_box.and {
+    top: 88rpx;
+}
+.navbar_box.ipx {
+    top: 110rpx;
+}
+.fix_title {
+  position: fixed;
+  width: 50%;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  left: 25%;
+  top: 48rpx;
+  color: #fff;
+  font-size: 34rpx;
+  z-index: 20;
+}
+.fix_title.and {
+    top: 78rpx;
+}
+.fix_title.ipx {
+    top: 100rpx;
+}
+

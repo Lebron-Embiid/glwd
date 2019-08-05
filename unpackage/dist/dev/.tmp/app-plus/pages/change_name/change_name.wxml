@@ -1,0 +1,1 @@
+<view class="change_name_view data-v-5e72fb58"><view class="change_name data-v-5e72fb58"><input type="text" placeholder="输入您的昵称" data-event-opts="{{[['input',[['__set_model',['','username','$event',[]]]]]]}}" value="{{username}}" bindinput="__e" class="data-v-5e72fb58"/><text class="data-v-5e72fb58">保存</text></view></view>
